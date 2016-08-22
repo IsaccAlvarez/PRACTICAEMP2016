@@ -3,7 +3,7 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 300px;
+  max-width: 350px;
   margin: 100px auto 100px;
   padding: 30px;
   border-top-left-radius: 3px;
@@ -13,16 +13,11 @@
   text-align: center;
 }
 .form .thumbnail {
-  background: #f6ecec;
   width: 150px;
   height: 150px;
   margin: 0 auto 30px;
-  /*padding: 50px 30px;*/
-  border-top-left-radius: 100%;
-  border-top-right-radius: 100%;
-  border-bottom-left-radius: 100%;
-  border-bottom-right-radius: 100%;
-  box-sizing: border-box;
+  border: none;
+
 }
 .form .thumbnail img {
   display: block;
@@ -42,7 +37,24 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+.form input[type=checkbox]{
+  outline: 0;
+  background: #f2f2f2;
+  width: 5%;
+  border: 0;
+  margin: 0 0 5px;
+  /*padding: 15px;*/
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: left;
+}
+
+/*noinspection CssInvalidPropertyValue,CssInvalidPropertyValue*/
+.form .boton {
   outline: 0;
   background: #3e9409;
   width: 100%;
@@ -81,6 +93,7 @@
   display: block;
   clear: both;
 }
+
 
 /* END Form */
 /* Demo Purposes */

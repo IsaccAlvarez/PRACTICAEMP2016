@@ -2,7 +2,7 @@
 
 class conexion{
 	function conectar(){
-		return mysqli_connect("localhost","root","","soweb_seesoft");
+		return mysqli_connect("localhost","seesoftc_root","12345","seesoftc_soweb");
 	}
 }
 

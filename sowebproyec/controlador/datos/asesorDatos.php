@@ -7,12 +7,11 @@ class asesorDatos{
 
         $cnn = new conexion();
         $con = $cnn->conectar();
-        $sql = "SELECT emailEmpresa, clave FROM asesores WHERE emailEmpresa = '$email ' AND clave ='$pass'";
-
-
-
+        $email = mysqli_real_escape_string($con, $_POST["email"]);
+        $pass = mysqli_real_escape_string($con, $_POST["pass"]);
+        $sql = "SELECT emailEmpresa, clave FROM ASESORES WHERE emailEmpresa = '$email' AND clave = '$pass'";
         $consulta = mysqli_query($con,$sql);
-        $fila = mysqli_fetch_array($consulta);
+              $fila = mysqli_fetch_array($consulta);
         if($fila>0){
         {
            return true;

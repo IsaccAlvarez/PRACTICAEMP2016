@@ -1,7 +1,7 @@
 $(document).ready(ini);
 function ini(){
 
-    //$("#login").click(validar);
+    
 
     //validar el form
     $(".form-login").bind("submit",function(){
@@ -20,9 +20,11 @@ function ini(){
          },
          success: function(data){
           if(data =="true"){
-              document.location.href="admin.php";
+              document.location.href="panel.php";
             }else{
-               $("#resultado").html("<div class='alert alert-danger' role='alert'><b>Acceso denegado, </b> Email o Contraseña Incorrectas</div>");
+               $("#resultado").html("<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'>&times;</button> Correo o Clave de acceso incorrectos</div>");
+               $(':password').val('');
+
              }
 
          },
@@ -35,6 +37,5 @@ function ini(){
      });
 
  return false;
-
 });
 }

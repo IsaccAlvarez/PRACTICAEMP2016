@@ -1,0 +1,9 @@
+
+[16-Aug-2016 12:20:13 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 15
+[16-Aug-2016 12:22:22 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:24:03 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:24:28 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:29:19 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:39:40 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:41:07 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
+[16-Aug-2016 12:41:22 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/seesoftc/public_html/soweb/controlador/datos/asesorDatos.php on line 12
