@@ -28,6 +28,13 @@ include('datos/asesorDatos.php');
     $obj = new asesorDatos();
     return $obj->consultaAsesor($email,$pass);
   }
+
+  function validarCambioClave($email,$pass,$passNew,$pass2){
+	  $obj = new asesorDatos();
+	  return $obj->cambiarClave($email,$pass,$passNew,$pass2);
+
+  }
+
  }
 
 

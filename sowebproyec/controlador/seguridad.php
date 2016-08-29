@@ -17,7 +17,7 @@ if(isset($_POST["email"]) || isset($_POST["pass"])){
             $_SESSION["pass"] = $_POST["pass"];
             echo "true";
         }else{
-            echo "false";
+            //echo "false";
         }
     }
 }else{

@@ -36,14 +36,14 @@ if(isset($_SESSION["email"]) && isset($_SESSION["pass"])) {
   <div class="thumbnail"><img src="img/logo.png"/></div>
   <form class="form-login" role="form" id="formLogin" method="post" action="controlador/seguridad.php">
     <input type="text" id='email' name='email'placeholder="Email"  pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                 title="email@example.com" size="30" required oninvalid="setCustomValidity('Campos Vacíos')"
+                 title="email@example.com" size="30" required oninvalid="setCustomValidity('Campos vacíos')"
                    oninput="setCustomValidity('')" autofocus >
     <input type="password" id='pass' name='pass' placeholder="Contraseña" required  oninvalid=
-       "setCustomValidity('Campos Vacíos')" oninput="setCustomValidity('')">
+       "setCustomValidity('Campos vacíos')" oninput="setCustomValidity('')">
     <input type="checkbox" onchange=
     "document.getElementById('pass').type = this.checked ? 'text' : 'password' ">Ver clave de acceso<br>
     <button class="boton" type="submit" id="enviar">Iniciar Sesion</button>
-    <a href="#">Cambiar Clave de Acceso</a>
+    <a href="vistas/cambioClave.php">Cambiar Clave de Acceso</a>
   </form>
     <div class="container" id="resultado" >
   </div>
