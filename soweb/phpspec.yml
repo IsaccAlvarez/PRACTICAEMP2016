@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: soweb
+        psr4_prefix: soweb
+        src_path: app
