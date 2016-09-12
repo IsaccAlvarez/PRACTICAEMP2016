@@ -1,7 +1,7 @@
 @extends('layouts.principal')
+
 @section('content')
-    @include('alerts.errors')
-    @include('alerts.request')
+
     <div class="header">
 
             <div class="container">
@@ -28,7 +28,9 @@
                            <div class="form-group input-group">
                            {!!Form::submit('Iniciar Sesion',['class'=>'btn btn-primary center boton'])!!}
                            </div>
-                           
+                           @include('alerts.errors')
+                           @include('alerts.request')
+
                            {!!Form::close()!!}
 
                        </div>

@@ -20,8 +20,9 @@ class CreateAsesoresTable extends Migration
             $table->dateTime('fechaCreacion');
             $table->string('telefono');
             $table->string('emailPersonal');
-            $table->string('email')->unique();
+            $table->string('emailEmpresa');
             $table->string('estado');
+            $table->DateTime('fechaIngreso');
             $table->dateTime('fechaUltimaModificacion');
             $table->integer('idAsesorUltimaModificacion');
             $table->timestamps();

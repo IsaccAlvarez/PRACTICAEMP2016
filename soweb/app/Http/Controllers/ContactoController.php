@@ -3,25 +3,17 @@
 namespace soweb\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use Session;
+
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
-use soweb\Http\Requests\CambioClaveRequests;
-use Hash;
 
-class CambioClaveController extends Controller
+class ContactoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){
-         $this->middleware('auth');
-         $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
-     }
-
     public function index()
     {
         //
@@ -43,21 +35,9 @@ class CambioClaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CambioClaveRequests $request)
+    public function store(Request $request)
     {
-
-
-       if (Hash::check($request['passActual'], Auth::user()->password)) {
-
-         Auth::User()->where('email','=', Auth::user()->email)->update(['password'=>bcrypt($request['password'])]);
-           Session::flash('message','Cambio de clave exitoso');
-           return view('/password.changePass');
-       }
-       else {
-        Session::flash('message-error','Credenciales incorrectos');
-        return view('/password.changePass');
-       }
-
+        //
     }
 
     /**
@@ -89,10 +69,9 @@ class CambioClaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests $request, $id)
+    public function update(Request $request, $id)
     {
-
-
+        //
     }
 
     /**
@@ -105,9 +84,4 @@ class CambioClaveController extends Controller
     {
         //
     }
-    public function password(){
-      return View('password.changePass');
-    }
-
-
 }

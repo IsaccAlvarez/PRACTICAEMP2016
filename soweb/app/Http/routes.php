@@ -20,6 +20,10 @@ Route::resource('usuario','UsuarioController');
 
 Route::resource('asesor','AsesorController');
 
+Route::resource('contacto','ContactoController');
+
+Route::resource('solicitud','SolicitudesController');
+
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');
 Route::resource('cambio','CambioClaveController');

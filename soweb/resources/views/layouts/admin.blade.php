@@ -36,7 +36,7 @@
               <li><a href="{!!URL::to('/usuario/create')!!}"> Usuarios</a></li>
               @endif
               <li><a href="{!!URL::to('')!!}">Contactos</a></li>
-              <li><a href="table.html">Asesores</a></li>
+              <li><a href="{!!URL::to('/asesor')!!}">Asesores</a></li>
               <li><a href="file.html">Panel Control</a></li>
               <li><a href="file.html">Solicitud</a></li>
               @if(Auth::user()->tipoUser == 'admin')
@@ -72,6 +72,7 @@
 {!!Html::script('js/bootstrap.min.js')!!}
 {!!Html::script('js/metisMenu.min.js')!!}
 {!!Html::script('js/sb-admin-2.js')!!}
+{!!Html::script('js/formCreate.js')!!}
 
 </body>
 
