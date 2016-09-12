@@ -1,0 +1,15 @@
+.form-group{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.btn {
+position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom-left-radius: 50px
+  -webkit-transition: all 0.3 ease;
+  -mz-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@
 <head>
     <title>SoWeb</title>
 
-
+    {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!}
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/metisMenu.min.css')!!}
     {!!Html::style('css/sb-admin-2.css')!!}

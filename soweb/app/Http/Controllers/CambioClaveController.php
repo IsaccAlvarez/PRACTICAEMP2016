@@ -3,14 +3,14 @@
 namespace soweb\Http\Controllers;
 
 use Illuminate\Http\Request;
-use soweb\Http\Requests\LoginRequest;
 use Auth;
 use Session;
-use Redirect;
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
+use soweb\Http\Requests\CambioClaveRequests;
+use Hash;
 
-class LoginController extends Controller
+class CambioClaveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -29,7 +29,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -38,18 +38,21 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(CambioClaveRequests $request)
     {
 
-        if(Auth::attempt(['email'=>$request['email'], 'password'=>$request['password']])){
-            return Redirect::to('admin');
-        }
-        Session::flash('message-error','Correo o Clave de acceso incorrectos');
-        return Redirect::to('/');
-    }
-    public function logout(){
-        Auth::logout();
-        return Redirect::to('/');
+       
+       if (Hash::check($request['passActual'], Auth::user()->password)) {
+
+         Auth::User()->where('email','=', Auth::user()->email)->update(['password'=>bcrypt($request['password'])]);
+           Session::flash('message','Cambio de clave exitoso');
+           return view('/password.changePass');
+       }
+       else {
+        Session::flash('message-error','Credenciales incorrectos');
+        return view('/password.changePass');
+       }
+
     }
 
     /**
@@ -81,9 +84,10 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $email)
+    public function update(Requests $request, $id)
     {
-        $user = User::find($email);
+
+
     }
 
     /**
@@ -96,4 +100,9 @@ class LoginController extends Controller
     {
         //
     }
+    public function password(){
+      return View('password.changePass');
+    }
+
+
 }

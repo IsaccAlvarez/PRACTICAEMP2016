@@ -11,7 +11,7 @@ class Asesores extends Model
     protected $primaryKey = 'idAsesor';
 
     protected $fillable = [
-        'nombre','iniciales','tipoAsesor','clave', 'fechaCreacion','telefono','emailPersonal'.'emailEmpresa','estado',
+        'nombre','iniciales','tipoAsesor', 'fechaCreacion','telefono','emailPersonal'.'emailEmpresa','estado',
 
     ];
 

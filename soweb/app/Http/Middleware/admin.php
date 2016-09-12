@@ -21,7 +21,7 @@ class admin
     }
     public function handle($request, Closure $next)
     {
-        if($this->auth->user()->id != 1){
+        if($this->auth->user()->tipoUser != 'admin'){
             Session::flash('message-error','Sin privilegios');
             return redirect()->to('admin');
         }

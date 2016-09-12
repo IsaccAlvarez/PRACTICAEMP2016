@@ -9,6 +9,8 @@ use soweb\Http\Controllers\Controller;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route;
+use soweb\Http\Requests\UserCreateRequests;
+use Hash;
 
 class UsuarioController extends Controller
 {
@@ -47,14 +49,11 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequests $request)
     {
-        \soweb\User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-        ]);
-        return "Usuario registrado";
+      User::create($request->all());
+     Session::flash('message','Usuario Creado Correctamente');
+     return Redirect::to('/admin');
 
     }
 
@@ -102,4 +101,6 @@ class UsuarioController extends Controller
     {
         //
     }
+
+
 }

@@ -13,6 +13,8 @@
                            </div>
 
                            {!!Form::open(['route'=>'log.store', 'method'=>'POST','class'=>'form-horizotal'])!!}
+                           {!! csrf_field() !!}
+
                            <div class="form-group input-group ">
                                {!!Form::email('email',null,['class'=>'form-control ', 'placeholder'=>'Correo','autofocus'])!!}
                            </div>
@@ -26,7 +28,7 @@
                            <div class="form-group input-group">
                            {!!Form::submit('Iniciar Sesion',['class'=>'btn btn-primary center boton'])!!}
                            </div>
-                           <a href="#">Cambiar Clave de Acceso</a>
+                           
                            {!!Form::close()!!}
 
                        </div>

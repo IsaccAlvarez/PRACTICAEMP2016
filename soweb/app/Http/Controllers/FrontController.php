@@ -21,5 +21,7 @@ class FrontController extends Controller
     public function admin(){
         return view('admin.index');
     }
-
+    public function cambioClave(){
+       return view('cambioClave');
+    }
 }

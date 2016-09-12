@@ -4,7 +4,7 @@ namespace soweb\Http\Requests;
 
 use soweb\Http\Requests\Request;
 
-class UserCreateRequests extends Request
+class CambioClaveRequests extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class UserCreateRequests extends Request
     public function rules()
     {
         return [
-          'name' => 'required',
-         'email' => 'required|unique:users',
-         'tipoUser'=>'required',
-         'password' => 'required|confirmed',
+          'passActual'=> 'required',
+          'password' => 'required|confirmed',
+
         ];
     }
 }

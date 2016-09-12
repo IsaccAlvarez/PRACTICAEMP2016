@@ -17,7 +17,6 @@ class CreateAsesoresTable extends Migration
             $table->string('nombre');
             $table->string('iniciales');
             $table->string('tipoAsesor');
-            $table->string('password');
             $table->dateTime('fechaCreacion');
             $table->string('telefono');
             $table->string('emailPersonal');
@@ -25,7 +24,6 @@ class CreateAsesoresTable extends Migration
             $table->string('estado');
             $table->dateTime('fechaUltimaModificacion');
             $table->integer('idAsesorUltimaModificacion');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

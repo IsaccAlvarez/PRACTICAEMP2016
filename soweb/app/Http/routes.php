@@ -12,10 +12,16 @@
 */
 
 Route::get('/','FrontController@index');
-Route::get('admin','FrontController@admin',['middleware' => 'auth']);
+Route::get('admin','FrontController@admin');
 
-Route::resource('usuario','UsuarioController',['middleware' => 'auth']);
+
+Route::resource('usuario','UsuarioController');
+
+
 Route::resource('asesor','AsesorController');
+
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');
-
+Route::resource('cambio','CambioClaveController');
+Route::get('password','CambioClaveController@password');
+Route::post('updatePassword','CambioClaveController@updatePassword');

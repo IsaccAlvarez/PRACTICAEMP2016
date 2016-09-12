@@ -111,7 +111,8 @@ return [
     */
 
     'attributes'           => [
-        'nombre'                  => 'nombre',
+      'nombre'                  =>'nombre',
+        'name'                  => 'nombre',
         'tipoAsesor'            => 'tipo de Asesor',
         'estado'                =>'Estado',
         'username'              => 'usuario',
@@ -119,7 +120,8 @@ return [
         'emailEmpresa'          => 'correo ',
         'first_name'            => 'nombre',
         'last_name'             => 'apellidos',
-        'clave'                 => 'contraseña',
+        'password'              => 'clave',
+        'passActual'            => 'Clave actual',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
         'country'               => 'país',
