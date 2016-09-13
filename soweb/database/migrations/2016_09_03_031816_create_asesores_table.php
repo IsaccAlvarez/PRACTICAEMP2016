@@ -16,7 +16,6 @@ class CreateAsesoresTable extends Migration
             $table->increments('idAsesor');
             $table->string('nombre');
             $table->string('iniciales');
-            $table->string('tipoAsesor');
             $table->dateTime('fechaCreacion');
             $table->string('telefono');
             $table->string('emailPersonal');

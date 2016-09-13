@@ -24,14 +24,12 @@ class AsesorCreateRequests extends Request
     public function rules()
     {
         return [
-           'name' => 'required',
+            'nombre' => 'required',
             'iniciales' => 'required',
-            'tipoAsesor'=>'required',
             'telefono'=>'min:8',
-            'clave'=>'required|confirmed',
             'emailPersonal'=>'required|email',
-            'emailEmpresa'=>'requiered|email|unique:asesores',
-            'estado'=>'required',
+            'emailEmpresa'=>'required|email',
+            'fechaIngreso'=>'required',
         ];
     }
 }

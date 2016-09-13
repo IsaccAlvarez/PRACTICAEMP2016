@@ -19,6 +19,7 @@ Route::resource('usuario','UsuarioController');
 
 
 Route::resource('asesor','AsesorController');
+Route::get('asesores','AsesorController@listing');
 
 Route::resource('contacto','ContactoController');
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use soweb\Http\Requests\AsesorCreateRequests;
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
+use soweb\Models\Asesores\Asesores;
+use Session;
 
 class AsesorController extends Controller
 {
@@ -16,12 +18,22 @@ class AsesorController extends Controller
      */
      public function __construct(){
          $this->middleware('auth');
-         
+
      }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('asesor.index');
+
+         $asesores = Asesores::paginate(7);
+      /*if ($request->ajax()) {
+        $asesores = Asesores::all();
+        return response()->json($asesores->toArray());
+      }*/
+        return view('asesor.index', compact('asesores'));
+    }
+    public function listing(){
+      /*$asesores = Asesores::Select('idAsesor','nombre','estado','telefono','emailEmpresa');
+      return view('asesor.list')->with('asesores', $asesores);*/
     }
 
     /**
@@ -40,19 +52,14 @@ class AsesorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsesorCreateRequests $request)
     {
-        \soweb\Models\Asesores\Asesores::create([
-            'nombre' => $request['nombre'],
-            'iniciales'=>$request['inicales'],
-            'tipoAsesor'=>$request['tipoAsesor'],
-            'telefono'=>$request['telefono'],
-            'clave' => bcrypt($request['clave']),
-            'emailPersonal'=>$request['emailPersonal'],
-            'emailEmpresa' => $request['emailEmpresa'],
-            'estado' => $request['estado'],
-        ]);
-        return "Asesor registrado";
+        if ($request->ajax()) {
+          Asesores::create($request->all());
+          Session::flash('message','Se creo correctamente');
+          return response()->json(["mensaje" => "creado"]);
+        }
+        return redirect()->route('asesor');
     }
 
     /**

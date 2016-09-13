@@ -2,7 +2,7 @@
 
 <div class="input-group col-sm-3">
    <span class="input-group-addon col-sm-3" id="basic-addon1">Nombre </span>
-   <input type="text" class="form-control col-sm-2" name="nombre" id="nomb">
+   <input type="text" class="form-control col-sm-2" name="nombre" id="nomb" autofocus>
 </div>
 <div class="input-group col-sm-3">
     <span class="input-group-addon col-sm-3">Iniciales</span>
@@ -15,7 +15,7 @@
 
 <div class="input-group col-sm-6">
     <span class="input-group-addon col-sm-3">Correo Personal</span>
-    <input type="email" class="form-control" name="correoPersonal" id="correoP">
+    <input type="email" class="form-control" name="emailPersonal" id="correoP">
 </div>
 <div class="input-group col-sm-6">
   <span class="input-group-addon col-sm-3">Correo de Empresa</span>
@@ -23,25 +23,23 @@
 </div>
 <div class="input-group input-horizontal col-sm-3">
  <span class="input-group-addon col-sm-3" id="basic-addon1">Estado </span>
-  <select class=" form-control" name="estado" aria-describedby="basic-addon1">
+  <select class=" form-control" name="estado" aria-describedby="basic-addon1" id="estado">
     <option value="activo">Activo</option>
     <option value="inactivo">Inactivo</option>
   </select>
 </div>
-  <div class="input-group col-sm-3">
-    <span class="input-group-addon col-sm-3">Fecha de Entrada a la Empresa</span>
-    <input type="date"  class="form-control" id="fechaI" name="fechaIngreso" value="<?php echo date(DATE_ATOM);?>">
+  <div class="input-group col-sm-4 date">
+    <span class="input-group-addon label-info col-sm-6">Fecha de Entrada a la Empresa</span>
+    <input type="date"  class="form-control col-sm-4 " id="fechaI" name="fechaIngreso" value="<?php date("d-m-y");?>">
+   </div>
   </div>
-<div class="">
-  <?php $time = time();
-  $fecha = date("d-m-Y (H:i:s)", $time); ?>
-  <input type="hidden" name="fechaCreacion" value="<?php $fecha ?>">
-  <input type="hidden" name="fechaUltimaModificacion" value="<?php $fecha ?>">
-  <input type="hidden" name="idAsesorUltimaModificacion" value="{!!Auth::user()->id!!}">
+<div class="input-group">
+  <input type="hidden" name="idAsesorUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
 </div>
 <div class="input-group col-sm-3 btn btn-group-horizontal">
-{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-{!!Form::button('Cancelar',['class'=>'btn btn-danger'])!!}
+{!!link_to('#', $title='Guardar', $attributes = ['id'=>'guardar', 'class'=>'btn btn-primary'], $secure = null)!!}
+<button type="button" onclick="bntCancell()" class="btn btn-danger"  name="button">Cancelar</button>
+
 </div>
 
 </div>
