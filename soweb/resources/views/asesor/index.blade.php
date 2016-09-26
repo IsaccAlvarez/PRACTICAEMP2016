@@ -1,53 +1,40 @@
 @extends('layouts.admin')
-
+@section('title','Asesores')
 @section('content')
   @include('alerts.success')
-  <div class="row">
-     <div class="col-md-8">
-       <div class="panel panel-success">
-         <div class="panel-heading">
-         Asesores
-          <p class="navbar-text navbar-right" style=" margin-top: 1px;" >
-         <button id="crear" onclick='redirecionar()' type="button"   class="btn-primary navbar-btn" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo">Nuevo Asesor</button>
-         </p>
-          </div>
-         <div class="panel-body">
-           <table class="table table-bordered table-responsive" >
-             <thead >
-               <th>Id</th>
-               <th>Nombre</th>
-               <th>Estado</th>
-               <th>Telefono</th>
-               <th>Correo</th>
-               <th>Operaciones</th>
-             </thead>
-              @foreach($asesores as $asesor)
-                <tbody id="datos">
-                  <tr>
-                    <td>{{$asesor->idAsesor}}</td>
-                    <td>{{$asesor->nombre}}</td>
-                    <td>{{$asesor->estado}}</td>
-                    <td>{{$asesor->telefono}}</td>
-                    <td>{{$asesor->emailEmpresa}}</td>
-                    <td>
-                      <button class='btn btn-primary'>Editar</button><button class='btn btn-danger'>Eliminar</button>
-                    </td>
-                  </tr>
-                </tbody>
-              @endforeach
-           </table>
-           {!!$asesores->render()!!}
-        </div>
+  <div id="message-save" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
+          <strong> La información de guardo correctamente.</strong>
       </div>
-    </div>
-  </div>
+  <div id="message-update" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
+          <strong> La información de guardo correctamente.</strong>
+      </div>
+  <div id="message-delete" class="alert alert-success glyphicon glyphicon-trash" role="alert" style="display:none">
+           <strong> La información se elimino correctamente.</strong>
+       </div>
+
+       <div class="panel panel-success ">
+         <div class="panel-heading"><b class="text-center">Asesores</b>
+           <div class="navbar-btn pull-right">
+             <button id="crear" class=" btn btn-warning navbar-btn  glyphicon glyphicon-plus" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" data-toggle='modal' data-target='#myModalCreate'> Nuevo</button>
+           </div>
+           <form class="navbar-form navbar-center">
+               <div class="form-group" >
+                  <input id="filtrar" type="text" class="form-control" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" placeholder="Buscar">
+                </div>
+           </form>
 
 
+
+         </div>
+      </div>
+
+<div id="lista"> </div>
+@include('asesor.modelEditar')
+@include('asesor.modelCreate')
 @endsection
 
 @section('script')
+  {!!Html::script('js/Asesor.js')!!}
 
-  {!!Html::script('js/formCreate.js')!!}
-  
 
 @endsection

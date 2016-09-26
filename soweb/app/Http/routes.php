@@ -17,13 +17,18 @@ Route::get('admin','FrontController@admin');
 
 Route::resource('usuario','UsuarioController');
 
-
+//asesores
 Route::resource('asesor','AsesorController');
-Route::get('asesores','AsesorController@listing');
-
+Route::get('listall','AsesorController@listall');
+Route::get('buscar/{dato?}','AsesorController@searchAsesor');
+//contactos
 Route::resource('contacto','ContactoController');
-
+route::get('api/contactos',function(){
+              return Datatables::eloquent(soweb\Models\Contactos\Contactos::query())->make(true);
+      });
+//solicitudes
 Route::resource('solicitud','SolicitudesController');
+//
 
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');

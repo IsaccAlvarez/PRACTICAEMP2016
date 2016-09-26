@@ -4,10 +4,12 @@ namespace soweb\Http\Controllers;
 
 use Illuminate\Http\Request;
 use soweb\Http\Requests\AsesorCreateRequests;
+use soweb\Http\Requests\AsesorUpdateRequest;
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Asesores\Asesores;
 use Session;
+// use Illuminate\Support\Facades\Session;
 
 class AsesorController extends Controller
 {
@@ -24,16 +26,12 @@ class AsesorController extends Controller
     public function index(Request $request)
     {
 
-         $asesores = Asesores::paginate(7);
-      /*if ($request->ajax()) {
-        $asesores = Asesores::all();
-        return response()->json($asesores->toArray());
-      }*/
-        return view('asesor.index', compact('asesores'));
+        return view('asesor.index');
     }
-    public function listing(){
-      /*$asesores = Asesores::Select('idAsesor','nombre','estado','telefono','emailEmpresa');
-      return view('asesor.list')->with('asesores', $asesores);*/
+    public function listall(Request $request){
+
+      $asesores = Asesores::orderBy('nombre','ASC')->paginate();
+      return view('asesor/list')->with('asesores', $asesores);
     }
 
     /**
@@ -43,7 +41,7 @@ class AsesorController extends Controller
      */
     public function create()
     {
-        return view('asesor.create');
+
     }
 
     /**
@@ -55,11 +53,16 @@ class AsesorController extends Controller
     public function store(AsesorCreateRequests $request)
     {
         if ($request->ajax()) {
-          Asesores::create($request->all());
-          Session::flash('message','Se creo correctamente');
-          return response()->json(["mensaje" => "creado"]);
+          $result = Asesores::create($request->all());
+                if ($result){
+                    return response()->json(['success'=>'true']);
+                  }
+                  else
+                  {
+                    return response()->json(['success'=>'false']);
+                  }
         }
-        return redirect()->route('asesor');
+
     }
 
     /**
@@ -68,9 +71,9 @@ class AsesorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idAsesor)
     {
-        //
+
     }
 
     /**
@@ -79,9 +82,12 @@ class AsesorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idAsesor)
     {
-        //
+      $asesores = Asesores::find($idAsesor);
+
+
+      return response()->json($asesores);
     }
 
     /**
@@ -91,9 +97,21 @@ class AsesorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AsesorUpdateRequest $request, $idAsesor)
     {
-        //
+
+        if ($request->ajax()) {
+          $asesor = Asesores::findOrFail($idAsesor);
+          $input = $request->all();
+          $result = $asesor->fill($input)->save();
+            if ($result){
+                return response()->json(['success'=>'true']);
+            }
+            else
+            {
+              return response()->json(['success'=>'false']);
+            }
+        }
     }
 
     /**
@@ -102,8 +120,18 @@ class AsesorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idAsesor)
     {
-        //
+        $asesor = Asesores::findOrFail($idAsesor);
+        $result = $asesor->delete();
+        if ($result)
+      {
+          return response()->json(['success'=>'true']);
+      }
+      else
+      {
+          return response()->json(['success'=> 'false']);
+      }
     }
+
 }

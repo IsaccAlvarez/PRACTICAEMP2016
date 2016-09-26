@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
+use soweb\Http\Requests\ContactoCreateRequest;
+use soweb\Http\Requests\ContactoUpdateRequest;
+use Session;
+use soweb\Models\Contactos\Contactos;
 
 class ContactoController extends Controller
 {
@@ -14,9 +18,19 @@ class ContactoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function __construct(){
+         $this->middleware('auth');
+
+     }
+
+    public function index(Request $request)
     {
-        //
+
+      if ($request->ajax()) {
+       $contactos = Contactos::all();
+       return response()->json($contactos);
+        }
+        return View('contacto.index');
     }
 
     /**
@@ -35,9 +49,19 @@ class ContactoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactoCreateRequest $request)
     {
-        //
+         if ($request->ajax()) {
+
+           $result = Contactos::create($request->all());
+                 if ($result){
+                     return response()->json(['success'=>'true']);
+                   }
+                   else
+                   {
+                     return response()->json(['success'=>'false']);
+                   }
+         }
     }
 
     /**
@@ -57,9 +81,11 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idContacto)
     {
-        //
+         $contactos = Contactos::find($idContacto);
+
+         return response()->json($contactos);
     }
 
     /**
@@ -69,9 +95,19 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContactoUpdateRequest $request, $idContacto)
     {
-        //
+        if ($request->ajax()) {
+          $contactos = Contactos::findOrFail($idContacto);
+          $input = $request->all();
+          $result = $contactos->fill($input)->save();
+          if ($result) {
+            return response()->json(['success'=>'true']);
+          }
+          else {
+            return response()->json(['success'=>'false']);
+          }
+        }
     }
 
     /**
@@ -80,8 +116,15 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idContacto)
     {
-        //
+        $contactos = Contactos::findOrFail($idContacto);
+        $result = $contactos->delete();
+        if ($result) {
+          return response()->json(['success'=>'true']);
+        }
+        else {
+          return response()->json(['success'=>'false']);
+        }
     }
 }

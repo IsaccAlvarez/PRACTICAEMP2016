@@ -9,6 +9,12 @@ class Contactos extends Model
     protected $table = 'contactos';
 
     protected $primaryKey = 'idContacto';
+    protected $fillable = [
+        'nombre','esEmpresa','nombreJuridico','nombreRepresentante', 'telefono','email',
+        'direccion','emailCobro','telCobro','personaCobra','tipoContacto','estado','fechaCreacion','idAsesorCreador',
+        'fechaUltimaModificacion', 'idAsesorUltimaModificacion',
+
+    ];
 
     public function solicitudes(){
         return $this->belongsto(Solicitudes::class);

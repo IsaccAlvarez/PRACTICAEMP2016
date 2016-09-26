@@ -10,6 +10,7 @@ use Session;
 use Redirect;
 use Illuminate\Routing\Route;
 use soweb\Http\Requests\UserCreateRequests;
+use soweb\Http\Requests\UserUpdateRequest;
 use Hash;
 
 class UsuarioController extends Controller
@@ -30,7 +31,8 @@ class UsuarioController extends Controller
     }
     public function index()
     {
-        //
+        $users = User::paginate(5);
+        return view('usuario.index',compact('users'));
     }
 
     /**
@@ -53,7 +55,7 @@ class UsuarioController extends Controller
     {
       User::create($request->all());
      Session::flash('message','Usuario Creado Correctamente');
-     return Redirect::to('/admin');
+     return Redirect::to('/usuario');
 
     }
 
@@ -76,7 +78,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+      return view('usuario.edit',['user'=>$this->user]);
     }
 
     /**
@@ -86,9 +88,12 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $this->user->fill($request->all());
+        $this->user->save();
+        Session::flash('message','Usuario Actualizado Correctamente');
+        return Redirect::to('/usuario');
     }
 
     /**

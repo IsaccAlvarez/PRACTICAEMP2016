@@ -35,4 +35,12 @@ class Asesores extends Model
     public function comentarioContactos(){
         return  $this->belongsto(ComentarioContacto::class);
     }
+    public function scopeBuscar ($query, $dato="")
+    {
+      if (trim($nombre)!="") {
+      $result = $query->where('nombre',"LIKE", "%".$dato."%")
+                        ->orWhere('emailEmpresa',"LIKE","%".$dato."%");
+      }
+      return $result;
+    }
 }

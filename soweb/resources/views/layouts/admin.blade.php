@@ -5,15 +5,17 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=divice-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>SoWeb::@yield('title')::</title>
     {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!}
-    {!!Html::style('css/bootstrap.min.css')!!}
-    {!!Html::style('css/bootstrap-theme.min.css')!!}
     {!!Html::style('css/metisMenu.min.css')!!}
     {!!Html::style('css/sb-admin-2.css')!!}
     {!!Html::style('css/font-awesome.min.css')!!}
-     {!!Html::style('css/tablaSolicitud.css')!!}
+    {!!Html::style('css/tablaSolicitud.css')!!}
+    {!!Html::style('js/jquery-alertable-master/jquery.alertable.css')!!}
+    {!!Html::style('css/datepiker/css/bootstrap-datepicker3.css')!!}
+    {{-- {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!} --}}
 
 </head>
 
@@ -30,22 +32,6 @@
             </button>
             <a class="navbar-brand" href="{!!URL::to('/admin')!!}"><img src="/img/logotipo.png" alt=""></a>
         </div>
-          <ul class="nav navbar-nav">
-              <li class="navbar-left">
-              @if(Auth::user()->tipoUser == 'admin')
-              <li><a href="{!!URL::to('/usuario/create')!!}"> Usuarios</a></li>
-              @endif
-              <li><a href="{!!URL::to('')!!}">Contactos</a></li>
-              <li><a href="{!!URL::to('/asesor')!!}">Asesores</a></li>
-              <li><a href="file.html">Panel Control</a></li>
-              <li><a href="file.html">Solicitud</a></li>
-              @if(Auth::user()->tipoUser == 'admin')
-              <li><a href="{!!URL::to('admin')!!}">Informes</a></li>
-              <li><a href="{!!URL::to('admin')!!}">Metricas</a></li>
-              <li><a href="{!!URL::to('admin')!!}">Graficos</a></li>
-              @endif
-            </li>
-          </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -62,17 +48,44 @@
                 </ul>
             </li>
         </ul>
+
+        <div class="navbar-default sidebar" role="navigation">
+          <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="navbar-left">
+                @if(Auth::user()->tipoUser == 'admin')
+                <li><a href="{!!URL::to('/usuario')!!}" class="fa fa-user"> Usuarios</a></li>
+                @endif
+                <li><a href="{!!URL::to('/contacto')!!}" class="fa fa-users"> Contactos</a></li>
+                <li><a href="{!!URL::to('/asesor')!!}" class="fa fa-users"> Asesores</a></li>
+                <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
+                <li><a href="file.html" class="fa fa-list-alt"> Solicitud</a></li>
+                @if(Auth::user()->tipoUser == 'admin')
+                <li><a href="{!!URL::to('admin')!!}" class="fa fa-file-text-o"> Informes</a></li>
+                <li><a href="{!!URL::to('admin')!!}" class="fa fa-bar-chart"> Metricas</a></li>
+                <li><a href="{!!URL::to('admin')!!}" class="fa fa-pie-chart"> Graficos</a></li>
+                @endif
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
-     @yield('content')
+
+      <div id="page-wrapper">
+          @yield('content')
+      </div>
 
 </div>
 
 
-{!!Html::script('js/jquery.min.js')!!}
+{!!Html::script('js/jquery-3.1.0.min.js')!!}
 {!!Html::script('js/bootstrap.min.js')!!}
 {!!Html::script('js/metisMenu.min.js')!!}
 {!!Html::script('js/sb-admin-2.js')!!}
-
+{!!Html::script('js/jquery-alertable-master/jquery.alertable.js')!!}
+{!!Html::script('js/datepiker/js/bootstrap-datepicker.js')!!}
+{!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
+{{-- {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!} --}}
 
 @section('script')
 

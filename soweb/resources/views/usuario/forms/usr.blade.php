@@ -25,8 +25,6 @@
  <input type="password" name="password_confirmation" class="form-control" placeholder="" aria-describedby="basic-addon1">
 </div>
 
-    <div class="form-group btn-group-horizontal">
-      {!!Form::submit('Registrar',['class'=>'btn-primary'])!!}
-    </div>
-  {!!Form::close()!!}
+
+
 </div>
