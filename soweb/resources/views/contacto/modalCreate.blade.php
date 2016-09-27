@@ -7,11 +7,10 @@
       </div>
       <div class="modal-body  ">
         <div class="modal-body">
-          <div id='message-errors' class="alert alert-danger danger" role='alert' style="display: none">
-          <strong id="errors"></strong>
+          <div id='message-errorCreate' class="alert alert-danger danger" role='alert' style="display: none">
+          <strong id="errorCreate"></strong>
          </div>
-        @include('alerts.request')
-        @include('alerts.errors')
+      
 
         <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
         @include('contacto.forms.create')

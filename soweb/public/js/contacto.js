@@ -1,9 +1,14 @@
 $(document).ready(function(){
 listContacto();
 
-
+// listar();
 
  });
+
+ //mostrar con datatable
+ listar = function() {
+
+ }
 //mostrar y ocultar div
 function mostrasDiv() {
   if (document.fContacto.esEmpresa[0].checked == true) {
@@ -30,7 +35,6 @@ $("#guarda").click(function() {
      var estado = $("#estd").val();
      var iAsC = $("#iac").val();
      iAsUltMod = $("#iaumd").val();
-console.log(nombr);
      var route = '/contacto';
      var token = $("#token").val();
 var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+"&nombreRepresentante="+noRepre+
@@ -45,6 +49,7 @@ var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+
           success:function(data){
             if (data.success == 'true') {
               listContacto();
+
               $("#myModalCreateContacto").modal('toggle');
               $("#message-save").fadeIn();
               $('#message-save').show().delay(3000).fadeOut(1);
@@ -52,8 +57,8 @@ var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+
           },
           error:function(data){
             $.each(data.responseJSON, function(i, field){
-              $("#errors").append("<ul><li>"+field+"</li></ul>");
-              $("#message-errors").fadeIn();
+              $("#errorCreate").append("<ul><li>"+field+"</li></ul>");
+              $("#message-errorCreate").fadeIn();
               if (data.status == 422) {
                  console.clear();
               }
@@ -64,22 +69,20 @@ var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+
 //-------------------------------------------------------------------------------------------------
 //listar
  function listContacto() {
-   var tablaDatos = $("#datos");
- 	var route = "http://localhost:8000/contacto";
+   $.ajax({
+     type:'get',
+     url:'listAll',
+     success: function(data){
+       $("#listaC").empty().html(data);
+     }
 
- 	$("#datos").empty();
- 	$.get(route, function(res){
- 		$(res).each(function(key,value){
- 			tablaDatos.append("<tr><td>"+value.idContacto+"</td><td>"+value.nombre+"</td><td>"+value.telefono+"</td><td>"+value.email+"</td><td>"+value.tipoContacto+"</td><td><button value="+value.idContacto+" OnClick='Mostrar(this);' class='btn btn-primary glyphicon glyphicon-pencil ' data-toggle='modal' data-target='#myModal'>Editar</button><button class='btn btn-danger glyphicon glyphicon-remove' value="+value.idContacto+" OnClick='Eliminar(this);'>Eliminar</button></td></tr>");
- 		});
- 	});
+   });
 
 }
 
-Mostrar = function(btn) {
-  var route = "http://localhost:8000/contacto/"+btn.value+"/edit";
+Mostrar = function(idContacto) {
+  var route = "http://localhost:8000/contacto/"+idContacto+"/edit";
   $.get(route, function(data){
-
     $("#idContacto").val(data.idContacto);
     $("#nomb").val(data.nombre);
     $("input:radio[name=esEmpresa]").val(data.esEmpresa);
@@ -115,7 +118,7 @@ $("#actualizar").click(function() {
   var tC = $("#tipoC").val();
   var est = $("#est").val();
   var iAsUltM = $("#iaum").val();
-console.log(id);
+
   var route = "/contacto/"+id+"";
 
   var token = $("#token").val();
@@ -133,6 +136,7 @@ console.log(id);
                    if (data.success == 'true')
                     {
                          listContacto();
+                        // listar();
                          $("#myModal").modal('toggle');
                          $("#message-update").fadeIn();
                          $('#message-update').show().delay(3000).fadeOut(1);
@@ -141,8 +145,8 @@ console.log(id);
                  error:function(data)
                 {
                      $.each(data.responseJSON, function(i, field){
-                       $("#error").append("<ul><li>"+field+"</li></ul>");
-                       $("#message-error").fadeIn();
+                       $("#errors").append("<ul><li>"+field+"</li></ul>");
+                       $("#message-errors").fadeIn();
                        if (data.status == 422) {
                           console.clear();
                        }
@@ -154,10 +158,10 @@ console.log(id);
 
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
-    $("#message-error").fadeOut()
+    $("#message-errors").fadeOut()
 });
 $("#myModalCreateContacto").on("hidden.bs.modal", function () {
-    $("#message-errors").fadeOut()
+    $("#message-errorCreate").fadeOut()
     $(this).find('form')[0].reset();
  		$("label.error").remove();
 });
@@ -166,9 +170,9 @@ $("#myModalCreateContacto").on("hidden.bs.modal", function () {
 
 
 //eliminar
-var Eliminar = function(idContacto) {
+var Eliminar = function(idContacto, nombre) {
 
-  $.alertable.confirm("<span style='color:#000'>¿Está seguro de eliminar el Contacto?</span>").then(function() {
+  $.alertable.confirm("<span style='color:#000'>¿Está seguro de eliminar el Contacto?</span>"+"<strong><span style='color:#ff0000'>"+ nombre+"</span></strong>").then(function() {
 
       var route = "/contacto/"+idContacto+"";
       var token = $("#token").val();
@@ -181,7 +185,8 @@ var Eliminar = function(idContacto) {
         success: function(data){
         if (data.success == 'true')
         {
-          listContacto();
+          // listContacto();
+
           $("#message-delete").fadeIn();
           $('#message-delete').show().delay(3000).fadeOut(1);
         }

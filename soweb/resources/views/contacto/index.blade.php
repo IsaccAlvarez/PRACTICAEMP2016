@@ -18,28 +18,18 @@
     <div class="navbar-btn pull-right">
      <button id="crear" type="button" class=" btn btn-warning navbar-btn fa fa-user-plus" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo" data-toggle='modal' data-target='#myModalCreateContacto'> Nuevo Contacto</button>
     </div>
-
-
      </div>
   </div>
 
-<div class="table-responsive">
-  <table id="myTable" class="table table-striped table-responsive" >
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>Nombre</th>
-        <th>Teléfono</th>
-        <th>Correo</th>
-        <th>Tipo de Contacto</th>
-        <th>Operaciones</th>
-      </tr>
-    </thead>
-      <tbody id="datos"></tbody>
-  </table>
+<div  id="listaC" class="table-responsive">
+
 </div>
+
+@section('modal')
+  @include('contacto.modalCreate')
+@endsection
 @include('contacto.modalEdit')
-@include('contacto.modalCreate')
+
 
 
 @endsection

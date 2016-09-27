@@ -111,7 +111,10 @@ return [
     */
 
     'attributes'           => [
-      'nombre'                  =>'nombre',
+        'email'                 =>'Correo',
+        'nombreRepresentante'   =>'Nombre de Representante',
+        'emailCobro'            =>'correo de cobro',
+        'nombre'                =>'nombre',
         'name'                  => 'nombre',
         'tipoAsesor'            => 'tipo de Asesor',
         'estado'                =>'Estado',
@@ -125,7 +128,7 @@ return [
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
         'country'               => 'país',
-        'address'               => 'dirección',
+        'direccion'               => 'dirección',
         'telefono'              => 'teléfono',
         'mobile'                => 'móvil',
         'age'                   => 'edad',

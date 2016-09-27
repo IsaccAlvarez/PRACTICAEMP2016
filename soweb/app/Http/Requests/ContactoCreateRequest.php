@@ -29,7 +29,6 @@ class ContactoCreateRequest extends Request
             'telefono'=>'required|min:8',
             'email'=>'required|email',
             'direccion'=>'required',
-            'telCobro'=>'min:8',
             'emailCobro'=>'email',
         ];
     }

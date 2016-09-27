@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="img/icono.ico" />
     <title>SoWeb::@yield('title')::</title>
     {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!}
     {!!Html::style('css/metisMenu.min.css')!!}
@@ -15,7 +16,8 @@
     {!!Html::style('css/tablaSolicitud.css')!!}
     {!!Html::style('js/jquery-alertable-master/jquery.alertable.css')!!}
     {!!Html::style('css/datepiker/css/bootstrap-datepicker3.css')!!}
-    {{-- {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!} --}}
+    {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!}
+    {!!Html::style('//cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css')!!}
 
 </head>
 
@@ -73,8 +75,11 @@
 
       <div id="page-wrapper">
           @yield('content')
-      </div>
 
+      </div>
+      @section('modal')
+
+      @show
 </div>
 
 
@@ -85,8 +90,8 @@
 {!!Html::script('js/jquery-alertable-master/jquery.alertable.js')!!}
 {!!Html::script('js/datepiker/js/bootstrap-datepicker.js')!!}
 {!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
-{{-- {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!} --}}
-
+{!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
+{!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
 @section('script')
 
 @show

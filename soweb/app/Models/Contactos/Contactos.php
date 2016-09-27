@@ -22,4 +22,13 @@ class Contactos extends Model
     public function comentariosContactos(){
         return $this->belongsto(ComentarioContacto::class);
     }
+    public function scopeSearch($query, $nombre)
+    {
+      if (trim($nombre) != '') {
+        $result = $query->where('nombre',"LIKE", "%".$nombre."%");
+      }
+
+    }
+
+
 }

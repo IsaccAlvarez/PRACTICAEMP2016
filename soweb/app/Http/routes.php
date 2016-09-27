@@ -26,6 +26,7 @@ Route::resource('contacto','ContactoController');
 route::get('api/contactos',function(){
               return Datatables::eloquent(soweb\Models\Contactos\Contactos::query())->make(true);
       });
+Route::get('listAll','ContactoController@listAll');      
 //solicitudes
 Route::resource('solicitud','SolicitudesController');
 //

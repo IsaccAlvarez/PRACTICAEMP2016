@@ -10,8 +10,7 @@
           <div id='message-errors' class="alert alert-danger danger" role='alert' style="display: none">
           <strong id="errors"></strong>
          </div>
-        @include('alerts.request')
-        @include('alerts.errors')
+      
         <input type="hidden" name="idContacto" id="idContacto">
         <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
         @include('contacto.forms.edit')
