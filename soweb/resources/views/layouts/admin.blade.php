@@ -15,9 +15,8 @@
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('css/tablaSolicitud.css')!!}
     {!!Html::style('js/jquery-alertable-master/jquery.alertable.css')!!}
-    {!!Html::style('css/datepiker/css/bootstrap-datepicker3.css')!!}
-    {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!}
-    {!!Html::style('//cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css')!!}
+    {!!Html::style('css/datepiker/css/bootstrap-datepicker3.min.css')!!}
+
 
 </head>
 
@@ -88,10 +87,9 @@
 {!!Html::script('js/metisMenu.min.js')!!}
 {!!Html::script('js/sb-admin-2.js')!!}
 {!!Html::script('js/jquery-alertable-master/jquery.alertable.js')!!}
-{!!Html::script('js/datepiker/js/bootstrap-datepicker.js')!!}
+{!!Html::script('js/datepiker/js/bootstrap-datepicker.min.js')!!}
 {!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
-{!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
-{!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
+
 @section('script')
 
 @show

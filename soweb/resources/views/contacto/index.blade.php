@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title','Contactos')
-
+  {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!}
+  {!!Html::style('//cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css')!!}
 @section('content')
 
   <div id="message-save" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
@@ -34,7 +35,8 @@
 
 @endsection
 @section('script')
-
+  {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
+  {!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
 {!!Html::script('js/contacto.js')!!}
 
 @endsection

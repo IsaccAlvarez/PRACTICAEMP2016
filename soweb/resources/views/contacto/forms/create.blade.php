@@ -1,7 +1,7 @@
 
   {!!Form::open(['role'=>'form', 'class'=>'form', 'name'=>'fContacto'])!!}
   <div class="form-group">
-    {!!Form::label('nombre','Nombre')!!}
+    {!!Form::label('nombre','Nombre Completo')!!}
     {!!Form::text('nombre',null,['class'=>'form-control', 'id'=>'nombr'])!!}
   </div>
   <div class="form-group">

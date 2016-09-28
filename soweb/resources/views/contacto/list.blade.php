@@ -19,16 +19,13 @@
          <td>{{$contacto->email}}</td>
          <td>{{$contacto->tipoContacto}}</td>
          <td>
-           <button id="edit" class='btn btn-primary glyphicon glyphicon-pencil' onClick="Mostrar({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
-           @if(Auth::user()->tipoUser == 'admin')
-             <button class='btn btn-danger glyphicon glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
-           @endif
+           <button id="edit" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
+           <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
          </td>
        </tr>
      @endforeach
       </tbody>
   </table>
-
 </div>
 <script type="text/javascript">
 $("#myTable").DataTable({

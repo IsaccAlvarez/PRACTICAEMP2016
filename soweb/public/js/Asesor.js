@@ -1,41 +1,10 @@
 $(document).ready(function(){
 listAsesor();
 
-(function ($) {
-                $('#filtrar').keyup(function () {
-                    var rex = new RegExp($(this).val(), 'i');
-                    $('.buscar tr').hide();
-                    $('.buscar tr').filter(function () {
-                        return rex.test($(this).text());
-                    }).show();
-                })
-            }(jQuery));
-            $('.datepiker').datepicker({
-                format: "yyyy/mm/dd",
-                todayBtn: "linked",
-                language: "es",
-                orientation: "top right",
-                multidateSeparator: "/",
-                keyboardNavigation: false
-            });
+
+            $('.datepiker').datepicker({changeMonth: true,
+      changeYear: true});
 });
-
-//funcionalidad canledario
-
-
-//funcionalidad de la paginacion
- $(document).on("click",".pagination li a",function(e){
-   e.preventDefault();
-   var url = $(this).attr("href");
-       $.ajax({
-           type:'get',
-           url:url,
-           success: function(data){
-               $('#lista').empty().html(data);
-           }
-       });
- });
- //---------------------------------------------------------------
 
  //---------------------------------------------------------------
  //listar los registros guardados

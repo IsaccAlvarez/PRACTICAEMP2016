@@ -5,10 +5,7 @@ listContacto();
 
  });
 
- //mostrar con datatable
- listar = function() {
 
- }
 //mostrar y ocultar div
 function mostrasDiv() {
   if (document.fContacto.esEmpresa[0].checked == true) {
@@ -81,7 +78,9 @@ var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+
 }
 
 Mostrar = function(idContacto) {
-  var route = "http://localhost:8000/contacto/"+idContacto+"/edit";
+  var route = "/contacto/"+idContacto+"/edit";
+
+
   $.get(route, function(data){
     $("#idContacto").val(data.idContacto);
     $("#nomb").val(data.nombre);

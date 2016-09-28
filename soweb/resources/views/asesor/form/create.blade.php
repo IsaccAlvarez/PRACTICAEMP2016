@@ -2,7 +2,7 @@
   <form class="form-horizontal" role="form">
     <div class="form-group">
 
-       <label for="nomb" class="col-sm-2 control-label">Nombre</label>
+       <label for="nomb" class="col-sm-2 control-label">Nombre Completo</label>
        <div class="col-sm-3">
          <input type="text" class="form-control col-sm-2" name="nombre" id="nombe" autofocus>
        </div>
@@ -43,7 +43,7 @@
    </div>
       <div class="form-group ">
         <label for="fechaI" class="col-sm-2 control-label">Fecha de Entrada a la Empresa</label>
-        <div class="col-sm-3">
+        <div class="col-sm-3 ">
           <input type="text"  class="form-control col-sm-4 datepiker" id="fechaIn" name="fechaIngreso">
         </div>
        </div>

@@ -30,7 +30,7 @@ class AsesorController extends Controller
     }
     public function listall(Request $request){
 
-      $asesores = Asesores::orderBy('nombre','ASC')->paginate();
+      $asesores = Asesores::all()->take(10);
       return view('asesor/list')->with('asesores', $asesores);
     }
 

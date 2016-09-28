@@ -1,16 +1,17 @@
 <div class="table-responsive">
-<table class="table table-striped  table-responsive  " >
+<table id="mytable" class="table table-striped  table-responsive  " >
   <thead >
-    <th>Id</th>
-    <th>Nombre</th>
-    <th>Estado</th>
-    <th>Telefono</th>
-    <th>Correo</th>
-    <th>Operaciones</th>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Estado</th>
+      <th>Telefono</th>
+      <th>Correo</th>
+      <th>Operaciones</th>
+    </tr>
   </thead>
-  @foreach($asesores as $asesor)
-    {{--*/ @$nombre = str_replace(' ','&nbsp;', $asesor->nombre) /*--}}
     <tbody id="datos" class="buscar">
+      @foreach($asesores as $asesor)
       <tr>
         <td>{{$asesor->idAsesor}}</td>
         <td>{{$asesor->nombre}}</td>
@@ -18,16 +19,18 @@
         <td>{{$asesor->telefono}}</td>
         <td>{{$asesor->emailEmpresa}}</td>
         <td>
-          <button id="edit" class='btn btn-primary glyphicon glyphicon-pencil' onClick="Mostrar({{$asesor->idAsesor}});" data-toggle='modal' data-target='#myModal'> Editar</button>
+          <button id="edit" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$asesor->idAsesor}});" data-toggle='modal' data-target='#myModal'></button>
           @if(Auth::user()->tipoUser == 'admin')
-            <button class='btn btn-danger glyphicon glyphicon-remove' onClick="Eliminar('{{$asesor->idAsesor}}','{{$asesor->nombre}}');"> Eliminar</button>
+            <button class='btn btn-danger btn-circle glyphicon glyphicon-remove' onClick="Eliminar('{{$asesor->idAsesor}}','{{$asesor->nombre}}');"></button>
           @endif
         </td>
       </tr>
+      @endforeach
     </tbody>
-  @endforeach
 </table>
 </div>
-{{-- <div class="text-center">
-  {!!$asesores->render()!!}
-</div> --}}
+<script type="text/javascript">
+$("#mytable").DataTable({
+ responsive: true,
+});
+</script>
