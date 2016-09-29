@@ -14,12 +14,10 @@ class CreateSolicitudesTable extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->increments('idSolicitud');
-            $table->dateTime('fecha');
-            $table->dateTime('fechaCreacion');
+            $table->date('fecha');
             $table->integer('idContacto')->unsigned();
             $table->integer('idAsesor')->unsigned();
-            $table->dateTime('fechaUltimaModificacion');
-            $table->integer('idAsesorUltimaModificacion');
+            $table->integer('idUserUltimaModificacion')->unsigned();
             $table->string('estado');
             $table->dateTime('fechaCerrado');
             $table->string('tipoSolicitud');
@@ -29,6 +27,7 @@ class CreateSolicitudesTable extends Migration
 
             $table->foreign('idContacto')->references('idContacto')->on('contactos');
             $table->foreign('idAsesor')->references('idAsesor')->on('asesores');
+            $table->foreign('idUserUltimaModificacion')->references('id')->on('users');
 
         });
     }

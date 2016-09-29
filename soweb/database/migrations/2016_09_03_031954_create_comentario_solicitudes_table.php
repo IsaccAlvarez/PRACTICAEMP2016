@@ -15,13 +15,12 @@ class CreateComentarioSolicitudesTable extends Migration
         Schema::create('comentario_solicitudes', function (Blueprint $table) {
             $table->increments('idComentario');
             $table->integer('idSolicitud')->unsigned();
-            $table->integer('idAsesor')->unsigned();
-            $table->dateTime('fechaCreacion');
+            $table->integer('idUser')->unsigned();
             $table->string('comentario', 300);
             $table->timestamps();
 
             $table->foreign('idSolicitud')->references('idSolicitud')->on('solicitudes');
-            $table->foreign('idAsesor')->references('idAsesor')->on('asesores');
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

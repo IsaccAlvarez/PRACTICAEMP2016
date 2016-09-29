@@ -61,8 +61,8 @@
     ],null,['class'=>'form-control','placeholder' => 'Estado:','id'=>'est'])!!}
   </div>
   <div class="form-group">
-    <button type="button" name="comentarios" class="btn btn-info">Comentarios <span class="badge">0</span></button>
+    <button type="button" id="showComents" name="comentarios" class="btn btn-info fa fa-comments"> Comentarios <span class="badge">0</span></button>
   </div>
 
-  <input type="hidden" name="idAsesorUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
+  <input type="hidden" name="idUserUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
   {!!Form::close()!!}

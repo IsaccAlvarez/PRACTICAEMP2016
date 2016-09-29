@@ -42,4 +42,24 @@ class User extends Model implements AuthenticatableContract,
            $this->attributes['password'] = \Hash::make($valor);
        }
    }
+   public function Contactos()
+   {
+     return $this->belongsto(Contactos::class);
+   }
+   public function solicitudes()
+   {
+     return $this->belongsto(Solicitudes::class);
+   }
+   public function asesores()
+   {
+     return $this->belongsto(Asesores::class);
+   }
+   public function comentariosSolicitud(){
+       return  $this->belongsto(ComentarioSolicitud::class);
+   }
+   public function comentarioContactos(){
+       return  $this->belongsto(ComentarioContacto::class);
+   }
+
+
 }

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComentarioContacto extends Model
 {
-    protected $table = 'comentarioContactos';
+    protected $table = 'comentario_Contactos';
     protected $primaryKey = 'idComentario';
-
-    public function asesores(){
-        return $this->hasMany(Aseseros::class);
+   protected $fillable = ['idContacto','idUser','comentario'];
+    public function user(){
+        return $this->hasMany(User::class);
     }
 
     public function contactos(){

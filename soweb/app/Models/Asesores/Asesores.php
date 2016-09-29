@@ -12,7 +12,7 @@ class Asesores extends Model
 
     protected $fillable = [
         'nombre','iniciales', 'fechaCreacion','telefono','emailPersonal','emailEmpresa','estado','fechaIngreso',
-        'fechaUltimaModificacion', 'idAsesorUltimaModificacion',
+        'idUser','idUserUltimaModificacion',
 
     ];
 
@@ -29,18 +29,8 @@ class Asesores extends Model
         return $this->belongsto(Solicitudes::class);
     }
 
-    public function comentariosSolicitud(){
-        return  $this->belongsto(ComentarioSolicitud::class);
+    public function user(){
+        return $this->hasMany(User::class);
     }
-    public function comentarioContactos(){
-        return  $this->belongsto(ComentarioContacto::class);
-    }
-    public function scopeBuscar ($query, $dato="")
-    {
-      if (trim($nombre)!="") {
-      $result = $query->where('nombre',"LIKE", "%".$dato."%")
-                        ->orWhere('emailEmpresa',"LIKE","%".$dato."%");
-      }
-      return $result;
-    }
+
 }

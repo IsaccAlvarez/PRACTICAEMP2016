@@ -29,7 +29,8 @@ $("#guardar").click(function(){
   var eEmpresa = $("#correoEm").val();
   var estd = $("#estad").val();
   var fecIngre = $("#fechaIn").val();
-  var iAsUltMod = $("#iaumd").val();
+  var idUser = $("#iU").val();
+  var iUsUltMod = $("#iaumd").val();
   var route = "/asesor";
 
   var token = $("#token").val();
@@ -46,7 +47,8 @@ $("#guardar").click(function(){
               emailEmpresa: eEmpresa,
               estado: estd,
               fechaIngreso: fecIngre,
-              idAsesorUltimaModificacion: iAsUltMod},
+              idUser:idUser,
+              idUserUltimaModificacion: iUsUltMod},
 
         success:function(data){
           if (data.success == 'true') {
@@ -95,7 +97,7 @@ $("#actualizar").click(function() {
   var eEmpresa = $("#correoE").val();
   var estd = $("#estado").val();
   var fecIngre = $("#fechaI").val();
-  var iAsUltMod = $("#iaum").val();
+  var iUsUltMod = $("#iaum").val();
 
   var route = "/asesor/"+id+"";
 
@@ -113,7 +115,7 @@ $("#actualizar").click(function() {
         emailEmpresa: eEmpresa,
         estado: estd,
         fechaIngreso: fecIngre,
-        idAsesorUltimaModificacion: iAsUltMod},
+        idUserUltimaModificacion: iUsUltMod},
      success: function(data){
         if (data.success == 'true')
          {

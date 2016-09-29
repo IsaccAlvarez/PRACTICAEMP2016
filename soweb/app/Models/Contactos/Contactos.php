@@ -11,8 +11,8 @@ class Contactos extends Model
     protected $primaryKey = 'idContacto';
     protected $fillable = [
         'nombre','esEmpresa','nombreJuridico','nombreRepresentante', 'telefono','email',
-        'direccion','emailCobro','telCobro','personaCobra','tipoContacto','estado','fechaCreacion','idAsesorCreador',
-        'fechaUltimaModificacion', 'idAsesorUltimaModificacion',
+        'direccion','emailCobro','telCobro','personaCobra','tipoContacto','estado','idUser',
+       'idUserUltimaModificacion',
 
     ];
 
@@ -21,6 +21,10 @@ class Contactos extends Model
     }
     public function comentariosContactos(){
         return $this->belongsto(ComentarioContacto::class);
+    }
+
+    public function user(){
+        return $this->hasMany(User::class);
     }
     public function scopeSearch($query, $nombre)
     {

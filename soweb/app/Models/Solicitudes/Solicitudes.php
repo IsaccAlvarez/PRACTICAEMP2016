@@ -21,4 +21,7 @@ class Solicitudes extends Model
     public function comentariosSolicitud(){
         return $this->belongsto(ComentarioSolicitud::class);
     }
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

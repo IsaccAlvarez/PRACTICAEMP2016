@@ -16,15 +16,16 @@ class CreateAsesoresTable extends Migration
             $table->increments('idAsesor');
             $table->string('nombre');
             $table->string('iniciales');
-            $table->dateTime('fechaCreacion');
             $table->string('telefono');
             $table->string('emailPersonal');
             $table->string('emailEmpresa');
             $table->string('estado');
-            $table->DateTime('fechaIngreso');
-            $table->dateTime('fechaUltimaModificacion');
-            $table->integer('idAsesorUltimaModificacion');
+            $table->Date('fechaIngreso');
+            $table->integer('idUser')->unsigned();
+            $table->integer('idUserUltimaModificacion');
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

@@ -15,13 +15,12 @@ class CreateComentarioContactosTable extends Migration
         Schema::create('comentario_contactos', function (Blueprint $table) {
             $table->increments('idComentario');
             $table->integer('idContacto')->unsigned();
-            $table->integer('idAsesor')->unsigned();
-            $table->dateTime('fechaCreacion');
+            $table->integer('idUser')->unsigned();
             $table->string('comentario', 300);
             $table->timestamps();
 
             $table->foreign('idContacto')->references('idContacto')->on('contactos');
-            $table->foreign('idAsesor')->references('idAsesor')->on('asesores');
+            $table->foreign('idUser')->references('id')->on('users');
 
         });
     }

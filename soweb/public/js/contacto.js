@@ -1,7 +1,7 @@
 $(document).ready(function(){
 listContacto();
 
-// listar();
+
 
  });
 
@@ -30,13 +30,13 @@ $("#guarda").click(function() {
      var peCobro = $("#perCob").val();
      var tipoC = $("#tCont").val();
      var estado = $("#estd").val();
-     var iAsC = $("#iac").val();
-     iAsUltMod = $("#iaumd").val();
+     var iUsC = $("#iac").val();
+     var iUsUltMod = $("#iaumd").val();
      var route = '/contacto';
      var token = $("#token").val();
 var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+"&nombreRepresentante="+noRepre+
             "&telefono="+telefon+"&email="+correo+"&direccion="+dire+"&telCobro="+teCobro+"&emailCobro="+emCobro+
-            "&personaCobra="+peCobro+"&tipoContacto="+tipoC+"&estado="+estado+"&idAsesorCreador="+iAsC+"&idAsesorUltimaModificacion="+iAsUltMod;
+            "&personaCobra="+peCobro+"&tipoContacto="+tipoC+"&estado="+estado+"&idUser="+iUsC+"&idUserUltimaModificacion="+iUsUltMod;
      $.ajax({
            url: route,
            headers: {'X-CSRF-TOKEN': token},
@@ -57,7 +57,7 @@ var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+
               $("#errorCreate").append("<ul><li>"+field+"</li></ul>");
               $("#message-errorCreate").fadeIn();
               if (data.status == 422) {
-                 console.clear();
+                //  console.clear();
               }
             });
           }
@@ -95,6 +95,7 @@ Mostrar = function(idContacto) {
     $("#persCobr").val(data.personaCobra);
     $("#tipoC").val(data.tipoContacto);
     $("#est").val(data.estado);
+    $("#idContacto2").val(data.idContacto);
 
 
   });
@@ -111,20 +112,20 @@ $("#actualizar").click(function() {
   var telf = $("#telefe").val();
   var em = $("#email").val();
   var dir = $("#direcc").val()
-  var tC = $("#teCobr").val();
+  var teC = $("#teCobr").val();
   var eC = $("#correoC").val();
   var pC = $("#persCobr").val();
   var tC = $("#tipoC").val();
   var est = $("#est").val();
-  var iAsUltM = $("#iaum").val();
+  var iUsUltM = $("#iaum").val();
 
   var route = "/contacto/"+id+"";
 
   var token = $("#token").val();
 
   var datosUpdate = "nombre="+nombre+"&esEmpresa="+esEM+"&nombreJuridico="+nJ+"&nombreRepresentante="+nR+
-              "&telefono="+telf+"&email="+em+"&direccion="+dir+"&telCobro="+tC+"&emailCobro="+eC+
-              "&personaCobra="+pC+"&tipoContacto="+tC+"&estado="+est+"&idAsesorUltimaModificacion="+iAsUltM;
+              "&telefono="+telf+"&email="+em+"&direccion="+dir+"&telCobro="+teC+"&emailCobro="+eC+
+              "&personaCobra="+pC+"&tipoContacto="+tC+"&estado="+est+"&idUserUltimaModificacion="+iUsUltM;
     $.ajax({
           url: route,
           headers: {'X-CSRF-TOKEN': token},
@@ -136,7 +137,7 @@ $("#actualizar").click(function() {
                     {
                          listContacto();
                         // listar();
-                         $("#myModal").modal('toggle');
+                        //  $("#myModal").modal('toggle');
                          $("#message-update").fadeIn();
                          $('#message-update').show().delay(3000).fadeOut(1);
                      }
@@ -147,7 +148,7 @@ $("#actualizar").click(function() {
                        $("#errors").append("<ul><li>"+field+"</li></ul>");
                        $("#message-errors").fadeIn();
                        if (data.status == 422) {
-                          console.clear();
+                          // console.clear();
                        }
                      });
                 }
@@ -158,16 +159,13 @@ $("#actualizar").click(function() {
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
     $("#message-errors").fadeOut()
+    
 });
 $("#myModalCreateContacto").on("hidden.bs.modal", function () {
     $("#message-errorCreate").fadeOut()
     $(this).find('form')[0].reset();
  		$("label.error").remove();
 });
-
-
-
-
 //eliminar
 var Eliminar = function(idContacto, nombre) {
 
@@ -191,8 +189,12 @@ var Eliminar = function(idContacto, nombre) {
         }
       }
       });
-
-
     });
-
 }
+//-------------------------------------
+//----------   Comentarios   ---------
+//-------------------------------------
+
+$("#showComents").on('click',function(){
+      $("#coment").toggle();
+});

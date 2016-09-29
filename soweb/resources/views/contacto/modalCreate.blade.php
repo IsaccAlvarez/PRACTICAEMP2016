@@ -10,11 +10,11 @@
           <div id='message-errorCreate' class="alert alert-danger danger" role='alert' style="display: none">
           <strong id="errorCreate"></strong>
          </div>
-      
+
 
         <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
         @include('contacto.forms.create')
-
+        
 
       </div>
       <div class="modal-footer ">

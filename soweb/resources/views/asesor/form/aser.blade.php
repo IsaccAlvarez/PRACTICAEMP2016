@@ -48,7 +48,7 @@
         </div>
        </div>
     <div class="form-group">
-      <input type="hidden" name="idAsesorUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
+      <input type="hidden" name="idUserUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
     </div>
   </form>
 

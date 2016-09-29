@@ -75,10 +75,13 @@
       <div id="page-wrapper">
           @yield('content')
 
+          
       </div>
       @section('modal')
 
       @show
+
+
 </div>
 
 

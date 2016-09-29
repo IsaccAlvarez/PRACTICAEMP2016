@@ -60,9 +60,6 @@
       'inactivo'=>'Inactivo'
     ],null,['class'=>'form-control','placeholder' => 'Estado:','id'=>'estd'])!!}
   </div>
-  <div class="form-group">
-    <button type="button" name="comentarios" class="btn btn-info">Comentarios <span class="badge">0</span></button>
-  </div>
-  <input type="hidden" name="idAsesorCreador" id="iac" value="{!!Auth::user()->id!!}">
-  <input type="hidden" name="idAsesorUltimaModificacion" id="iaumd" value="{!!Auth::user()->id!!}">
+  <input type="hidden" name="idUser" id="iac" value="{!!Auth::user()->id!!}">
+  <input type="hidden" name="idUserUltimaModificacion" id="iaumd" value="{!!Auth::user()->id!!}">
   {!!Form::close()!!}

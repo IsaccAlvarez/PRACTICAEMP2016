@@ -26,11 +26,13 @@ Route::resource('contacto','ContactoController');
 route::get('api/contactos',function(){
               return Datatables::eloquent(soweb\Models\Contactos\Contactos::query())->make(true);
       });
-Route::get('listAll','ContactoController@listAll');      
+Route::get('listAll','ContactoController@listAll');
 //solicitudes
 Route::resource('solicitud','SolicitudesController');
 //
-
+//comentarios de contacto
+Route::resource('comentario','ComentarioContactoController');
+//
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');
 Route::resource('cambio','CambioClaveController');

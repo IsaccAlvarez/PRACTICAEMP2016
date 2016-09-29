@@ -47,8 +47,11 @@
           <input type="text"  class="form-control col-sm-4 datepiker" id="fechaIn" name="fechaIngreso">
         </div>
        </div>
+       <div class="form-group">
+         <input type="hidden" name="idUser" id="iU" value="{!!Auth::user()->id!!}">
+       </div>
     <div class="form-group">
-      <input type="hidden" name="idAsesorUltimaModificacion" id="iaumd" value="{!!Auth::user()->id!!}">
+      <input type="hidden" name="idUserUltimaModificacion" id="iaumd" value="{!!Auth::user()->id!!}">
     </div>
   </form>
 

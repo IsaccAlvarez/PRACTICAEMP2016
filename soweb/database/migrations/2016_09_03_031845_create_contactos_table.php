@@ -26,11 +26,11 @@ class CreateContactosTable extends Migration
             $table->string('personaCobra');
             $table->string('tipoContacto');
             $table->string('estado');
-            $table->dateTime('fechaCreacion');
-            $table->integer('idAsesorCreador');
-            $table->dateTime('fechaUltimaModificacion');
-            $table->integer('idAsesorUltimaModificacion');
+            $table->integer('idUser')->unsigned();
+            $table->integer('idUserUltimaModificacion');
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 
