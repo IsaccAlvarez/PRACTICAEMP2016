@@ -31,10 +31,13 @@ class UsuarioController extends Controller
     }
     public function index()
     {
-        $users = User::paginate(5);
-        return view('usuario.index',compact('users'));
+       return view('usuario.index');
     }
-
+     public function listUser(Request $request)
+     {
+       $users = User::all()->take(10);
+       return view('usuario/list')->with('users', $users);
+     }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +45,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+
     }
 
     /**
@@ -53,9 +56,16 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequests $request)
     {
-      User::create($request->all());
-     Session::flash('message','Usuario Creado Correctamente');
-     return Redirect::to('/usuario');
+
+     if ($request->ajax()) {
+
+       $result = User::create($request->all());
+       if ($result) {
+         return response()->json(['success'=>'true']);
+       }else {
+          return response()->json(['success'=>'false']);
+       }
+     }
 
     }
 
@@ -78,7 +88,10 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-      return view('usuario.edit',['user'=>$this->user]);
+      $users = User::find($id);
+      return response()->json($users);
+
+
     }
 
     /**
@@ -90,10 +103,21 @@ class UsuarioController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $this->user->fill($request->all());
-        $this->user->save();
-        Session::flash('message','Usuario Actualizado Correctamente');
-        return Redirect::to('/usuario');
+
+        if ($request->ajax()) {
+          $users = User::findOrFail($id);
+          $input = $request->all();
+          $result = $users->fill($input)->save();
+          if ($result) {
+            return response()->json(['success'=>'true']);
+          }
+          else {
+            return response()->json(['success'=>'false']);
+          }
+        }
+
+
+
     }
 
     /**
@@ -104,7 +128,14 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::findOrFail($id);
+        $result = $users->delete();
+        if ($result) {
+          return response()->json(['success'=>'true']);
+        }
+        else {
+          return response()->json(['success'=>'false']);
+        }
     }
 
 

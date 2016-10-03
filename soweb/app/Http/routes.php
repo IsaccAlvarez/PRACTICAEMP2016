@@ -16,7 +16,7 @@ Route::get('admin','FrontController@admin');
 
 
 Route::resource('usuario','UsuarioController');
-
+Route::resource('listUser','UsuarioController@listUser');
 //asesores
 Route::resource('asesor','AsesorController');
 Route::get('listall','AsesorController@listall');
@@ -27,11 +27,13 @@ route::get('api/contactos',function(){
               return Datatables::eloquent(soweb\Models\Contactos\Contactos::query())->make(true);
       });
 Route::get('listAll','ContactoController@listAll');
+Route::get('listComent','ContactoController@listComent');
 //solicitudes
 Route::resource('solicitud','SolicitudesController');
 //
 //comentarios de contacto
 Route::resource('comentario','ComentarioContactoController');
+Route::get('/coment/{idContacto}','ComentarioContactoController@getList');
 //
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');

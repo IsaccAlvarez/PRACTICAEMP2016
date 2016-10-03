@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Contactos\ComentarioContacto;
+use soweb\Models\Contactos\Contactos;
+use soweb\User;
 use Carbon\Carbon;
 class ComentarioContactoController extends Controller
 {
@@ -19,17 +21,16 @@ class ComentarioContactoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
+      $comentarios = ComentarioContacto::paginate(5);
+        return view('comentarios.list', compact('comentarios'));
     }
-     public function list()
+     public function getList(Request $request, $idContacto)
      {
-       $comentario_contactos = ComentarioContacto::select('users.name as user','comentario_contactos.created_at','comentario_contacto.comentario')
-         ->join('users','users.id','=','comentario_contactos.idUser')
-         ->join('contactos','contactos.idContacto','=','comentario_contactos.idContacto')
-         ->where('contactos.idContacto','=','comentario_contactos.idContacto')paginate(2);
-         return view('contacto/modalEdit')->with('comentario_contactos', $comentario_contactos);
+         $comentarios = Contacto::find($idContacto)->comentariosContactos()->get();
+
+         return view('contacto/modalEdit')->with('comentarios', $comentarios);
      }
     /**
      * Show the form for creating a new resource.
@@ -50,15 +51,15 @@ class ComentarioContactoController extends Controller
     public function store(Request $request)
     {
 
-         ComentarioContacto::create($request->all());
-        // if ($request->ajax()) {
-        //    $result = CometerioContacto::create($request->all());
-        //    if ($result) {
-        //      return response()->json(['success'=>'true']);
-        //    }else {
-        //      return response()->json(['success'=>'false']);
-        //    }
-        // }
+
+        if ($request->ajax()) {
+           $result = CometerioContacto::create($request->all());
+           if ($result) {
+             return response()->json(['success'=>'true']);
+           }else {
+             return response()->json(['success'=>'false']);
+           }
+        }
     }
 
     /**

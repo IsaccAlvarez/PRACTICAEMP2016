@@ -9,11 +9,12 @@ class ComentarioContacto extends Model
     protected $table = 'comentario_Contactos';
     protected $primaryKey = 'idComentario';
    protected $fillable = ['idContacto','idUser','comentario'];
-    public function user(){
-        return $this->hasMany(User::class);
+
+    public function users(){
+        return $this->belongsto('soweb\User', 'idUser');
     }
 
     public function contactos(){
-        return $this->hasMany(Contactos::class);
+        return $this->belongsto('soweb\Contactos', 'idContacto');
     }
 }

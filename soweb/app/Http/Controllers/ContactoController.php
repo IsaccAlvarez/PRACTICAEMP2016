@@ -137,4 +137,10 @@ class ContactoController extends Controller
           return response()->json(['success'=>'false']);
         }
     }
+
+    public function listComent($idContacto)
+    {
+       $comentarios = Contactos::find($idContacto)->comentariosContactos()->get();
+       return view('contacto/modalEdit')->with('comentarios', $comentarios);
+    }
 }

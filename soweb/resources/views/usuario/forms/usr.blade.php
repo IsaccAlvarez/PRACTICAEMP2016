@@ -1,30 +1,27 @@
-<div class="form-group col-sm-6 form">
 
-  <div class="input-group">
-   <span class="input-group-addon" id="basic-addon1">Nombre </span>
-   <input type="text" name='name' class="form-control" placeholder="" aria-describedby="basic-addon1">
+{!!Form::open(['id'=>'formCreate', 'method'=>'post', 'class'=>'form', 'role'=>'form'])!!}
+  <div class="form-group">
+   <label for="name">Nombre</label>
+   <input type="text" name='name' id="name" class="form-control" placeholder="" aria-describedby="basic-addon1" autofocus>
  </div>
- <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Correo</span>
-  <input type="text"  name="email" class="form-control" placeholder="" aria-describedby="basic-addon1">
+ <div class="form-group">
+  <label for="email">Correo</label>
+  <input type="text"  name="email" id="email" class="form-control" placeholder="" aria-describedby="basic-addon1">
  </div>
- <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Tipo de Usuario:</span>
-   <select class=" form-control" name="tipoUser" aria-describedby="basic-addon1">
+ <div class="form-group">
+  <label for="tipoUser">Tipo de Usuario </label>
+   <select class=" form-control" id="tUsers" name="tipoUser" aria-describedby="basic-addon1">
      <option value="admin">Administrador</option>
      <option value="normal">Normal</option>
    </select>
  </div>
- <div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Clave  </span>
-  <input type="password" name="password" class="form-control" placeholder="" aria-describedby="basic-addon1">
+ <div class="form-group">
+  <label for="password">Clave</label>
+  <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="basic-addon1">
 </div>
 
-<div class="input-group">
- <span class="input-group-addon" id="basic-addon1">Confirmar Clave</span>
- <input type="password" name="password_confirmation" class="form-control" placeholder="" aria-describedby="basic-addon1">
+<div class="form-group">
+ <label for="password_confirmation">Confirmar Clave</label>
+ <input type="password" name="password_confirmation" id="pas2" class="form-control" placeholder="" aria-describedby="basic-addon1">
 </div>
-
-
-
-</div>
+{!!Form::close()!!}

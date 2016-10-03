@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract,
    }
    public function Contactos()
    {
-     return $this->belongsto(Contactos::class);
+     return $this->HasMany('soweb\contactos');
    }
    public function solicitudes()
    {
@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract,
        return  $this->belongsto(ComentarioSolicitud::class);
    }
    public function comentarioContactos(){
-       return  $this->belongsto(ComentarioContacto::class);
+       return  $this->HasMany(ComentarioContacto::class);
    }
 
 

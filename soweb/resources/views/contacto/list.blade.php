@@ -19,7 +19,7 @@
          <td>{{$contacto->email}}</td>
          <td>{{$contacto->tipoContacto}}</td>
          <td>
-           <button id="edit" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
+           <button id="edit" href="/coment/{{$contacto->idContacto}}" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$contacto->idContacto}}); list({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
            <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
          </td>
        </tr>

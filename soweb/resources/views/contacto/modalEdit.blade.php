@@ -20,17 +20,18 @@
         <div id="coment" class="" style="display:none">
           <fieldset>
             <legend>Comentarios</legend>
-                <table class="table table-responsive">
-                  <tbody>
-                    @foreach($comentario_contactos as $comentario)
-                      <tr>
-                        <td>{{$comentario->user}}</td>
-                        <td>{{$comentario->created_at}}</td>
-                        <td>{{$comentario->comentario}}</td>
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+              <div id="comentarios">
+                <ul class="list-group" style="font-size: 10pt;">
+                       @foreach ($comentarios as $comentario)
+                       <li class="list-group-item">
+                           <span class="label label-info">{{ $comentario->user->name }} {{$comentario->created_at
+                           ->format('dd-mm-yy  h:i:s A')}}</span>
+                           {{ $comentario->cometario }}
+                       </li>
+                       @endforeach
+                   </ul>
+                   {!! $comentarios->render() !!}
+              </div>
           </fieldset>
           {!!Form::open(['class'=>"form"])!!}
           <input type="hidden" name="idContacto" id="idContacto2">

@@ -20,19 +20,13 @@ class Contactos extends Model
         return $this->belongsto(Solicitudes::class);
     }
     public function comentariosContactos(){
-        return $this->belongsto(ComentarioContacto::class);
+        return $this->hasMany('soweb\ComentarioContacto');
     }
 
-    public function user(){
-        return $this->hasMany(User::class);
+    public function users(){
+        return $this->belongsto(User::class);
     }
-    public function scopeSearch($query, $nombre)
-    {
-      if (trim($nombre) != '') {
-        $result = $query->where('nombre',"LIKE", "%".$nombre."%");
-      }
 
-    }
 
 
 }

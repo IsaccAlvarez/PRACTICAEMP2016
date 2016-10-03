@@ -73,7 +73,7 @@ $("#guardar").click(function(){
 //mostrar el model con el form y los datos
 var Mostrar = function(idAsesor)
 {
-  var route = "http://localhost:8000/asesor/"+idAsesor+"/edit";
+  var route = "/asesor/"+idAsesor+"/edit";
   $.get(route, function(data){
 
     $("#idAsesor").val(data.idAsesor);
