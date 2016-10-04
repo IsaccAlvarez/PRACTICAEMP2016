@@ -12,6 +12,7 @@ use Illuminate\Routing\Route;
 use soweb\Http\Requests\UserCreateRequests;
 use soweb\Http\Requests\UserUpdateRequest;
 use Hash;
+use Crypt;
 
 class UsuarioController extends Controller
 {
@@ -89,6 +90,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
       $users = User::find($id);
+
       return response()->json($users);
 
 
@@ -129,13 +131,18 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $users = User::findOrFail($id);
-        $result = $users->delete();
-        if ($result) {
-          return response()->json(['success'=>'true']);
-        }
-        else {
+        if ($users->tipoUser != 'admin') {
+          $result = $users->delete();
+          if ($result) {
+            return response()->json(['success'=>'true']);
+          }
+          else {
+            return response()->json(['success'=>'false']);
+          }
+        }else {
           return response()->json(['success'=>'false']);
         }
+
     }
 
 

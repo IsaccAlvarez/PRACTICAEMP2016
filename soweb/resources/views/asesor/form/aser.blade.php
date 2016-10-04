@@ -44,7 +44,7 @@
       <div class="form-group">
         <label for="fechaI" class="col-sm-2 control-label">Fecha de Entrada a la Empresa</label>
         <div class="col-sm-3">
-          <input type="text"  class="form-control col-sm-4 datepiker " id="fechaI" name="fechaIngreso">
+          <input type="date"  class="form-control col-sm-4 " id="fechaI" name="fechaIngreso">
         </div>
        </div>
     <div class="form-group">

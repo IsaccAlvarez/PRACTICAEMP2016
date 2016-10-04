@@ -19,7 +19,8 @@
          <td>{{$contacto->email}}</td>
          <td>{{$contacto->tipoContacto}}</td>
          <td>
-           <button id="edit" href="/coment/{{$contacto->idContacto}}" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$contacto->idContacto}}); list({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
+           <a href="{{route('contacto.show', $contacto->idContacto)}}" class="btn btn-info  fa fa-folder-open"> Ver Ficha</a>
+           <button id="edit" href="/coment/{{$contacto->idContacto}}" class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$contacto->idContacto}}); list({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
            <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
          </td>
        </tr>

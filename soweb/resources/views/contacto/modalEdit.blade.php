@@ -21,7 +21,7 @@
           <fieldset>
             <legend>Comentarios</legend>
               <div id="comentarios">
-                <ul class="list-group" style="font-size: 10pt;">
+                {{-- <ul class="list-group" style="font-size: 10pt;">
                        @foreach ($comentarios as $comentario)
                        <li class="list-group-item">
                            <span class="label label-info">{{ $comentario->user->name }} {{$comentario->created_at
@@ -31,7 +31,7 @@
                        @endforeach
                    </ul>
                    {!! $comentarios->render() !!}
-              </div>
+              </div> --}}
           </fieldset>
           {!!Form::open(['class'=>"form"])!!}
           <input type="hidden" name="idContacto" id="idContacto2">

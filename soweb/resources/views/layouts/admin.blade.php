@@ -44,7 +44,7 @@
                     <li><a href="{!!URL::to('/password')!!}"><i class="glyphicon glyphicon-refresh"></i> Cambiar Clave</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{!!URL::to('/logout')!!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+                    <li><a href="{!!URL::to('/logout')!!}"><i class="glyphicon glyphicon-log-out"></i> Cerrar Sesión</a>
                     </li>
                 </ul>
             </li>
@@ -75,7 +75,7 @@
       <div id="page-wrapper">
           @yield('content')
 
-          
+
       </div>
       @section('modal')
 

@@ -14,11 +14,14 @@
  </select>
 </div>
 <div class="form-group">
+  <input type="checkbox" name="mostrar" class="" id="ver" value="1" > Actualizar Clave
+</div>
+<div class="form-group" id="pas1" style="Display: none;">
 <label for="password">Clave</label>
 <input type="password" name="password" id="pass" class="form-control" placeholder="" aria-describedby="basic-addon1">
 </div>
 
-<div class="form-group">
+<div class="form-group"  id="pas2" style="Display: none;">
 <label for="password_confirmation">Confirmar Clave</label>
 <input type="password" name="password_confirmation" id="pass2" class="form-control" placeholder="" aria-describedby="basic-addon1">
 </div>

@@ -17,6 +17,8 @@ Route::get('admin','FrontController@admin');
 
 Route::resource('usuario','UsuarioController');
 Route::resource('listUser','UsuarioController@listUser');
+//email
+Route::resource('mail','MailController');
 //asesores
 Route::resource('asesor','AsesorController');
 Route::get('listall','AsesorController@listall');

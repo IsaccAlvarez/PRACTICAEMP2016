@@ -155,11 +155,15 @@ $("#actualizar").click(function() {
               });
 });
 
+//CUANDO ABRES LA VENTANA MODAL
+$("#myModalCreateContacto").on("shown.bs.modal",function() {
+  $("#nombr").focus();
+});
 
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
     $("#message-errors").fadeOut()
-    
+
 });
 $("#myModalCreateContacto").on("hidden.bs.modal", function () {
     $("#message-errorCreate").fadeOut()

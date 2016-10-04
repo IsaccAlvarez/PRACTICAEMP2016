@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Crypt;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -42,6 +43,9 @@ class User extends Model implements AuthenticatableContract,
            $this->attributes['password'] = \Hash::make($valor);
        }
    }
+
+
+
    public function Contactos()
    {
      return $this->HasMany('soweb\contactos');

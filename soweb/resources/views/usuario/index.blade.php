@@ -5,7 +5,7 @@
 @section('content')
 
   @include('alerts.success')
-
+  @include('alerts.errors')
   <div id="message-save" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
           <strong> La información de guardó correctamente.</strong>
   </div>
@@ -13,15 +13,17 @@
           <strong> La información de guardó correctamente.</strong>
   </div>
   <div id="message-delete" class="alert alert-success glyphicon glyphicon-trash" role="alert" style="display:none">
-           <strong>El registro se eliminó correctamente.</strong>
+           <strong> El registro se eliminó correctamente.</strong>
+  </div>
+  <div id="message-delete-error" class="alert alert-warning fa fa-info-circle" role="alert" style="display:none">
+           <strong> No se Puede eliminar un Administrador.</strong>
   </div>
        <div class="panel panel-success">
-         <div class="panel-heading">
-         Usuarios
-          <p class="navbar-text navbar-right" style=" margin-top: 1px;" >
-         <button id="crear" type="button"   class="btn-primary navbar-btn fa fa-user-plus" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo" data-toggle='modal' data-target='#myModalCreateUser' > Nuevo Usuario</button>
-         </p>
-          </div>
+         <div class="panel-heading"><b>Usuarios</b>
+             <div class="navbar-btn pull-right">
+              <button id="crear" type="button"   class="btn btn-warning navbar-btn fa fa-user-plus" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo" data-toggle='modal' data-target='#myModalCreateUser' > Nuevo Usuario</button>
+            </div>
+        </div>
       </div>
 
 

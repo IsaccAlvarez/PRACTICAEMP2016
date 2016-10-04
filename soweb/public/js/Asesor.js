@@ -139,7 +139,10 @@ $("#actualizar").click(function() {
  });
 
 });
-
+//CUANDO ABRES LA VENTANA MODAL
+$("#myModalCreate").on("shown.bs.modal",function() {
+  $("#nombe").focus();
+});
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
     $("#message-error").fadeOut()

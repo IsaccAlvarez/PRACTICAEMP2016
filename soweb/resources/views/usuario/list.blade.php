@@ -16,7 +16,7 @@
       <td>{{$user->email}}</td>
        <td>{{$user->tipoUser}}</td>
       <td>
-        <button id="edit" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$user->id}});" data-toggle='modal' data-target='#myModalEditUser'></button>
+        <button id="edit" class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$user->id}});" data-toggle='modal' data-target='#myModalEditUser'></button>
         <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$user->id}}','{{$user->name}}');"></button>
       </td>
     </tr>

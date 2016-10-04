@@ -2,7 +2,7 @@
   {!!Form::open(['role'=>'form', 'class'=>'form', 'name'=>'fContacto'])!!}
   <div class="form-group">
     {!!Form::label('nombre','Nombre Completo')!!}
-    {!!Form::text('nombre',null,['class'=>'form-control', 'id'=>'nombr'])!!}
+    {!!Form::text('nombre',null,['class'=>'form-control', 'id'=>'nombr', 'autofocus'])!!}
   </div>
   <div class="form-group">
     <label>Es Empresa</label>

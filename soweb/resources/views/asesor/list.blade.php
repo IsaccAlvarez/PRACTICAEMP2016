@@ -19,7 +19,7 @@
         <td>{{$asesor->telefono}}</td>
         <td>{{$asesor->emailEmpresa}}</td>
         <td>
-          <button id="edit" class='btn btn-primary btn-circle glyphicon glyphicon-pencil' onClick="Mostrar({{$asesor->idAsesor}});" data-toggle='modal' data-target='#myModal'></button>
+          <button id="edit" class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$asesor->idAsesor}});" data-toggle='modal' data-target='#myModal'></button>
           @if(Auth::user()->tipoUser == 'admin')
             <button class='btn btn-danger btn-circle glyphicon glyphicon-remove' onClick="Eliminar('{{$asesor->idAsesor}}','{{$asesor->nombre}}');"></button>
           @endif

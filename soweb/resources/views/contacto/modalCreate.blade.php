@@ -14,7 +14,7 @@
 
         <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
         @include('contacto.forms.create')
-        
+
 
       </div>
       <div class="modal-footer ">

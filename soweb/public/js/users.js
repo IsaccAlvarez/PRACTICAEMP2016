@@ -1,6 +1,20 @@
 $(document).ready(function() {
   listUser();
+
 });
+//---------------------------------------------------
+
+$("#ver").change(function() {
+  if ($(this).prop("checked")) {
+    $("#pas1").show();
+    $("#pas2").show();
+  }else {
+    $("#pas1").hide();
+    $("#pas2").hide();
+  }
+})
+
+//---------------------------------------------------
 var listUser = function() {
   $.ajax({
     type:'get',
@@ -66,6 +80,7 @@ var Mostrar = function(id)
     $("#emai").val(data.email);
     $("#tUse").val(data.tipoUser);
     $("#pass").val(data.password);
+    $("#pass2").val(data.password);
 
 
 
@@ -118,7 +133,10 @@ $("#actualizar").click(function() {
  });
 
 });
-
+//CUANDO ABRES LA VENTANA MODAL
+$("#myModalCreateUser").on("shown.bs.modal",function() {
+  $("#name").focus();
+});
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModalEditUser").on("hidden.bs.modal", function () {
     $("#message-error").fadeOut()
@@ -148,6 +166,9 @@ var Eliminar = function(id,name) {
           listUser();
           $("#message-delete").fadeIn();
           $('#message-delete').show().delay(3000).fadeOut(1);
+        }else {
+          $("#message-delete-error").fadeIn();
+          $('#message-delete-error').show().delay(3000).fadeOut(1);
         }
       }
       });
