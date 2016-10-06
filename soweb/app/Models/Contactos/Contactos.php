@@ -24,7 +24,7 @@ class Contactos extends Model
     }
 
     public function users(){
-        return $this->belongsto(User::class);
+        return $this->hasMany(User::class);
     }
 
 

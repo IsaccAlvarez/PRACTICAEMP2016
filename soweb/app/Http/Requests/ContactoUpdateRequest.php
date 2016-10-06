@@ -25,7 +25,6 @@ class ContactoUpdateRequest extends Request
     {
         return [
           'nombre'=>'required',
-          'nombreRepresentante' =>'required',
           'telefono'=>'required|min:8',
           'email'=>'required|email',
           'direccion'=>'required',

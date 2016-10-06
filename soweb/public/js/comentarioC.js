@@ -1,11 +1,8 @@
-// $(document).ready(function() {
-//   cargar();
-// });
 
-$("#grabar").click(function() {
-   var idCont = $("#idContacto2").val();
+$("#comentar").click(function() {
+   var idCont = $("#idContacto").val();
    var idUser = $("#idUs").val();
-   var comentario = $("#comentar").val();
+   var comentario = $("#comentari").val();
 
    var route = '/comentario';
    var token = $("#token").val();
@@ -19,7 +16,8 @@ $("#grabar").click(function() {
          success: function(data){
                   if (data.success == 'true')
                    {
-                     console.log(data);
+
+                        $("#myModalComent").modal('toggle');
                         $("#message-coment").fadeIn();
                         $('#message-coment').show().delay(3000).fadeOut(1);
                     }
@@ -31,29 +29,15 @@ $("#grabar").click(function() {
              });
 });
 
-// cargar = function() {
-//   var tablaDatos = $("#dato");
-//  	var route = "/comentario";
-//
-//  	$("#dato").empty();
-//  	$.get(route, function(res){
-//  		$(res).each(function(key,value){
-//  			tablaDatos.append("<tr><td>"+value.name+"</td><td>"+value.created_at+"</td><td>"+value.comentario+"</td>");
-//
-//  		});
-//
-//  	});
-// }
 
+//CUANDO ABRES LA VENTANA MODAL
+$("#myModalComent").on("shown.bs.modal",function() {
+  $("#comentari").focus();
+});
 
-var list = function(idContacto) {
-  var route = "/list/"+idContacto+"";
-  var token = $("#token");
-  $.ajax({
-    type:'get',
-    url: route,
-    success: function(data){
-      $("#comentarios").empty().html(data);
-    }
-  });
-}
+//CUANDO CIERRAS LA VENTANA MODAL
+$("#myModalComent").on("hidden.bs.modal", function () {
+  $(this).find('form')[0].reset();
+  $("label.error").remove();
+
+});

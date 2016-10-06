@@ -22,14 +22,11 @@ Route::resource('mail','MailController');
 //asesores
 Route::resource('asesor','AsesorController');
 Route::get('listall','AsesorController@listall');
-Route::get('buscar/{dato?}','AsesorController@searchAsesor');
 //contactos
 Route::resource('contacto','ContactoController');
-route::get('api/contactos',function(){
-              return Datatables::eloquent(soweb\Models\Contactos\Contactos::query())->make(true);
-      });
+
 Route::get('listAll','ContactoController@listAll');
-Route::get('listComent','ContactoController@listComent');
+
 //solicitudes
 Route::resource('solicitud','SolicitudesController');
 //

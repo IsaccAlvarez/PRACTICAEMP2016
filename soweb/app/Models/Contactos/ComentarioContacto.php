@@ -15,6 +15,6 @@ class ComentarioContacto extends Model
     }
 
     public function contactos(){
-        return $this->belongsto('soweb\Contactos', 'idContacto');
+        return $this->belongsto(Contactos::class);
     }
 }

@@ -14,13 +14,13 @@
         @foreach($contactos as $contacto)
        <tr>
          <td>{{$contacto->idContacto}}</td>
-         <td>{{$contacto->nombre}}</td>
+         <td><a href="/coment/{{$contacto->idContacto}}">{{$contacto->nombre}}</a></td>
          <td>{{$contacto->telefono}}</td>
          <td>{{$contacto->email}}</td>
          <td>{{$contacto->tipoContacto}}</td>
          <td>
-           <a href="{{route('contacto.show', $contacto->idContacto)}}" class="btn btn-info  fa fa-folder-open"> Ver Ficha</a>
-           <button id="edit" href="/coment/{{$contacto->idContacto}}" class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$contacto->idContacto}}); list({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
+           {{-- <a href="/coment/{{$contacto->idContacto)}}"  class="btn btn-info  fa fa-folder-open"> Ver Ficha</a> --}}
+           <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
            <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
          </td>
        </tr>

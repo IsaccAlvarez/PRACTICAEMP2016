@@ -41,6 +41,6 @@
   {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
   {!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
 {!!Html::script('js/contacto.js')!!}
-{!!Html::script('js/comentarioC.js')!!}
+
 
 @endsection

@@ -10,6 +10,7 @@ use soweb\Models\Contactos\ComentarioContacto;
 use soweb\Models\Contactos\Contactos;
 use soweb\User;
 use Carbon\Carbon;
+use Auth;
 class ComentarioContactoController extends Controller
 {
   public function __construct(){
@@ -23,14 +24,19 @@ class ComentarioContactoController extends Controller
      */
     public function index(Request $request)
     {
-      $comentarios = ComentarioContacto::paginate(5);
-        return view('comentarios.list', compact('comentarios'));
+
     }
      public function getList(Request $request, $idContacto)
      {
-         $comentarios = Contacto::find($idContacto)->comentariosContactos()->get();
 
-         return view('contacto/modalEdit')->with('comentarios', $comentarios);
+         $contactos = Contactos::find($idContacto);
+         $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
+                                               ->join('users','users.id','=','comentario_contactos.idUser')
+                                               ->where('comentario_contactos.idContacto', $idContacto)
+                                               ->get();
+
+
+         return view('contacto/showContact', compact('contactos','comentarios'));
      }
     /**
      * Show the form for creating a new resource.
@@ -53,7 +59,7 @@ class ComentarioContactoController extends Controller
 
 
         if ($request->ajax()) {
-           $result = CometerioContacto::create($request->all());
+           $result = ComentarioContacto::create($request->all());
            if ($result) {
              return response()->json(['success'=>'true']);
            }else {

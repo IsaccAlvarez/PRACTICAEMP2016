@@ -8,18 +8,21 @@ listContacto();
 
 //mostrar y ocultar div
 function mostrasDiv() {
-  if (document.fContacto.esEmpresa[0].checked == true) {
+  if (document.fContacto.esEmpresas[1].checked == true) {
      document.getElementById('nomJud').style.display='block';
+     document.getElementById('nRep').style.display='block';
 }
  else {
      document.getElementById('nomJud').style.display='none';
+     document.getElementById('nRep').style.display='none';
   }
 }
+
 //--------------------------------------------------------------
 //funcion de guardar
 $("#guarda").click(function() {
      var nombr = $("#nombr").val();
-     var esEmpres = $("input:radio[name=esEmpresa]").val();
+     var esEmpres = $("input:radio[name=esEmpresas]checked").val();
      var nombreJur = $("#nomJurid").val();
      var noRepre = $("#nomRepre").val();
      var telefon = $("#telef").val();
@@ -82,9 +85,17 @@ Mostrar = function(idContacto) {
 
 
   $.get(route, function(data){
+    if (data.esEmpresa == 1) {
+      document.getElementById('esEmpr2').checked = true;
+      $("#radio").show();
+      $("#rad").show();
+    }else {
+      document.getElementById('esEmpr1').checked = true;
+      $("#radio").hide();
+      $("#rad").hide();
+  }
     $("#idContacto").val(data.idContacto);
     $("#nomb").val(data.nombre);
-    $("input:radio[name=esEmpresa]").val(data.esEmpresa);
     $("#nombJuri").val(data.nombreJuridico);
     $("#nomRepres").val(data.nombreRepresentante);
     $("#telefe").val(data.telefono);
@@ -100,13 +111,14 @@ Mostrar = function(idContacto) {
 
   });
 }
+//----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 //atualizar
 $("#actualizar").click(function() {
   var id = $("#idContacto").val();
   var nombre = $("#nomb").val();
-  var esEM = $("input:radio[name=esEmpresa]").val();
+  var esEM = $("input:radio[name=esEmpres]checked").val();
   var nJ = $("#nombJuri").val();
   var nR = $("#nomRepres").val();
   var telf = $("#telefe").val();
@@ -136,8 +148,7 @@ $("#actualizar").click(function() {
                    if (data.success == 'true')
                     {
                          listContacto();
-                        // listar();
-                        //  $("#myModal").modal('toggle');
+                         $("#myModal").modal('toggle');
                          $("#message-update").fadeIn();
                          $('#message-update').show().delay(3000).fadeOut(1);
                      }
@@ -159,7 +170,18 @@ $("#actualizar").click(function() {
 $("#myModalCreateContacto").on("shown.bs.modal",function() {
   $("#nombr").focus();
 });
-
+$("#myModal").on("shown.bs.modal",function() {
+   $("#nomb").focus();
+   $("input:radio[name=esEmpres]").click(function() {
+     if ($(this).attr("value")==1) {
+       $("#radio").show();
+       $("#rad").show();
+     }else {
+       $("#radio").hide();
+       $("#rad").hide();
+     }
+   });
+});
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
     $("#message-errors").fadeOut()
@@ -186,8 +208,7 @@ var Eliminar = function(idContacto, nombre) {
         success: function(data){
         if (data.success == 'true')
         {
-          // listContacto();
-
+          listContacto();
           $("#message-delete").fadeIn();
           $('#message-delete').show().delay(3000).fadeOut(1);
         }
@@ -198,7 +219,3 @@ var Eliminar = function(idContacto, nombre) {
 //-------------------------------------
 //----------   Comentarios   ---------
 //-------------------------------------
-
-$("#showComents").on('click',function(){
-      $("#coment").toggle();
-});

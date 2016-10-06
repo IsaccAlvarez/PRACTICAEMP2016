@@ -137,6 +137,9 @@ $("#actualizar").click(function() {
 $("#myModalCreateUser").on("shown.bs.modal",function() {
   $("#name").focus();
 });
+$("#myModalEditUser").on("shown.bs.modal",function() {
+  $("#nam").focus();
+});
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModalEditUser").on("hidden.bs.modal", function () {
     $("#message-error").fadeOut()

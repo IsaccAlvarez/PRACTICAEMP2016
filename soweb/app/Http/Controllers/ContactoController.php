@@ -82,7 +82,9 @@ class ContactoController extends Controller
      */
     public function show($idContacto)
     {
-        return View('contacto.showContact');
+
+        //   $contactos = Contactos::find($idContacto);
+        // return View('contacto.showContact')->with('contactos', $contactos);
     }
 
     /**

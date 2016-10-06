@@ -143,6 +143,9 @@ $("#actualizar").click(function() {
 $("#myModalCreate").on("shown.bs.modal",function() {
   $("#nombe").focus();
 });
+$("#myModal").on("shown.bs.modal",function() {
+  $("#nomb").focus();
+});
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModal").on("hidden.bs.modal", function () {
     $("#message-error").fadeOut()

@@ -7,17 +7,17 @@
   <div class="form-group">
     <label>Es Empresa</label>
       <label class="radio-inline">
-      <input type="radio"  name="esEmpresa" id="esEmp" onclick="mostrasDiv()" value="1">Si
+      <input type="radio"  name="esEmpresas" id="esEmp" onclick="mostrasDiv()" value="0" checked="checked">No
       </label>
       <label class="radio-inline">
-      <input type="radio"  name="esEmpresa" id="esEmp"  onclick="mostrasDiv()" value="0" checked>No
+      <input type="radio"  name="esEmpresas" id="esEmp"  onclick="mostrasDiv()" value="1">Si
       </label>
   </div>
   <div id="nomJud" style="display:none;" class="form-group">
      {!!Form::label('nombreJuridico','Nombre Juridico')!!}
      {!!Form::text('nombreJuridico',null,['class'=>'form-control','id'=>'nomJurid'])!!}
   </div>
-  <div class="form-group">
+  <div id="nRep" style="display:none;" class="form-group">
     {!!Form::label('nombreRepresentante','Nombre de Representante')!!}
     {!!Form::text('nombreRepresentante',null,['class'=>'form-control','id'=>'nomRepre'])!!}
   </div>

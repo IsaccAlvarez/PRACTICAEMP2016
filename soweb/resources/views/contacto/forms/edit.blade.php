@@ -1,23 +1,23 @@
 
-  {!!Form::open(['role'=>'form', 'class'=>'form' ])!!}
+  {!!Form::open(['role'=>'form', 'class'=>'form','name'=>'fEdit' ])!!}
   <div class="form-group">
     {!!Form::label('nombre','Nombre Completo')!!}
     {!!Form::text('nombre',null,['class'=>'form-control','id'=>'nomb'])!!}
   </div>
-  <div class="form-group">
+  <div  class="form-group" >
     <label>Es Empresa</label>
       <label class="radio-inline">
-      <input type="radio"  name="esEmpres" id="esEmpr"  value="si">Si
+      <input type="radio"  name="esEmpres" id="esEmpr1" value="0" >No
       </label>
       <label class="radio-inline">
-      <input type="radio"  name="esEmpres" id="esEmpr"   value="no" checked>No
+      <input type="radio"  name="esEmpres" id="esEmpr2" value="1" >Si
       </label>
   </div>
-  <div  class="form-group">
+  <div id="radio" class="form-group" style="display: none;">
      {!!Form::label('nombreJuridico','Nombre Juridico')!!}
      {!!Form::text('nombreJuridico',null,['class'=>'form-control','id'=>'nombJuri'])!!}
   </div>
-  <div class="form-group">
+  <div id="rad" style="display: none;"class="form-group">
     {!!Form::label('nombreRepresentante','Nombre de Representante')!!}
     {!!Form::text('nombreRepresentante',null,['class'=>'form-control','id'=>'nomRepres'])!!}
   </div>
@@ -60,9 +60,5 @@
       'inactivo'=>'Inactivo'
     ],null,['class'=>'form-control','placeholder' => 'Estado:','id'=>'est'])!!}
   </div>
-  <div class="form-group">
-    <button type="button" id="showComents"  name="comentarios" class="btn btn-info fa fa-comments"> Comentarios <span class="badge">0</span></button>
-  </div>
-
   <input type="hidden" name="idUserUltimaModificacion" id="iaum" value="{!!Auth::user()->id!!}">
   {!!Form::close()!!}
