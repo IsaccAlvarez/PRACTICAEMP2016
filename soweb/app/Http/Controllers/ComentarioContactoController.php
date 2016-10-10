@@ -29,7 +29,11 @@ class ComentarioContactoController extends Controller
      public function getList(Request $request, $idContacto)
      {
 
-         $contactos = Contactos::find($idContacto);
+         $contactos = Contactos::select('contactos.*', 'users.name as name')
+                       ->join('users','users.id','=','contactos.idUser')
+                       ->where('contactos.idContacto', $idContacto)
+                       ->get();
+
          $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
                                                ->join('users','users.id','=','comentario_contactos.idUser')
                                                ->where('comentario_contactos.idContacto', $idContacto)

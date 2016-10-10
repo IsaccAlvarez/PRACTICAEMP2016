@@ -29,6 +29,10 @@ Route::get('listAll','ContactoController@listAll');
 
 //solicitudes
 Route::resource('solicitud','SolicitudesController');
+Route::get('listSolit','SolicitudesController@listSolitud');
+Route::get('/autocompleteC',array('as'=>'autocompleteC','uses'=>'SolicitudesController@autocompleteC'));
+Route::get('/autocompleteA',array('as'=>'autocompleteA','uses'=>'SolicitudesController@autocompleteA'));
+
 //
 //comentarios de contacto
 Route::resource('comentario','ComentarioContactoController');

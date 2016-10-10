@@ -61,5 +61,5 @@
     ],null,['class'=>'form-control','placeholder' => 'Estado:','id'=>'estd'])!!}
   </div>
   <input type="hidden" name="idUser" id="iac" value="{!!Auth::user()->id!!}">
-  <input type="hidden" name="idUserUltimaModificacion" id="iaumd" value="{!!Auth::user()->id!!}">
+  <input type="hidden" name="userUltimaModificacion" id="iaumd" value="{!!Auth::user()->name!!}">
   {!!Form::close()!!}

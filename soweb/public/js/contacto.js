@@ -1,8 +1,6 @@
 $(document).ready(function(){
 listContacto();
 
-
-
  });
 
 
@@ -22,7 +20,7 @@ function mostrasDiv() {
 //funcion de guardar
 $("#guarda").click(function() {
      var nombr = $("#nombr").val();
-     var esEmpres = $("input:radio[name=esEmpresas]checked").val();
+     var esEmpres = $("input:radio[name=esEmpresas]:checked").val();
      var nombreJur = $("#nomJurid").val();
      var noRepre = $("#nomRepre").val();
      var telefon = $("#telef").val();
@@ -39,7 +37,7 @@ $("#guarda").click(function() {
      var token = $("#token").val();
 var datos = "nombre="+nombr+"&esEmpresa="+esEmpres+"&nombreJuridico="+nombreJur+"&nombreRepresentante="+noRepre+
             "&telefono="+telefon+"&email="+correo+"&direccion="+dire+"&telCobro="+teCobro+"&emailCobro="+emCobro+
-            "&personaCobra="+peCobro+"&tipoContacto="+tipoC+"&estado="+estado+"&idUser="+iUsC+"&idUserUltimaModificacion="+iUsUltMod;
+            "&personaCobra="+peCobro+"&tipoContacto="+tipoC+"&estado="+estado+"&idUser="+iUsC+"&userUltimaModificacion="+iUsUltMod;
      $.ajax({
            url: route,
            headers: {'X-CSRF-TOKEN': token},
@@ -118,7 +116,7 @@ Mostrar = function(idContacto) {
 $("#actualizar").click(function() {
   var id = $("#idContacto").val();
   var nombre = $("#nomb").val();
-  var esEM = $("input:radio[name=esEmpres]checked").val();
+  var esEM = $("input:radio[name=esEmpres]:checked").val();
   var nJ = $("#nombJuri").val();
   var nR = $("#nomRepres").val();
   var telf = $("#telefe").val();
@@ -137,7 +135,7 @@ $("#actualizar").click(function() {
 
   var datosUpdate = "nombre="+nombre+"&esEmpresa="+esEM+"&nombreJuridico="+nJ+"&nombreRepresentante="+nR+
               "&telefono="+telf+"&email="+em+"&direccion="+dir+"&telCobro="+teC+"&emailCobro="+eC+
-              "&personaCobra="+pC+"&tipoContacto="+tC+"&estado="+est+"&idUserUltimaModificacion="+iUsUltM;
+              "&personaCobra="+pC+"&tipoContacto="+tC+"&estado="+est+"&userUltimaModificacion="+iUsUltM;
     $.ajax({
           url: route,
           headers: {'X-CSRF-TOKEN': token},
@@ -169,6 +167,8 @@ $("#actualizar").click(function() {
 //CUANDO ABRES LA VENTANA MODAL
 $("#myModalCreateContacto").on("shown.bs.modal",function() {
   $("#nombr").focus();
+   $("#nomJud").hide();
+   $("#nRep").hide();
 });
 $("#myModal").on("shown.bs.modal",function() {
    $("#nomb").focus();

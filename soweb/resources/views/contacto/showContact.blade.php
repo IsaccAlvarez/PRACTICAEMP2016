@@ -5,7 +5,10 @@
             <strong> La información de guardó correctamente.</strong>
     </div>
     <div class="panel panel-info">
-      <div class="panel-heading"><b>Contacto: {{$contactos->idContacto}}</b> 
+      @foreach ($contactos as $contactos)
+
+
+      <div class="panel-heading"><b>Contacto: {{$contactos->idContacto}}</b>
       <div class="navbar-btn pull-right">
         <a id="enviar" class = 'btn btn-success navbar-btn fa fa-chevron-left' style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" href="{!!URL::to('/contacto')!!}"> Volver</a>
        <button id="crear" type="button" class=" btn btn-warning navbar-btn fa fa-comment" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo" data-toggle='modal' data-target='#myModalComent'> Comentario</button>
@@ -39,14 +42,16 @@
          <div class="col-md-4">
            <p>Dirección: {{$contactos->direccion}}</p>
          </div>
-         <div class="col-md-4" style="font-size: 7pt;">
-           <p>Creado por: </P>
-           <p>Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}}</p>
-           <p>Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y h:i  A')}}</p>
-           <p>Modificado por:</p>
+         <div class="panel-body " style="position:static; color:rgb(37, 91, 205);">
+           <div class="col-md-4" style="font-size: 7pt; position: static">
+             <p>Creado por: {{$contactos->name}} </P>
+             <p>Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}}</p>
+             <p>Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y  h:i A')}}</p>
+             <p>Modificado por: {{$contactos->userUltimaModificacion}}</p>
+           </div>
          </div>
       </div>
-
+        @endforeach
       </div>
       <div id="comentarios" class="">
         <ul class="list-group" style="font-size: 10pt;">
@@ -54,7 +59,7 @@
                   <li class="list-group-item">
                     <div class="panel panel-warning">
                       <div class="panel-heading">
-                        {{$comentarios->user}} {{$comentarios->created_at->format('d/m/Y  h:i:s A')}}
+                        {{$comentarios->user}} {{$comentarios->created_at->format('d/m/Y  h:i A')}}
                       </div>
                       <div class="panel-body">
                           {{ $comentarios->comentario }}

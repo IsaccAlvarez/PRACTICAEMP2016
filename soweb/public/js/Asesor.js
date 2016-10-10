@@ -2,8 +2,7 @@ $(document).ready(function(){
 listAsesor();
 
 
-            $('.datepiker').datepicker({changeMonth: true,
-      changeYear: true});
+            
 });
 
  //---------------------------------------------------------------
@@ -48,7 +47,7 @@ $("#guardar").click(function(){
               estado: estd,
               fechaIngreso: fecIngre,
               idUser:idUser,
-              idUserUltimaModificacion: iUsUltMod},
+              userUltimaModificacion: iUsUltMod},
 
         success:function(data){
           if (data.success == 'true') {
@@ -115,7 +114,7 @@ $("#actualizar").click(function() {
         emailEmpresa: eEmpresa,
         estado: estd,
         fechaIngreso: fecIngre,
-        idUserUltimaModificacion: iUsUltMod},
+        userUltimaModificacion: iUsUltMod},
      success: function(data){
         if (data.success == 'true')
          {

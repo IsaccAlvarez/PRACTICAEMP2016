@@ -22,7 +22,7 @@ class CreateAsesoresTable extends Migration
             $table->string('estado');
             $table->Date('fechaIngreso');
             $table->integer('idUser')->unsigned();
-            $table->integer('idUserUltimaModificacion');
+            $table->string('userUltimaModificacion');
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users');

@@ -8,6 +8,10 @@ class Solicitudes extends Model
 {
     protected $table = 'solicitudes';
     protected $primaryKey = 'idSolicitud';
+    protected $fillable = ['tituloSolicitud','descripcion','fecha',
+                           'idContacto','idAsesor','idUser','userUltimaModificacion',
+                           'personaContacto','estado','fechaCerrado','tipoSolicitud',
+                           'precioCotizacion','precioCobrado'];
 
 
     public function asesores(){

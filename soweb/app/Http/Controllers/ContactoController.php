@@ -26,13 +26,6 @@ class ContactoController extends Controller
     public function index(Request $request)
     {
 
-      // if ($request->ajax()) {
-      //     $contactos = Contactos::all()->take(10);
-      //     return response()->json($contactos);
-      // }
-      // //  $contactos = Contactos::search($request->get('nombre'))->orderBy('nombre','ASC')->paginate(2);
-
-
         return View('contacto.index');
     }
 

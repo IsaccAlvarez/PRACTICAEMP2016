@@ -12,7 +12,7 @@ class Asesores extends Model
 
     protected $fillable = [
         'nombre','iniciales', 'fechaCreacion','telefono','emailPersonal','emailEmpresa','estado','fechaIngreso',
-        'idUser','idUserUltimaModificacion',
+        'idUser','userUltimaModificacion',
 
     ];
 

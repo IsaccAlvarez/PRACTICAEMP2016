@@ -18,6 +18,8 @@
     {!!Html::style('css/datepiker/css/bootstrap-datepicker3.min.css')!!}
 
 
+
+
 </head>
 
 <body>
@@ -60,7 +62,7 @@
                 <li><a href="{!!URL::to('/contacto')!!}" class="fa fa-users"> Contactos</a></li>
                 <li><a href="{!!URL::to('/asesor')!!}" class="fa fa-users"> Asesores</a></li>
                 <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
-                <li><a href="file.html" class="fa fa-list-alt"> Solicitud</a></li>
+                <li><a href="{!!URL::to('/solicitud')!!}" class="fa fa-list-alt"> Solicitud</a></li>
                 @if(Auth::user()->tipoUser == 'admin')
                 <li><a href="{!!URL::to('admin')!!}" class="fa fa-file-text-o"> Informes</a></li>
                 <li><a href="{!!URL::to('admin')!!}" class="fa fa-bar-chart"> Metricas</a></li>
@@ -86,6 +88,7 @@
 
 
 {!!Html::script('js/jquery-3.1.0.min.js')!!}
+{!!Html::script('//code.jquery.com/jquery-1.12.4.js')!!}
 {!!Html::script('js/bootstrap.min.js')!!}
 {!!Html::script('js/metisMenu.min.js')!!}
 {!!Html::script('js/sb-admin-2.js')!!}

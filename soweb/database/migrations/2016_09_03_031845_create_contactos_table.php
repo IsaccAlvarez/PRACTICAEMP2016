@@ -27,7 +27,7 @@ class CreateContactosTable extends Migration
             $table->string('tipoContacto');
             $table->string('estado');
             $table->integer('idUser')->unsigned();
-            $table->integer('idUserUltimaModificacion');
+            $table->string('userUltimaModificacion');
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users');

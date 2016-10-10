@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComentarioContacto extends Model
 {
-    protected $table = 'comentario_Contactos';
+    protected $table = 'comentario_contactos';
     protected $primaryKey = 'idComentario';
    protected $fillable = ['idContacto','idUser','comentario'];
 

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComentarioSolicitudes extends Model
 {
-    protected $table = 'comentarioSolicitudes';
+    protected $table = 'comentario_solicitudes';
     protected $primaryKey = 'idComentario';
-
+    protected $fillable = ['idSolicitud','idUser','comentario'];
     public function user(){
         return $this->hasMany(User::class);
     }
