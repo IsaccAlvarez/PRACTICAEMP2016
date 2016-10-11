@@ -111,6 +111,11 @@ return [
     */
 
     'attributes'           => [
+         'idContacto'           =>'Contacto',
+         'idAsesor'             =>'Asignado A',
+         'descripcion'          =>'Descripcion',
+         'fecha'                =>'fecha',
+         'tituloSolicitud'      =>'Titulo Solicitud',
          'fechaIngreso'         =>'Fecha de Entrada a la Empresa',
         'email'                 =>'Correo',
         'nombreRepresentante'   =>'Nombre de Representante',

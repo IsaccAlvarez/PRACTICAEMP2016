@@ -25,11 +25,22 @@ class SolicitudCreateRequest extends Request
     {
         return [
             'idContacto'=>'required',
-            'idAsesor'=>'required',
             'tituloSolicitud'=>'required',
+            'idAsesor'=>'required',
             'descripcion'=>'required',
             'fecha'=>'required',
-            
+
         ];
+    }
+    public function messages()
+    {
+      return [
+        'idContacto'=>'El Campo Contacto es Obligatorio',
+        'titulo'=>'El Campo Titulo Solicitud es Obligatorio',
+        'idAsesor'=>'El Campo Asignado A es Obligatorio',
+        'descripcion'=>'El campo Descripcion es Obligatorio',
+        'fecha'=>'El campo Fecha es Obligatorio',
+      ];
+
     }
 }

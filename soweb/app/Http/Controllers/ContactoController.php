@@ -76,8 +76,7 @@ class ContactoController extends Controller
     public function show($idContacto)
     {
 
-        //   $contactos = Contactos::find($idContacto);
-        // return View('contacto.showContact')->with('contactos', $contactos);
+        
     }
 
     /**

@@ -1,8 +1,67 @@
 $(document).ready(function() {
 listSolicitud();
 });
+//-------------------------create--------------
+var path = "/autocompleteC";
+   $('input.typeahead').typeahead({
+       source:  function (query, process) {
+       return $.get(path, { query: query }, function (results) {
+               return process(results);
 
+           });
+       },
+        updater: function(item) {
+              $("#idContct").val(item.idContacto);
+              $("#pCont").val(item.nombreRepresentante);
+              return item;
+          }
+      });
 
+   var route = "/autocompleteA";
+      $('input.asesores').typeahead({
+          source:  function (query, process) {
+          return $.get(route, { query: query }, function (data) {
+                  return process(data);
+
+              });
+          },
+          updater: function(item) {
+                $("#idAses").val(item.idAsesor);
+                return item;
+            }
+
+      });
+//-------------------------edit--------------
+var path = "/autocompleteC";
+   $('input.typeaheadEdit').typeahead({
+       source:  function (query, process) {
+       return $.get(path, { query: query }, function (results) {
+               return process(results);
+
+           });
+       },
+        updater: function(item) {
+              $("#idContac").val(item.idContacto);
+              $("#perCont").val(item.nombreRepresentante);
+              return item;
+          }
+      });
+
+   var route = "/autocompleteA";
+      $('input.asesoresEdit').typeahead({
+          source:  function (query, process) {
+          return $.get(route, { query: query }, function (data) {
+                  return process(data);
+
+              });
+          },
+          updater: function(item) {
+                $("#idAsesor").val(item.idAsesor);
+                return item;
+            }
+
+      });
+//---------------------------------------------------------
 var listSolicitud = function () {
   $.ajax({
     type:'get',
@@ -13,7 +72,7 @@ var listSolicitud = function () {
   });
 }
 
-$("#guardar").click(function () {
+$("#guarda").click(function () {
  var title = $("#tSoli").val();
  var descrip = $("#descr").val();
  var fech = $("#fech").val();
@@ -38,7 +97,7 @@ $.ajax({
   headers: {'X-CSRF-TOKEN': token},
   type: 'POST',
   dataType: 'json',
-  data:datos,
+  data:datosString,
   success:function(data){
     if (data.success == 'true') {
       listSolicitud();
@@ -58,4 +117,91 @@ $.ajax({
   }
 });
 
+});
+//-----------------------------------
+var mostrarS = function(idSolicitud) {
+  var route = "/solicitud/"+idSolicitud+"/edit";
+  $.get(route, function(data) {
+
+      $("#idSolicitud").val(data.idSolicitud);
+      $("#search").val(data.contactos.nombre)
+      $("#idContac").val(data.idContacto);
+      $("#titSoli").val(data.tituloSolicitud);
+      $("#aseso").val(data.asesores.nombre);
+      $("#idAsesor").val(data.idAsesor);
+      $("#perCont").val(data.personaContacto);
+      $("#descripc").val(data.descripcion);
+      $("#fecha").val(data.fecha);
+      $("#tipSolicit").val(data.tipoSolicitud);
+      $("#estad").val(data.estado);
+      $("#preCoti").val(data.precioCotizacion);
+      $("#prCobr").val(data.precioCobrado);
+  });
+}
+//---------------------------------------------
+$("#actualizar").click(function() {
+  var id = $("#idSolicitud").val();
+  var titleS = $("#titSoli").val();
+  var descri = $("#descripc").val();
+  var fecha = $("#fecha").val();
+  var idContacto = $("#idContac").val();
+  var idAsesor = $("#idAsesor").val();
+  var perContact = $("#perCont").val();
+  var estad = $("#estad").val();
+  var tipoSolici = $("#tipSolicit").val();
+  var precioCotiza =$("#preCoti").val();
+  var precioCobra = $("#prCobr").val();
+  var usUlMod = $("#iumd").val();
+
+  var route ="/solicitud/"+id+"";
+  var token = $("#token").val();
+
+  var datosS = "tituloSolicitud="+titleS+"&descripcion="+descri+"&fecha="+fecha+"&idContacto="+idContacto+
+                    "&idAsesor="+idAsesor+"&personaContacto="+perContact+"&estado="+estad+
+                    "&tipoSolicitud="+tipoSolici+"&precioCotizacion="+precioCotiza+"&precioCobrado="+precioCobra+
+                    "&userUltimaModificacion="+usUlMod;
+ $.ajax({
+   url: route,
+   headers: {'X-CSRF-TOKEN': token},
+   type : 'PUT',
+   dataType: 'json',
+   data:datosS,
+     success: function(data){
+        if (data.success == 'true')
+         {
+          listSolicitud();
+          $("#myModalEdit").modal('toggle');
+          $("#message-update").fadeIn();
+          $('#message-update').show().delay(3000).fadeOut(1);
+         }
+      },
+      error:function(data)
+      {
+       $.each(data.responseJSON, function(i, field){
+        $("#errors").append("<ul><li>"+field+"</li></ul>");
+            $("#message-errors").fadeIn();
+            if (data.status == 422) {
+           console.clear();
+            }
+          });
+      }
+ });
+});
+//cuando abres el modal
+$("#myModalCreateSolicitud").on("shown.bs.modal",function() {
+  $("#searchName").focus();
+});
+$("#myModalEdit").on("shown.bs.modal",function() {
+  $("#search").focus();
+});
+//cuando cierras el modal
+$("#myModalCreateSolicitud").on("hidden.bs.modal", function () {
+    $("#message-errorCreate").fadeOut()
+    $(this).find('form')[0].reset();
+ 		$("label.error").remove();
+});
+$("#myModalEdit").on("hidden.bs.modal", function () {
+    $("#message-errors").fadeOut()
+    $(this).find('form')[0].reset();
+ 		$("label.error").remove();
 });

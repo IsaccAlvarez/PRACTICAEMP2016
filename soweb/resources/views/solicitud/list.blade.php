@@ -15,14 +15,14 @@
      @foreach ($solicitudes as $solicitud)
        <tr>
          <td><a href="#">{{$solicitud->idSolicitud}}</a></td>
-         <td>{{$solicitud->idContacto}}</td>
+         <td>{{$solicitud->nameC}}</td>
          <td>{{$solicitud->tituloSolicitud}}</td>
          <td>{{$solicitud->estado}}</td>
-         <td>{{$solicitud->idAsesor}}</td>
+         <td>{{$solicitud->nameA}}</td>
          <td>{{$solicitud->fecha}}</td>
          <td>
 
-           <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="" data-toggle='modal' data-target='#myModal'></button>
+           <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="mostrarS({{$solicitud->idSolicitud}});" data-toggle='modal' data-target='#myModalEdit'></button>
 
          </td>
        </tr>

@@ -3,6 +3,7 @@
 namespace soweb\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Eloquent;
 use soweb\Http\Requests\SolicitudCreateRequest;
 use soweb\Http\Requests\SolicitudUpdateRequest;
 use soweb\Http\Requests;
@@ -10,13 +11,16 @@ use soweb\Http\Controllers\Controller;
 use soweb\Models\Solicitudes\Solicitudes;
 use soweb\Models\Contactos\Contactos;
 use soweb\Models\Asesores\Asesores;
+use Seession;
 use Input;
+use DB;
+use Carbon\Carbon;
 class SolicitudesController extends Controller
 {
 
   public function __construct(){
       $this->middleware('auth');
-
+      Carbon::setLocale('es');
    }
     /**
      * Display a listing of the resource.
@@ -31,7 +35,10 @@ class SolicitudesController extends Controller
     }
     public function listSolitud(Request $request)
     {
-      $solicitudes = Solicitudes::all()->take(10);
+      $solicitudes = Solicitudes::select('solicitudes.*','contactos.nombre as nameC','asesores.nombre as nameA')
+                                  ->join('contactos','contactos.idContacto','=','solicitudes.idContacto')
+                                  ->join('asesores','asesores.idAsesor','=','solicitudes.idAsesor')
+                                  ->get();
 
       return view('solicitud/list')->with('solicitudes', $solicitudes);
     }
@@ -87,9 +94,10 @@ class SolicitudesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idSolicitud)
     {
-        //
+
+
     }
 
     /**
@@ -100,7 +108,10 @@ class SolicitudesController extends Controller
      */
     public function edit($idSolicitud)
     {
-        //
+        $solicitudes = Solicitudes::find($idSolicitud);
+        $solicitudes->asesores;
+        $solicitudes->contactos;
+       return response()->json($solicitudes);
     }
 
     /**
@@ -112,7 +123,19 @@ class SolicitudesController extends Controller
      */
     public function update(SolicitudUpdateRequest $request, $idSolicitud)
     {
-        //
+        if ($request->ajax()) {
+          $solicitudes = Solicitudes::findOrFail($idSolicitud);
+          $input = $request->all();
+            $result = $solicitudes->fill($input)->save();
+               if ($result) {
+                  return response()->json(['success'=>'true']);
+                }
+              else {
+                   return response()->json(['success'=>'false']);
+                 }
+         }
+
+        }
     }
 
     /**

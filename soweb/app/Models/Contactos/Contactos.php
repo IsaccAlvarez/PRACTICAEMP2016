@@ -1,7 +1,7 @@
 <?php
 
 namespace soweb\Models\Contactos;
-
+use soweb\Models\Solicitudes\Solicitudes;
 use Illuminate\Database\Eloquent\Model;
 
 class Contactos extends Model
@@ -17,7 +17,7 @@ class Contactos extends Model
     ];
 
     public function solicitudes(){
-        return $this->belongsto(Solicitudes::class);
+        return $this->hasMany('soweb\Models\Solicitudes\Solicitudes','idSolicitud');
     }
     public function comentariosContactos(){
         return $this->hasMany('soweb\ComentarioContacto');

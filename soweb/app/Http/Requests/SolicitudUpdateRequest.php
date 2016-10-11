@@ -13,7 +13,7 @@ class SolicitudUpdateRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class SolicitudUpdateRequest extends Request
     public function rules()
     {
         return [
-            //
+          'idContacto'=>'required',
+          'tituloSolicitud'=>'required',
+          'idAsesor'=>'required',
+          'descripcion'=>'required',
+          'fecha'=>'required',
         ];
+    }
+    public function messages()
+    {
+      return [
+        'idContacto'=>'El Campo Contacto es Obligatorio',
+        'titulo'=>'El Campo Titulo Solicitud es Obligatorio',
+        'idAsesor'=>'El Campo Asignado A es Obligatorio',
+        'descripcion'=>'El campo Descripcion es Obligatorio',
+        'fecha'=>'El campo Fecha es Obligatorio',
+      ];
+
     }
 }
