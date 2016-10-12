@@ -1,11 +1,13 @@
 <?php
 
 namespace soweb\Models\Solicitudes;
+use soweb\Http\Models\Solicitudes\ComentarioSolicitudes;
 use soweb\Models\Contactos\Contactos;
 use soweb\Models\Asesores\Asesores;
 use Eloquent;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use soweb\User;
 
 class Solicitudes extends Model
 {
@@ -31,9 +33,9 @@ class Solicitudes extends Model
     }
 
     public function comentariosSolicitud(){
-        return $this->belongsto(ComentarioSolicitud::class);
+        return $this->hasMany('soweb\ComentarioSolicitud');
     }
     public function user(){
-        return $this->belongsTo('soweb\user');
+        return $this->belongsTo('soweb\user','idUser');
     }
 }

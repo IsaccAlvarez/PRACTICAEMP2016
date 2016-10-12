@@ -61,12 +61,10 @@
                 @endif
                 <li><a href="{!!URL::to('/contacto')!!}" class="fa fa-users"> Contactos</a></li>
                 <li><a href="{!!URL::to('/asesor')!!}" class="fa fa-users"> Asesores</a></li>
-                <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
                 <li><a href="{!!URL::to('/solicitud')!!}" class="fa fa-list-alt"> Solicitud</a></li>
+                <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
                 @if(Auth::user()->tipoUser == 'admin')
                 <li><a href="{!!URL::to('admin')!!}" class="fa fa-file-text-o"> Informes</a></li>
-                <li><a href="{!!URL::to('admin')!!}" class="fa fa-bar-chart"> Metricas</a></li>
-                <li><a href="{!!URL::to('admin')!!}" class="fa fa-pie-chart"> Graficos</a></li>
                 @endif
               </li>
             </ul>

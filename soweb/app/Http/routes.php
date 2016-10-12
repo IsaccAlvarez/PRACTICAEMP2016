@@ -37,6 +37,9 @@ Route::get('/autocompleteA',array('as'=>'autocompleteA','uses'=>'SolicitudesCont
 //comentarios de contacto
 Route::resource('comentario','ComentarioContactoController');
 Route::get('/coment/{idContacto}','ComentarioContactoController@getList');
+//comentarios de solicitud
+Route::resource('comentarioSolicitud','ComentarioSolicitudController');
+Route::get('/comenta/{idSolicitud}','ComentarioSolicitudController@getListSolicitud');
 //
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');

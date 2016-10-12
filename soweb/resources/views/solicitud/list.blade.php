@@ -14,12 +14,12 @@
       <tbody id="datos">
      @foreach ($solicitudes as $solicitud)
        <tr>
-         <td><a href="#">{{$solicitud->idSolicitud}}</a></td>
+         <td><a href="/comenta/{{$solicitud->idSolicitud}}">{{$solicitud->idSolicitud}}</a></td>
          <td>{{$solicitud->nameC}}</td>
          <td>{{$solicitud->tituloSolicitud}}</td>
          <td>{{$solicitud->estado}}</td>
          <td>{{$solicitud->nameA}}</td>
-         <td>{{$solicitud->fecha}}</td>
+         <td><?php echo date("d-m-Y", strtotime($solicitud->fecha));?></td>
          <td>
 
            <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="mostrarS({{$solicitud->idSolicitud}});" data-toggle='modal' data-target='#myModalEdit'></button>

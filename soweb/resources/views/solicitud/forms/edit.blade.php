@@ -15,7 +15,7 @@
 </div>
 <div class="form-group">
   {!!Form::label('personaContacto', 'Persona Contacto')!!}
-  {!!Form::text('personaContacto',null,['class'=>'form-control', 'id'=>'perCont'])!!}
+  {!!Form::text('personaContacto',null,['class'=>'form-control', 'id'=>'perCont', 'disabled'])!!}
 </div>
 <div class="form-group">
   {!!Form::label('descripcion', 'Descripcion')!!}

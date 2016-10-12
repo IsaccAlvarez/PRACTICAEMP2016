@@ -124,18 +124,53 @@ class SolicitudesController extends Controller
     public function update(SolicitudUpdateRequest $request, $idSolicitud)
     {
         if ($request->ajax()) {
-          $solicitudes = Solicitudes::findOrFail($idSolicitud);
-          $input = $request->all();
-            $result = $solicitudes->fill($input)->save();
-               if ($result) {
-                  return response()->json(['success'=>'true']);
-                }
-              else {
+          $solicitudes = Solicitudes::find($idSolicitud);
+            if($request->estado != 'cerrada'){
+              $solicitudes->tituloSolicitud = $request->tituloSolicitud;
+              $solicitudes->descripcion = $request->descripcion;
+              $solicitudes->fecha = $request->fecha;
+              $solicitudes->idContacto = $request->idContacto;
+              $solicitudes->idAsesor = $request->idAsesor;
+              $solicitudes->personaContacto = $request->personaContacto;
+              $solicitudes->estado = $request->estado;
+              $solicitudes->tipoSolicitud = $request->tipoSolicitud;
+              $solicitudes->precioCotizacion = $request->precioCotizacion;
+              $solicitudes->precioCobrado = $request->precioCobrado;
+              $solicitudes->userUltimaModificacion = $request->userUltimaModificacion;
+              $result = $solicitudes->save();
+
+              if ($result) {
+                 return response()->json(['success'=>'true']);
+                }else {
                    return response()->json(['success'=>'false']);
-                 }
+                  }
+              }//end del if estado
+               else {
+                 $solicitudes->tituloSolicitud = $request->tituloSolicitud;
+                 $solicitudes->descripcion = $request->descripcion;
+                 $solicitudes->fecha = $request->fecha;
+                 $solicitudes->idContacto = $request->idContacto;
+                 $solicitudes->idAsesor = $request->idAsesor;
+                 $solicitudes->personaContacto = $request->personaContacto;
+                 $solicitudes->estado = $request->estado;
+                 $solicitudes->fechaCerrado = Carbon::now();
+                 $solicitudes->tipoSolicitud = $request->tipoSolicitud;
+                 $solicitudes->precioCotizacion = $request->precioCotizacion;
+                 $solicitudes->precioCobrado = $request->precioCobrado;
+                 $solicitudes->userUltimaModificacion = $request->userUltimaModificacion;
+                 $result = $solicitudes->save();
+
+                 if ($result) {
+                    return response()->json(['success'=>'true']);
+                   }else {
+                      return response()->json(['success'=>'false']);
+                     }
+               }
+
+
          }
 
-        }
+
     }
 
     /**
