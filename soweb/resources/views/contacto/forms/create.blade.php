@@ -23,7 +23,8 @@
   </div>
   <div class="form-group">
     {!!Form::label('telefono','Teléfono')!!}
-    {!!Form::text('telefono',null,['class'=>'form-control','id'=>'telef'])!!}
+    {!!Form::text('telefono',null,['class'=>'form-control','id'=>'telef', 'data-mask'=>'(999) 9999-9999','data-mask-selectonfocus'=>'true'])!!}
+
   </div>
   <div class="form-group">
     {!!Form::label('email','Correo')!!}
@@ -35,7 +36,7 @@
   </div>
   <div class="form-group">
     {!!Form::label('telCobro','Teléfono Cobro')!!}
-    {!!Form::text('telCobro',null,['class'=>'form-control','id'=>'tCobro'])!!}
+    {!!Form::text('telCobro',null,['class'=>'form-control','id'=>'tCobro', 'data-mask'=>'(999) 9999-9999','data-mask-selectonfocus'=>'true'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('emailCobro','Correo Cobro')!!}

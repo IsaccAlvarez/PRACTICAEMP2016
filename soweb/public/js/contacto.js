@@ -1,5 +1,7 @@
 $(document).ready(function(){
 listContacto();
+$("#telef").mask('(000) 0000-0000', {placeholder: "(___)____-____"});
+$("#tCobro").mask('(000) 0000-0000', {placeholder: "(___)____-____"});
 
  });
 

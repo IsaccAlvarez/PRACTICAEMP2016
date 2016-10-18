@@ -6544,8 +6544,6 @@ button.close {
 .affix {
   position: fixed;
 }
-
-/*noinspection CssInvalidPropertyValue*/
 @-ms-viewport {
   width: device-width;
 }

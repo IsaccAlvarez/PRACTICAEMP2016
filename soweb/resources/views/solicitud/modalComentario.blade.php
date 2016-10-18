@@ -26,7 +26,7 @@
 
       </div>
       <div class="modal-footer ">
-        {!!link_to('#', $title=' Comentar', $attributes = ['id'=>'comentar', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
+        {!!link_to('#', $title=' Guardar', $attributes = ['id'=>'comentar', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
       </div>
     </div>
 

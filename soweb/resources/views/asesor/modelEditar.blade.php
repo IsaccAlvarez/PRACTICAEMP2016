@@ -15,7 +15,7 @@
       	<input type="hidden" name="idAsesor" id="idAsesor">
         @include('asesor.form.aser')
         <div class="modal-footer">
-        {!!link_to('#', $title=' Actualizar', $attributes = ['id'=>'actualizar', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
+        {!!link_to('#', $title=' Guardar', $attributes = ['id'=>'actualizar', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
         </div>
       </div>
 

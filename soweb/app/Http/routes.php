@@ -36,13 +36,17 @@ Route::get('/autocompleteA',array('as'=>'autocompleteA','uses'=>'SolicitudesCont
 //
 //comentarios de contacto
 Route::resource('comentario','ComentarioContactoController');
-Route::get('/coment/{idContacto}','ComentarioContactoController@getList');
+Route::get('/comentarioDeContacto/{idContacto}','ComentarioContactoController@getList');
 //comentarios de solicitud
 Route::resource('comentarioSolicitud','ComentarioSolicitudController');
-Route::get('/comenta/{idSolicitud}','ComentarioSolicitudController@getListSolicitud');
+Route::get('/comentarioDeSolicitud/{idSolicitud}','ComentarioSolicitudController@getListSolicitud');
+//informes
+Route::resource('informe','InformeController');
+Route::get('lista','InformeController@listaTabla');
+Route::post('listaPendiente','InformeController@pendientesEntreFecha');
 //
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');
 Route::resource('cambio','CambioClaveController');
-Route::get('password','CambioClaveController@password');
+Route::get('cambiarClave','CambioClaveController@password');
 Route::post('updatePassword','CambioClaveController@updatePassword');

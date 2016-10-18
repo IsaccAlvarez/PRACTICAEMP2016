@@ -1,37 +1,32 @@
 @extends('layouts.admin')
+@section('title','Cambiar Clave')
 @section('content')
     @include('alerts.errors')
     @include('alerts.request')
     @include('alerts.success')
-
-    <div class="header">
-        <div class="container form ">
-           <div class="form-group col-sm-6 form">
-             {!!Form::open(['route'=>'cambio.store','method'=>'POST'])!!}
-             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Clave Actual </span>
-              <input type="password" name='passActual' class="form-control" placeholder="" aria-describedby="basic-addon1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          {!!Form::open(['route'=>'cambio.store','method'=>'POST'])!!}
+            <input type="hidden" name="token" id="token" value="{{csrf_token()}}">
+            <div class="form-group">
+              <label for="passActual">Clave Actual</label>
+              <input type="password" name="passActual" class="form-control" placeholder="Clave Actual" autofocus>
+            </div>
+            <div class="form-group">
+              <label for="password">Nueva Clave</label>
+              <input type="password" name="password" class="form-control" placeholder="Nueva Clave">
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Confirmar Nueva Clave</label>
+              <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar Nueva Clave">
             </div>
 
-            <div class="input-group">
-             <span class="input-group-addon" id="basic-addon1">Nueva Clave     </span>
-             <input type="password" name="password" class="form-control" placeholder="" aria-describedby="basic-addon1">
-           </div>
-
-           <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Confirmar Nueva Clave</span>
-            <input type="password" name="password_confirmation" class="form-control" placeholder="" aria-describedby="basic-addon1">
-          </div>
-
-               <div class="form-group ">
-                 {!!Form::submit('Guardar',['class'=>'btn-success center'])!!}
-
-               </div>
-
-
-             {!!Form::close()!!}
-           </div>
+            {!!Form::submit('Guardar',['class'=>'btn btn-success'])!!}
+         {!!Form::close()!!}
         </div>
 
+      </div>
     </div>
+
 @endsection

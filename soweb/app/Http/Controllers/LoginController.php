@@ -49,6 +49,7 @@ class LoginController extends Controller
     }
     public function logout(){
         Auth::logout();
+        Session::flash('message','Se Cerro la Sesión');
         return Redirect::to('/');
     }
 
