@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'srv65.hosting24.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'info@seesoft-cr.com', 'name' => 'SeeSoft-CR'],
+    'from' => ['address' => 'notreply@seesoft-cr.com', 'name' => 'SeeSoft-CR'],
 
     /*
     |--------------------------------------------------------------------------

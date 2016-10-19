@@ -1,35 +1,33 @@
+$(document).on("submit",".form",function(e) {
+  e.preventDefault();
+  var idCont = $("#idContacto").val();
+  var idUser = $("#idUs").val();
+  var comentario = $("#comentari").val();
 
-$("#comentar").click(function() {
-   var idCont = $("#idContacto").val();
-   var idUser = $("#idUs").val();
-   var comentario = $("#comentari").val();
+  var route = '/comentario';
+  var token = $("#token").val();
+  var datosComent = "idContacto="+idCont+"&idUser="+idUser+"&comentario="+comentario;
+  $.ajax({
+        url: route,
+        headers: {'X-CSRF-TOKEN': token},
+        type : 'POST',
+        dataType: 'json',
+        data:datosComent,
+        success: function(data){
+                 if (data.success == 'true')
+                  {
 
-   var route = '/comentario';
-   var token = $("#token").val();
-   var datosComent = "idContacto="+idCont+"&idUser="+idUser+"&comentario="+comentario;
-   $.ajax({
-         url: route,
-         headers: {'X-CSRF-TOKEN': token},
-         type : 'POST',
-         dataType: 'json',
-         data:datosComent,
-         success: function(data){
-                  if (data.success == 'true')
-                   {
+                       $("#myModalComent").modal('toggle');
+                       $("#message-coment").fadeIn();
+                       $('#message-coment').show().delay(3000).fadeOut(1);
+                   }
+               },
+               error:function(data)
+              {
 
-                        $("#myModalComent").modal('toggle');
-                        $("#message-coment").fadeIn();
-                        $('#message-coment').show().delay(3000).fadeOut(1);
-                    }
-                },
-                error:function(data)
-               {
-
-               }
-             });
+              }
+            });
 });
-
-
 //CUANDO ABRES LA VENTANA MODAL
 $("#myModalComent").on("shown.bs.modal",function() {
   $("#comentari").focus();

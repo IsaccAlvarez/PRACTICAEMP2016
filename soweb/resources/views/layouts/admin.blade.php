@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="img/icono.ico" />
     <title>SoWeb::@yield('title')::</title>
-     {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!} 
+     {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!}
     {!!Html::style('css/bootstrap.css')!!}
     {!!Html::style('css/metisMenu.min.css')!!}
     {!!Html::style('css/sb-admin-2.css')!!}
@@ -65,13 +65,13 @@
                 <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
                 @if(Auth::user()->tipoUser == 'admin')
                 <li>
-                  <a href="{!!URL::to('/informe')!!}" class="fa fa-file-text-o"> Informes<span class="fa arrow"></span></a>
+                  <a href="#" class="fa fa-file-text-o"> Informes<span class="fa arrow"></span></a>
                   <ul class="nav nav-second-level">
                       <li>
                         <a href="{!!URL::to('/lista')!!}" class="fa fa-list"> Listas</a>
                       </li>
                       <li>
-                        <a href="#" class="fa fa-pie-chart"> Graficas</a>
+                        <a href="{!!URL::to('/informe')!!}" class="fa fa-pie-chart"> Graficas</a>
                       </li>
                     </ul>
                 </li>

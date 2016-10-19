@@ -13,7 +13,7 @@
          </div>
 
 
-          {!!Form::open(['class'=>"form"])!!}
+          {!!Form::open(['class'=>"form", 'name'=>'form'])!!}
           <input type="hidden" name="idSolicitud" id="idSolicitud" value="{{$solicitud->idSolicitud}}">
           <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
           <div class="form-group">
@@ -21,12 +21,13 @@
             {!!Form::textarea('comentario',null,['class'=>'form-control', 'size'=>'10x3','id'=>'comentari'])!!}
           </div>
            <input type="hidden" name="idUser" id="idUs" value="{!!Auth::user()->id!!}">
-          {!!Form::close()!!}
+
 
 
       </div>
       <div class="modal-footer ">
-        {!!link_to('#', $title=' Guardar', $attributes = ['id'=>'comentar', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
+        {!!Form::submit('Guardar',['class'=>'btn btn-success glyphicon glyphicon-save','id'=>'comentar'])!!}
+        {!!Form::close()!!}
       </div>
     </div>
 

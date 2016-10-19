@@ -8,9 +8,11 @@ use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Contactos\ComentarioContacto;
 use soweb\Models\Contactos\Contactos;
+use soweb\Models\Asesores\Asesores;
 use soweb\User;
 use Carbon\Carbon;
 use Auth;
+use Mail;
 class ComentarioContactoController extends Controller
 {
   public function __construct(){
@@ -37,6 +39,7 @@ class ComentarioContactoController extends Controller
          $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
                                                ->join('users','users.id','=','comentario_contactos.idUser')
                                                ->where('comentario_contactos.idContacto', $idContacto)
+                                               ->orderby('comentario_contactos.created_at','DESC')
                                                ->get();
 
 
@@ -60,11 +63,22 @@ class ComentarioContactoController extends Controller
      */
     public function store(Request $request)
     {
-
+          
+           $asesores = Asesores::all();
 
         if ($request->ajax()) {
+              $datos['idContacto'] = $idContacto = $request->idContacto;
+
+
            $result = ComentarioContacto::create($request->all());
            if ($result) {
+             foreach ($asesores as $asesor) {
+               Mail::send('contacto.notificacionEmail',['datos'=> $datos],function($msj) use ($asesor) {
+               $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
+               $msj->to($asesor->emailEmpresa, $asesor->nombre)->subject('Notificación SoWeb!');
+              });
+             }
+
              return response()->json(['success'=>'true']);
            }else {
              return response()->json(['success'=>'false']);

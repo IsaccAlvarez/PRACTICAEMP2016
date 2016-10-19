@@ -15,7 +15,7 @@
     <b>Solicitudes</b>
     <div class="navbar-btn pull-right">
      <button id="crear" type="button" class=" btn btn-warning navbar-btn fa fa-plus" style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" name="nuevo" data-toggle='modal' data-target='#myModalCreateSolicitud'> Nuevo </button>
-      <a id="enviar" class = 'btn btn-success navbar-btn fa fa-paper-plane' style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" href="{!!URL::to('/mail')!!}"> Enviar Lista</a>
+      <a id="enviar" class = 'btn btn-success navbar-btn fa fa-paper-plane' style="margin-botton: 1px;margin-top: -5px;margin-rigth: 8px;padding: 3px 20px;" href="{!!URL::to('/enviarSolicitud')!!}"> Enviar Lista</a>
     </div>
      </div>
   </div>

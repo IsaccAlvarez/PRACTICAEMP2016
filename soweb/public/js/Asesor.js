@@ -2,10 +2,15 @@ $(document).ready(function(){
 listAsesor();
 
 
-            
+
 });
 
  //---------------------------------------------------------------
+ window.setTimeout(function() {
+    $(".alertEmail").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+ }, 4000);
  //listar los registros guardados
 var listAsesor = function() {
   $.ajax({

@@ -25,7 +25,11 @@ class InformeController extends Controller
      */
     public function index()
     {
-
+      $anio=date("Y");
+      $mes=date("m");
+      return view("informe.graficos")
+             ->with("anio",$anio)
+             ->with("mes",$mes);
     }
     public function listaTabla()
     {

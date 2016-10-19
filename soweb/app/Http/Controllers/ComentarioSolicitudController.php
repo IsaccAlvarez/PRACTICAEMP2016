@@ -7,8 +7,10 @@ use soweb\Http\Requests;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Solicitudes\ComentarioSolicitudes;
 use soweb\Models\Solicitudes\Solicitudes;
+use soweb\Models\Asesores\Asesores;
 use soweb\User;
 use Carbon\Carbon;
+use Mail;
 class ComentarioSolicitudController extends Controller
 {
     public function __construct()
@@ -63,10 +65,21 @@ class ComentarioSolicitudController extends Controller
      */
     public function store(Request $request)
     {
+       $asesores = Asesores::all();
       if ($request->ajax()) {
+
+        $datos['idSolicitud'] = $idSolicitud = $request->idSolicitud;
+        $user = User::find($request->idUser);
          $result = ComentarioSolicitudes::create($request->all());
          if ($result) {
-           return response()->json(['success'=>'true']);
+
+           foreach ($asesores as $asesor) {
+             Mail::send('solicitud.notificacionEmail',['datos'=> $datos,'user'=>$user],function($msj) use ($asesor) {
+             $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
+             $msj->to($asesor->emailEmpresa, $asesor->nombre)->subject('Notificación SoWeb!');
+            });
+           }
+          return response()->json(['success'=>'true']);
          }else {
            return response()->json(['success'=>'false']);
          }

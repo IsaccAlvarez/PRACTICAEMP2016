@@ -1,6 +1,12 @@
 $(document).ready(function() {
 listSolicitud();
 });
+window.setTimeout(function() {
+  $(".alertEmail").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+  });
+}, 4000);
+
 //-------------------------create--------------
 var path = "/autocompleteC";
    $('input.typeahead').typeahead({

@@ -5,7 +5,11 @@ $("#tCobro").mask('(000) 0000-0000', {placeholder: "(___)____-____"});
 
  });
 
-
+ window.setTimeout(function() {
+    $(".alertEmail").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+ }, 4000);
 //mostrar y ocultar div
 function mostrasDiv() {
   if (document.fContacto.esEmpresas[1].checked == true) {

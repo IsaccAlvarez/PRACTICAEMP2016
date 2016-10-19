@@ -12,7 +12,6 @@
             {!!Form::select('mostrar',[
               'tipoContacto'=>'Lista por tipo de Contactos',
               'pendientes'=>'Lista de Pendientes',
-              'pendienteFecha'=>'Pendientes entre Fechas',
               'cobros'=>'Lista de Cobrados'
             ],null,['class'=>'form-control','id'=>'mostrarLista','placeholder'=>'Selecione'])!!}
           </div>
@@ -194,51 +193,7 @@
   </div>
 </div>
 {{--sexta --}}
-<div id="entreF" class="" style="Display:none;">
-  <div class="panel panel-info">
-    <div class="panel-heading"><b>Pendientes General Entre Fechas</b>
-      <div class="row">
-        <div class="col-md-5">
-          {!!Form::open()!!}
-        <div class="input-group-sm">
-          <input type="date" name="fecha1" class="form-control" id="f1" value="">
-        </div>
-        </div>
 
-        <div class="col-md-5">
-          <div class="input-group-sm  ">
-            <input type="date" name="fecha2" class="form-control" id="f2" value="">
-          </div>
-        </div>
-        <div class="col-md2">
-        <div class="input-group-sm">
-          <button type="submit" class="text-center btn btn-primary fa fa-search" name="button" id="entre"></button>
-        </div>
-      </div>
-      {!!Form::close()!!}
-      </div>
-      </div>
-      <div class="panel-body">
-        <table id="Tables6" class="table table-responsive table-hover" cellspacing="0" width="100%">
-          <thead>
-            <tr>
-
-              <th class="text-center">Fecha</th>
-              <th class="text-center">Pendientes</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($entreFecha as $entreFecha)
-              <tr>
-                <td class="text-center">{{$entreFecha->fecha}}</td>
-                <td class="text-center">{{$entreFecha->pendie}}</td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-  </div>
-</div>
 @endsection
 @section('script')
   {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
