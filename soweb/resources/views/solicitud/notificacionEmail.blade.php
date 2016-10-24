@@ -113,12 +113,13 @@
                                 <tr>
                                     <td>
                                         <br>
-                                        <img src="img/logotipo4.png" width="241" height="57" alt="robot picture">
+                                        <img src="img/logotipo4.png" width="241" height="57" alt="SoWeb">
+                                        <br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="headline">
-                                        Nueva Notificacion!
+                                        ¡Nuevo Comentario!
                                     </td>
                                 </tr>
                                 <tr>
@@ -129,11 +130,11 @@
                                                 <tr>
                                                     <td style="color:#187272;">
                                                         <br>
-                                                         Un Nuevo Comentario a la Solicitud # {{$datos['idSolicitud']}}.
+                                                        {{$user->name}} Agrego Un Nuevo Comentario a la Solicitud # {{$datos['idSolicitud']}}.
                                                         <br>
-                                                         Creado por {{$user->name}}
                                                         <br>
-
+                                                        <br>
+                                                        <br>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -148,7 +149,9 @@
 
                                 <tr>
                                     <td style="color:#bbbbbb; font-size:12px;">
-                                        © 2016 SeeSoft-CR
+                                        <br>
+                                        <br>
+                                        © SeeSoft-Costa Rica
                                         <br>
                                         <br>
                                     </td>

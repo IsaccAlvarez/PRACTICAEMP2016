@@ -23,6 +23,11 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     //obtiene el ultimo dia del mes
+     public function getUltimoDiaMes($elAnio,$elMes) {
+     return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
+    }
+
     public function index()
     {
       $anio=date("Y");
@@ -33,15 +38,9 @@ class InformeController extends Controller
     }
     public function listaTabla()
     {
-       $asesores = DB::table('asesores')
-                       ->select(DB::raw('count(*) as asesores'))
-                       ->get();
-      $contactos = DB::table('contactos')
-                      ->select(DB::raw('count(*) as contactos'))
-                      ->get();
-      $solicitud = DB::table('solicitudes')
-                      ->select(DB::raw('count(*) as solicitud'))
-                      ->get();
+      $asesores = Asesores::all()->count();
+      $contactos = Contactos::all()->count();
+      $solicitud = Solicitudes::all()->count();
 
       $tipoContact = DB::table('contactos')
                          ->select('tipoContacto',DB::raw('count(*) as total'))
@@ -62,22 +61,54 @@ class InformeController extends Controller
       $cobradoA = DB::table('solicitudes as s')
                       ->join('asesores as a','a.idAsesor','=','s.idAsesor')
                       ->select('a.nombre as nameA', DB::raw('sum(s.precioCobrado) as TotalA'))
+                      ->groupBy('a.nombre')
                       ->get();
       $cobradoC = DB::table('solicitudes as s')
                       ->join('contactos as c','c.idContacto','=','s.idContacto')
                       ->select('c.nombre as nameC', DB::raw('sum(s.precioCobrado) as TotalC'))
+                      ->groupBy('c.nombre')
                       ->get();
-      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC'));
+
+                      $fecha1=date("Y-m-d");
+                      $fecha2=date("Y-m-d");
+
+      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC','fecha1','fecha2'));
     }
-    public function pendientesEntreFecha(Request $request)
+    public function pendientesEntreFecha($anio,$mes)
     {
-       $entreFecha = DB::table('solicitudes')
-                         ->where('estado', 'nuevo')
-                         ->whereBetween('fecha',[$request->fecha1 ,$request->fecha2])
-                         ->select('fecha',DB::raw('count(estado) as pendie'))
-                         ->groupBy('fecha')
-                         ->get();
-      return view('informe.lista' ,compact('entreFecha'));
+      $primer_dia=1;
+      $ultimo_dia=$this->getUltimoDiaMes($anio,$mes);
+      $fecha_inicial=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$primer_dia) );
+      $fecha_final=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$ultimo_dia) );
+      $solicitudes=Solicitudes::whereBetween('created_at', [$fecha_inicial,  $fecha_final])
+                            ->where('estado', 'nuevo')
+                            ->get();
+      $ct=count($solicitudes);
+
+      for($d=1;$d<=$ultimo_dia;$d++){
+          $registros[$d]=0;
+      }
+
+      foreach($solicitudes as $solicitudes){
+      $diasel=intval(date("d",strtotime($solicitudes->created_at) ) );
+      $registros[$diasel]++;
+      }
+
+      $data=array("totaldias"=>$ultimo_dia, "registrosdia" =>$registros);
+      return   json_encode($data);
+    }
+
+    public function cobradoAlMes(Request $request)
+    {
+
+
+
+          $solicitudes = Solicitudes::select('fecha',DB::raw('sum(precioCobrado) as total'))
+                                      ->whereBetween('fecha',[$request->desde,$request->hasta])
+                                      ->groupBy('fecha')
+                                      ->get();
+         return response()->json($solicitudes);
+
     }
     /**
      * Show the form for creating a new resource.

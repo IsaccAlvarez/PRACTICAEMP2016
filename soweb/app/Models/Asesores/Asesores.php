@@ -3,9 +3,11 @@
 namespace soweb\Models\Asesores;
 use soweb\Models\Solicitudes\Solicitudes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Asesores extends Model
 {
+  use SoftDeletes;
     protected $table = 'asesores';
 
     protected $primaryKey = 'idAsesor';
@@ -21,9 +23,7 @@ class Asesores extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        'clave', 'remember_token',
-    ];
+     protected $dates = ['deleted_at'];
 
     public function solicitudes(){
         return $this->hasMany('soweb\Models\Solicitudes\Solicitudes','idSolicitud');

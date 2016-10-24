@@ -12,7 +12,8 @@
             {!!Form::select('mostrar',[
               'tipoContacto'=>'Lista por tipo de Contactos',
               'pendientes'=>'Lista de Pendientes',
-              'cobros'=>'Lista de Cobrados'
+              'cobros'=>'Lista de Cobrados',
+              'xFecha'=>'Cobrado por Fecha'
             ],null,['class'=>'form-control','id'=>'mostrarLista','placeholder'=>'Selecione'])!!}
           </div>
 
@@ -23,9 +24,9 @@
               <div class="panel-heading">
                 <i class="fa fa-users fa-5x"></i>
                 <p class="text-right">
-                  @foreach ($asesores as $asesor)
-                    <b class="huge">{{$asesor->asesores}}</b> <br>
-                  @endforeach
+
+                    <b class="huge">{{$asesores}}</b> <br>
+
                   <i>Asesores</i>
                 </p>
 
@@ -37,9 +38,9 @@
               <div class="panel-heading">
                 <i class="fa fa-users fa-5x"></i>
                 <p class="text-right">
-                  @foreach ($contactos as $contacto)
-                    <b class="huge">{{$contacto->contactos}}</b> <br>
-                  @endforeach
+
+                    <b class="huge">{{$contactos}}</b> <br>
+
                   <i>Contactos</i>
                 </p>
 
@@ -51,9 +52,9 @@
               <div class="panel-heading">
                 <i class="fa fa-list-alt fa-5x"></i>
                 <p class="text-right">
-                  @foreach ($solicitud as $solicitud)
-                    <b class="huge">{{$solicitud->solicitud}}</b> <br>
-                  @endforeach
+
+                    <b class="huge">{{$solicitud}}</b> <br>
+                  
                   <i>Solicitudes</i>
                 </p>
 
@@ -193,11 +194,41 @@
   </div>
 </div>
 {{--sexta --}}
+<div id="cobraF" class="" style="Display:none;">
+  <div class="panel panel-info">
+    <div class="panel-heading"><b>Total Cobrado por Fechas</b>
+      <div  class="row" >
+      <div class="col-md-6">
+       De  <input type="text" class="datepicker" name="fecha1" id='fecha1' value="{{$fecha1}}"  data-provide="datepicker">
+            <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
+      </div>
 
+      <div class="col-md-6">
+           Hasta  <input type="text" class="datepicker2" name="fecha2" id='fecha2' value="{{$fecha2}}" data-provide="datepicker">
+      </div>
+      </div>
+      </div>
+      <div class="panel-body">
+        <table id="Tables6" class="table table-responsive table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">Total</th>
+            </tr>
+          </thead>
+          <tbody id="datos">
+
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
 @endsection
 @section('script')
   {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
   {!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
+  {!!Html::script('js/datepiker/js/bootstrap-datepicker.min.js')!!}
+  {!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
 
  {!!Html::script('js/informe.js')!!}
   <script type="text/javascript">

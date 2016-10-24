@@ -48,6 +48,7 @@ class MailController extends Controller
      public function solicitud()
      {
        $solicitudes = Solicitudes::all();
+
        $asesores = Asesores::all();
        return view('solicitud.enviarSolicitud', compact('solicitudes', 'asesores'));
      }

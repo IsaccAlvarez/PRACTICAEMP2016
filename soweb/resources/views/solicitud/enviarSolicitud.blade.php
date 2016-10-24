@@ -32,10 +32,12 @@
             <pre>
             @foreach ($solicitudes as $solicitud)
 
-          Nombre: {!!$solicitud->nombre!!}
-          Estado: {!!$solicitud->estado!!}
-          Telefono: {!!$solicitud->telefono!!}
-          Correo: {!!$solicitud->emailEmpresa!!}
+          Contacto: {{$solicitud->contactos->nombre}}
+          Titulo: {{$solicitud->tituloSolicitud}}
+          Estado: {{$solicitud->estado}}
+          Asignado A: {{$solicitud->asesores->nombre}}
+          Fecha: <?php echo date("d-m-Y", strtotime($solicitud->fecha));?>
+          
           @endforeach</pre>
         </textarea>
         </div>

@@ -2,7 +2,7 @@
 @section('title','Solicitudes')
   @section('content')
     <div id="message-coment" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
-            <strong> La información de guardó correctamente.</strong>
+            <strong> La información se guardó correctamente.</strong>
     </div>
     <div class="panel panel-success">
        @foreach ($solicitud as $solicitud)
@@ -18,7 +18,15 @@
             <p class="text-left"><b>Contacto:</b> {{$solicitud->nameC}} </p>
           </div>
           <div class="col-md-4">
-            <p class="text-left"><b>Persona Contacto:</b> {{$solicitud->personaContacto}} </p>
+            <p class="text-left"><b>Persona Contacto:</b><?php
+               $cont;
+               if ($solicitud->personaContacto != '') {
+                 $cont = $solicitud->personaContacto;
+               }else {
+                 $cont = 'N/A';
+               }
+
+            ?> {{$cont}} </p>
           </div>
           <div class="col-md-3">
             <p class="text-left"><b>Asignado A:</b> {{$solicitud->nameA}} </p>
@@ -56,7 +64,7 @@
              if ($solicitud->fechaCerrado != "0000-00-00 00:00:00") {
                $var =  date("d-m-Y h:m:s a", strtotime($solicitud->fechaCerrado));
              }else {
-               $var = '';
+               $var = 'N/A';
              }
             ?>
             <p class="text-left"><b>Fecha de Cerrado:</b> {{$var}}</p>
@@ -75,13 +83,13 @@
     @endforeach
       </div>
       <p class="text-center"><b>---------------------------------COMENTARIOS-----------------------------------</b></p>
-      <div id="comentarios" class="">
+      <div id="list-coment" class="">
         <ul class="list-group" style="font-size: 10pt;">
-                @foreach ($comentario as $comentario)
+                @foreach ($comentarios as $comentario)
                   <li class="list-group-item">
                     <div class="panel panel-info">
                       <div class="panel-heading">
-                        {{$comentario->user}} {{$comentario->created_at->format('d/m/Y  h:i A')}}
+                        {{$comentario->user->name}} {{$comentario->created_at->format('d/m/Y  h:i A')}}
                       </div>
                       <div class="panel-body">
                           {{ $comentario->comentario }}
@@ -90,7 +98,11 @@
                   </li>
                 @endforeach
            </ul>
+           <div class="text-center">
+             {!! $comentarios->render() !!}
+           </div>
       </div>
+
 
       @section('modal')
        @include('solicitud.modalComentario')

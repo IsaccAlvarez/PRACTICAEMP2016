@@ -24,7 +24,7 @@ class UsuarioController extends Controller
     public function __construct(){
         $this->middleware('auth');
         $this->middleware('admin');
-        
+
     }
 
     public function find(Route $route){
@@ -57,7 +57,7 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequests $request)
     {
-
+     
      if ($request->ajax()) {
 
        $result = User::create($request->all());

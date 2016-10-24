@@ -22,6 +22,6 @@
 
 <div class="form-group">
  <label for="password_confirmation">Confirmar Clave</label>
- <input type="password" name="password_confirmation" id="pas2" class="form-control" placeholder="" aria-describedby="basic-addon1">
+ <input type="password" name="password_confirmation" id="pas" class="form-control " placeholder="" aria-describedby="basic-addon1">
 </div>
 {!!Form::close()!!}

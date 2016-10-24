@@ -4,6 +4,7 @@ namespace soweb\Http\Controllers;
 
 use Illuminate\Http\Request;
 use soweb\Http\Requests;
+use soweb\Http\Requests\CreateComentarioRequest;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Solicitudes\ComentarioSolicitudes;
 use soweb\Models\Solicitudes\Solicitudes;
@@ -37,14 +38,12 @@ class ComentarioSolicitudController extends Controller
                     ->where('solicitudes.idSolicitud', $idSolicitud)
                     ->get();
 
-      $comentario = ComentarioSolicitudes::select('users.name as user','comentario_solicitudes.created_at', 'comentario_solicitudes.comentario')
-                                            ->join('users','users.id','=','comentario_solicitudes.idUser')
-                                            ->where('comentario_solicitudes.idSolicitud', $idSolicitud)
-                                            ->get();
+      $comentarios = ComentarioSolicitudes::where('idSolicitud',$idSolicitud)
+                                            ->orderBy('created_at','DESC')
+                                            ->paginate(3);
 
 
-
-         return view('solicitud/showSolicitud', compact('solicitud','comentario'));
+         return view('solicitud/showSolicitud', compact('solicitud','comentarios'));
     }
 
     /**
@@ -63,7 +62,7 @@ class ComentarioSolicitudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateComentarioRequest $request)
     {
        $asesores = Asesores::all();
       if ($request->ajax()) {

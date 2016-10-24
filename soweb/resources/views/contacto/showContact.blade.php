@@ -2,7 +2,7 @@
 @section('title','Contactos')
   @section('content')
     <div id="message-coment" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
-            <strong> La información de guardó correctamente.</strong>
+            <strong> La información se guardó correctamente.</strong>
     </div>
     <div class="panel panel-info">
       @foreach ($contactos as $contactos)
@@ -28,10 +28,24 @@
           }?> {{$var}} </p>
         </div>
          <div class="col-md-3">
-           <p>Nombre Juridico: {{$contactos->nombreJuridico}}</p>
+           <p>Nombre Juridico:<?php
+            $var;
+            if ($contactos->nombreJuridico != '') {
+              $var = $contactos->nombreJuridico;
+            }else {
+              $var = 'N/A';
+            }
+           ?> {{$var}}</p>
          </div>
          <div class="col-md-3">
-           <p>Representante: {{$contactos->nombreRepresentante}}</p>
+           <p>Representante:<?php
+             $rep;
+             if ($contactos->nombreRepresentante != '') {
+               $rep = $contactos->nombreRepresentante;
+             }else {
+               $rep = 'N/A';
+             }
+           ?> {{$rep}}</p>
          </div>
          <div class="col-md-2">
            <p>Teléfono: {{$contactos->telefono}}</p>
@@ -53,22 +67,24 @@
       </div>
         @endforeach
       </div>
-      <div id="comentarios" class="">
+      <div id="list-coment" class="">
         <ul class="list-group" style="font-size: 10pt;">
-                @foreach ($comentarios as $comentarios)
+                @foreach ($comentarios as $comentario)
                   <li class="list-group-item">
                     <div class="panel panel-warning">
                       <div class="panel-heading">
-                        {{$comentarios->user}} {{$comentarios->created_at->format('d/m/Y  h:i A')}}
+                        {{$comentario->users->name}} {{$comentario->created_at->format('d/m/Y  h:i A')}}
                       </div>
                       <div class="panel-body">
-                          {{ $comentarios->comentario }}
+                          {{ $comentario->comentario }}
                       </div>
                     </div>
                   </li>
                 @endforeach
            </ul>
-
+           <div class="text-center">
+             {!! $comentarios->render() !!}
+           </div>
       </div>
       @section('modal')
         @include('contacto.modalComent')

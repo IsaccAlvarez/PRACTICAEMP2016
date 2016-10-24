@@ -3,13 +3,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Comentario de Contacto</h4>
+        <h4 class="modal-title" id="myModalLabel">Agregar Comentario</h4>
       </div>
       <div class="modal-body  ">
         <div class="modal-body">
           <div id="message-coment" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
                   <strong> La información se guardó correctamente.</strong>
           </div>
+          <div id='message-errors' class="alert alert-danger danger" role='alert' style="display: none">
+          <strong id="errors"></strong>
+         </div>
          </div>
 
 

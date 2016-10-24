@@ -111,6 +111,7 @@ return [
     */
 
     'attributes'           => [
+         'comentario'           =>'Comentario',
          'idContacto'           =>'Contacto',
          'idAsesor'             =>'Asignado A',
          'descripcion'          =>'Descripcion',

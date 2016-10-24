@@ -13,10 +13,17 @@ $(document).on("submit",".form",function(e) {
            type : 'POST',
            dataType: 'json',
            data:datosComent,
+           beforeSend: function(){
+               $("#comentari").val("Guardando...");
+               $('#comentari').attr('disabled','disabled');
+           },
+           complete:function(data){
+             $("#comentari").val("Guardar");
+             $('#comentari').removeAttr('disabled');
+           },
            success: function(data){
                     if (data.success == 'true')
                      {
-
                           $("#myModalComentario").modal('toggle');
                           $("#message-coment").fadeIn();
                           $('#message-coment').show().delay(3000).fadeOut(1);
@@ -24,7 +31,13 @@ $(document).on("submit",".form",function(e) {
                   },
                   error:function(data)
                  {
-
+                   $.each(data.responseJSON, function(i, field){
+                     $("#errors").append("<ul><li>"+field+"</li></ul>");
+                     $("#message-errors").fadeIn();
+                     if (data.status == 422) {
+                        console.clear();
+                     }
+                   });
                  }
                });
 });
@@ -36,6 +49,7 @@ $("#myModalComentario").on("shown.bs.modal",function() {
 
 //CUANDO CIERRAS LA VENTANA MODAL
 $("#myModalComentario").on("hidden.bs.modal", function () {
+  $("#message-errors").fadeOut()
   $(this).find('form')[0].reset();
   $("label.error").remove();
 

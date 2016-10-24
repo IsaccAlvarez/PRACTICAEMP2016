@@ -30,7 +30,7 @@ $("#guardar").click(function(){
   var email = $("#email").val();
   var tipUs = $("#tUsers").val();
   var password = $("#password").val();
-  var password_confirmation = $("#pas2").val();
+  var password_confirmation1 = $("#pas").val();
 
  var route = '/usuario';
   var token = $("#token").val();
@@ -45,12 +45,11 @@ $("#guardar").click(function(){
            email: email,
            tipoUser: tipUs,
            password: password,
-           password_confirmation: password_confirmation
-         },
+           password_confirmation: password_confirmation1},
 
         success:function(data){
           if (data.success == 'true') {
-            console.log(data);
+
             listUser();
             $("#myModalCreateUser").modal('toggle');
             $("#message-save").fadeIn();

@@ -123,12 +123,13 @@
                                 <tr>
                                     <td>
                                         <br>
-                                        <img src="img/logotipo4.png" width="241" height="57" alt="robot picture">
+                                        <img src="img/logotipo4.png" width="241" height="57" alt="SoWeb">
+                                        <br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="headline">
-                                        Nueva Notificacion!
+                                         ¡Nuevo Comentario!
                                     </td>
                                 </tr>
                                 <tr>
@@ -139,11 +140,13 @@
                                                 <tr>
                                                     <td style="color:#187272;">
                                                         <br>
-                                                         Un Nuevo Comentario al Contacto # {{$datos['idContacto']}}.
-                                                        <br>
-                                                         Creado por
-                                                        <br>
-                                                        
+                                                          {{$user->name}} Agrego un Nuevo
+                                                           Comentario al Contacto {{$datos->nombre}}.
+                                                         <br>
+                                                         <br>
+                                                         <br>
+                                                         <br>
+
                                                     </td>
                                                 </tr>
                                             </table>
@@ -158,7 +161,9 @@
 
                                 <tr>
                                     <td style="color:#bbbbbb; font-size:12px;">
-                                        © 2016 SeeSoft-CR
+                                        <br>
+                                        <br>
+                                        © SeeSoft-Costa Rica
                                         <br>
                                         <br>
                                     </td>

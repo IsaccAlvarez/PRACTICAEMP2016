@@ -5,6 +5,7 @@ namespace soweb\Http\Controllers;
 use Illuminate\Http\Request;
 
 use soweb\Http\Requests;
+use soweb\Http\Requests\CreateComentarioRequest;
 use soweb\Http\Controllers\Controller;
 use soweb\Models\Contactos\ComentarioContacto;
 use soweb\Models\Contactos\Contactos;
@@ -36,14 +37,16 @@ class ComentarioContactoController extends Controller
                        ->where('contactos.idContacto', $idContacto)
                        ->get();
 
-         $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
-                                               ->join('users','users.id','=','comentario_contactos.idUser')
-                                               ->where('comentario_contactos.idContacto', $idContacto)
-                                               ->orderby('comentario_contactos.created_at','DESC')
-                                               ->get();
+        //  $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
+        //                                        ->join('users','users.id','=','comentario_contactos.idUser')
+        //                                        ->where('comentario_contactos.idContacto', $idContacto)
+        //                                        ->orderby('comentario_contactos.created_at','DESC')
+        //                                        ->get();
+         $comentarios = ComentarioContacto::where('idContacto', $idContacto)
+                                            ->orderby('created_at','DESC')
+                                            ->paginate(3);
 
-
-         return view('contacto/showContact', compact('contactos','comentarios'));
+         return view('contacto/showContact', compact('contactos','comentarios'))->render();
      }
     /**
      * Show the form for creating a new resource.
@@ -61,19 +64,20 @@ class ComentarioContactoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateComentarioRequest $request)
     {
-          
+
            $asesores = Asesores::all();
 
         if ($request->ajax()) {
-              $datos['idContacto'] = $idContacto = $request->idContacto;
+              $datos =Contactos::find($request->idContacto);
+              $user = User::find($request->idUser);
 
 
            $result = ComentarioContacto::create($request->all());
            if ($result) {
              foreach ($asesores as $asesor) {
-               Mail::send('contacto.notificacionEmail',['datos'=> $datos],function($msj) use ($asesor) {
+               Mail::send('contacto.notificacionEmail',['datos'=> $datos, 'user'=>$user],function($msj) use ($asesor) {
                $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
                $msj->to($asesor->emailEmpresa, $asesor->nombre)->subject('Notificación SoWeb!');
               });

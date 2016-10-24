@@ -53,4 +53,17 @@
 	    <div class="box-footer">
 		</div>
 	</div>
+
+
+</div>
+@endsection
+@section('script')
+
+  {!!Html::script('js/highcharts.js')!!}
+  {!!Html::script('js/graficos.js')!!}
+
+  <script type="text/javascript">
+    cargar_grafica_barras(<?= $anio; ?>,<?= intval($mes); ?>);
+    cargar_grafica_lineas(<?= $anio; ?>,<?= intval($mes); ?>);
+  </script>
 @endsection
