@@ -16,10 +16,10 @@
       </div>
       <div class="panel-body">
         <div class="col-md-3">
-          <p>Nombre: {{$contactos->nombre}} </p>
+          <p class="text-left"><b>Nombre:</b> {{$contactos->nombre}} </p>
         </div>
         <div class="col-md-2">
-          <p>Es empresa:<?php
+          <p class="text-left"><b>Es empresa:</b><?php
           $var;
           if($contactos->esEmpresa == 1) {
             $var = 'Si';
@@ -28,7 +28,7 @@
           }?> {{$var}} </p>
         </div>
          <div class="col-md-3">
-           <p>Nombre Juridico:<?php
+           <p class="text-left"><b>Nombre Juridico:</b><?php
             $var;
             if ($contactos->nombreJuridico != '') {
               $var = $contactos->nombreJuridico;
@@ -38,7 +38,7 @@
            ?> {{$var}}</p>
          </div>
          <div class="col-md-3">
-           <p>Representante:<?php
+           <p class="text-left"><b>Representante:</b><?php
              $rep;
              if ($contactos->nombreRepresentante != '') {
                $rep = $contactos->nombreRepresentante;
@@ -47,24 +47,27 @@
              }
            ?> {{$rep}}</p>
          </div>
-         <div class="col-md-2">
-           <p>Teléfono: {{$contactos->telefono}}</p>
+         <div class="col-md-4">
+           <p class="text-left"><b>Teléfono:</b> {{$contactos->telefono}}</p>
          </div>
          <div class="col-md-4">
-           <p>Correo: {{$contactos->email}}</p>
+           <p class="text-left"><b>Correo:</b> {{$contactos->email}}</p>
          </div>
          <div class="col-md-4">
-           <p>Dirección: {{$contactos->direccion}}</p>
+           <p class="text-left"><b>Dirección:</b> {{$contactos->direccion}}</p>
          </div>
          <div class="panel-body " style="position:static; color:rgb(37, 91, 205);">
            <div class="col-md-4" style="font-size: 7pt; position: static">
-             <p>Creado por: {{$contactos->name}} </P>
-             <p>Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}}</p>
-             <p>Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y  h:i A')}}</p>
-             <p>Modificado por: {{$contactos->userUltimaModificacion}}</p>
+             <p class="text-left">Creado por:</b>  {{$contactos->name}} </P>
+             <p class="text-left">Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}}</p>
+             <p class="text-left">Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y  h:i A')}}</p>
+             <p class="text-left">Modificado por: {{$contactos->userUltimaModificacion}}</p>
            </div>
          </div>
       </div>
+      @section('modal')
+        @include('contacto.modalComent')
+      @endsection
         @endforeach
       </div>
       <div id="list-coment" class="">
@@ -86,9 +89,7 @@
              {!! $comentarios->render() !!}
            </div>
       </div>
-      @section('modal')
-        @include('contacto.modalComent')
-      @endsection
+
 
   @endsection
 @section('script')

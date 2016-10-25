@@ -1,4 +1,4 @@
-{!!Form::open(['class'=>'form'])!!}
+
 <div class="form-group">
   {!!Form::label('searchNombre', 'Contacto')!!}
   {!!Form::text('searchNombre',null,['class'=>'typeahead form-control', 'id'=>'searchName','data-provide'=>'typeahead'])!!}
@@ -48,4 +48,3 @@
 </div>
 <input type="hidden" name="idUser" id="iac" value="{!!Auth::user()->id!!}">
 <input type="hidden" name="userUltimaModificacion" id="iaumd" value="{!!Auth::user()->name!!}">
-{!!Form::close()!!}

@@ -13,7 +13,7 @@
 
 Route::get('/','FrontController@index');
 Route::get('admin','FrontController@admin');
-
+Route::get('listaPendientes','FrontController@listP');
 
 Route::resource('usuario','UsuarioController');
 Route::resource('listUser','UsuarioController@listUser');

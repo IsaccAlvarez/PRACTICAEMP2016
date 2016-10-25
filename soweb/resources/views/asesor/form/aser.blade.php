@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="telefono">Telefono</label>
-        <input type="text" class="form-control" name="telefono" id="telef">
+        <input type="text" class="form-control" name="telefono" id="telef" data-mask="(999) 9999-9999" data-mask-selectonfocus="true">
     </div>
     <div class="form-group">
         <label for="emailPersonal">Correo Personal</label>

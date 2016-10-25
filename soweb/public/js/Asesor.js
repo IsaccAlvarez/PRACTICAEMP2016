@@ -1,7 +1,7 @@
 $(document).ready(function(){
 listAsesor();
 
-
+$("#telefe").mask('(000) 0000-0000', {placeholder: "(___)____-____"});
 
 });
 

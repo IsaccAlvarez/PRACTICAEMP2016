@@ -12,24 +12,18 @@
           <strong id="errorCreate"></strong>
          </div>
 
-
+        {!!Form::open(['class'=>"form", 'name'=>'form'])!!}
         <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
         @include('solicitud.forms.create')
 
 
       </div>
       <div class="modal-footer ">
-        {!!link_to('#', $title=' Guardar', $attributes = ['id'=>'guarda', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!}
+       {!!Form::submit('Guardar',['class'=>'btn btn-success glyphicon glyphicon-save','id'=>'guarda'])!!}
+       {!!Form::close()!!}
+      {{-- {!!link_to('#', $title=' Guardar', $attributes = ['id'=>'guarda', 'class'=>'btn btn-success glyphicon glyphicon-save'], $secure = null)!!} --}}
       </div>
 
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-  

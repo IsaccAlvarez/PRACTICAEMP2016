@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href="img/icono.ico" />
+    {{-- <link rel="shortcut icon" href="img/icono.ico" /> --}}
+    <link src="img/icono.ico" type="image/x-icon" rel="shortcut icon" />
     <title>SoWeb::@yield('title')::</title>
      {!!Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')!!}
     {!!Html::style('css/bootstrap.css')!!}
@@ -84,9 +85,13 @@
     </div>
       <div id="page-wrapper">
           @yield('content')
-
-
+          <div class="footer">
+            <footer>
+              <p class="text-center">© <?php echo date('Y'); ?> SeeSoft-Costa Rica.</p>
+            </footer>  
+          </div>
       </div>
+
       @section('modal')
 
       @show

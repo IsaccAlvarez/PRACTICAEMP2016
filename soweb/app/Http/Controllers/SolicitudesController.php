@@ -11,10 +11,13 @@ use soweb\Http\Controllers\Controller;
 use soweb\Models\Solicitudes\Solicitudes;
 use soweb\Models\Contactos\Contactos;
 use soweb\Models\Asesores\Asesores;
+use soweb\User;
 use Seession;
 use Input;
 use DB;
 use Carbon\Carbon;
+use Auth;
+use Mail;
 class SolicitudesController extends Controller
 {
 
@@ -76,16 +79,37 @@ class SolicitudesController extends Controller
      */
     public function store(SolicitudCreateRequest $request)
     {
+
          if ($request->ajax()) {
-           $result = Solicitudes::create($request->all());
-           if ($result){
-               return response()->json(['success'=>'true']);
-             }
-             else
-             {
-               return response()->json(['success'=>'false']);
-             }
-         }
+           $name = User::find($request->idUser);
+           $asesor = Asesores::find($request->idAsesor);
+           if ($asesor->emailEmpresa != $name->email) {
+               $email = Asesores::select('emailEmpresa','nombre')->where('idAsesor', $request->idAsesor)->get();
+
+               $contacto = Contactos::find($request->idContacto);
+               $result = Solicitudes::create($request->all());
+                 if ($result){
+                    foreach ($email as $emails) {
+                      Mail::send('solicitud.newSolicitud',['asesor'=> $asesor,'contacto'=>$contacto],function($msj) use ($emails){
+                      $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
+                      $msj->to($emails->emailEmpresa, $emails->nombre)->subject('Notificación SoWeb!');
+                      });
+                    }
+
+                     return response()->json(['success'=>'true']);
+                  }else{
+                    return response()->json(['success'=>'false']);
+                  }
+           }else {
+                    $result = Solicitudes::create($request->all());
+
+                  if ($result){
+                     return response()->json(['success'=>'true']);
+                   }else{
+                     return response()->json(['success'=>'false']);
+                   }
+           }
+         }//fin primer if
     }
 
     /**

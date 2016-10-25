@@ -80,6 +80,9 @@
             </div>
           </div>
         </div>
+        @section('modal')
+         @include('solicitud.modalComentario')
+        @endsection
     @endforeach
       </div>
       <p class="text-center"><b>---------------------------------COMENTARIOS-----------------------------------</b></p>

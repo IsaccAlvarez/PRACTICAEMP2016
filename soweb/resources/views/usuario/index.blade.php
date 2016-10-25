@@ -7,10 +7,10 @@
   @include('alerts.success')
   @include('alerts.errors')
   <div id="message-save" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
-          <strong> La información de guardó correctamente.</strong>
+          <strong> La información se guardó correctamente.</strong>
   </div>
   <div id="message-update" class="alert alert-success alert-dismissible glyphicon glyphicon-saved" role="alert" style="display:none">
-          <strong> La información de guardó correctamente.</strong>
+          <strong> La información se guardó correctamente.</strong>
   </div>
   <div id="message-delete" class="alert alert-success glyphicon glyphicon-trash" role="alert" style="display:none">
            <strong> El registro se eliminó correctamente.</strong>

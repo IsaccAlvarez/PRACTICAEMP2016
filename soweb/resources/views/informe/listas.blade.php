@@ -54,7 +54,7 @@
                 <p class="text-right">
 
                     <b class="huge">{{$solicitud}}</b> <br>
-                  
+
                   <i>Solicitudes</i>
                 </p>
 
@@ -199,12 +199,12 @@
     <div class="panel-heading"><b>Total Cobrado por Fechas</b>
       <div  class="row" >
       <div class="col-md-6">
-       De  <input type="text" class="datepicker" name="fecha1" id='fecha1' value="{{$fecha1}}"  data-provide="datepicker">
+       Desde:  <input type="text" class="datepicker" name="fecha1" id='fecha1' value="{{$fecha1}}"  data-provide="datepicker">
             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
       </div>
 
       <div class="col-md-6">
-           Hasta  <input type="text" class="datepicker2" name="fecha2" id='fecha2' value="{{$fecha2}}" data-provide="datepicker">
+           Hasta:  <input type="text" class="datepicker2" name="fecha2" id='fecha2' value="{{$fecha2}}" data-provide="datepicker">
       </div>
       </div>
       </div>

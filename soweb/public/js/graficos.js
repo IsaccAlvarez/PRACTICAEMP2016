@@ -1,10 +1,21 @@
+$(document).ready(function () {
+  $("#mostrarLista").change(function() {
+       if ($(this).val() == 'pXm') {
+         $("#pendXMes").show();
+       }else {
+        $("#pendXMes").hide();
+       }
+
+  });
+});
+
 function cambiar_fecha_grafica(){
 
     var anio_sel=$("#anio_sel").val();
     var mes_sel=$("#mes_sel").val();
 
     cargar_grafica_barras(anio_sel,mes_sel);
-    cargar_grafica_lineas(anio_sel,mes_sel);
+
 
 }
 //------------------------------------------------------

@@ -1,10 +1,13 @@
 $(document).ready(function() {
   $(".datepicker").datepicker({
     format: 'yyyy/m/d',
-    language: 'ES'
+    language: "es",
+    autoclose: true
   });
   $(".datepicker2").datepicker({
-    format: 'yyyy/m/d'
+    format: 'yyyy/m/d',
+    language: "es",
+    autoclose: true
   });
    $("#mostrarLista").change(function() {
         if ($(this).val() == 'tipoContacto') {

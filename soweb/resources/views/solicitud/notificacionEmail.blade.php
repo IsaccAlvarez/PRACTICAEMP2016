@@ -109,11 +109,11 @@
                                 </tr>
                             </table>
 
-                            <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#4dbfbf">
+                            <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#9dc8c8">
                                 <tr>
                                     <td>
                                         <br>
-                                        <img src="img/logotipo4.png" width="241" height="57" alt="SoWeb">
+                                        <h1 class="log" style="color: #006838; font-size: 60pt;" width="241" height="57"><b style="color: #8dc63f;">So</b>Web</h1>
                                         <br>
                                     </td>
                                 </tr>

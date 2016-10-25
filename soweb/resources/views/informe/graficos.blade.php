@@ -2,13 +2,26 @@
 @section('title','Informes')
 
 @section('content')
-  <?php  $nombremes=array("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"); ?>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <b>INFORME POR GRAFICOS</b>
+      <div class="  ">
+        {!!Form::select('mostrar',[
+          'pXm'=>'Pendientes por Mes',
+          'aXm'=>'Rendimiento de Asesores por Mes',
+          'gXm'=>'Rendimineto General por Mes',
+          'tiempoDeS'=>'Promedio de Tiempo de Solucion'
+        ],null,['class'=>'form-control','id'=>'mostrarLista','placeholder'=>'Selecione'])!!}
+      </div>
 
+    </div>
+  </div>
+  <div id="pendXMes" style="Display: none;">
+  <?php  $nombremes=array("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"); ?>
 <div  class="row" >
 <div class="col-md-6">
                   <label>Año</label>
                   <select class="form-control" id="anio_sel"  onchange="cambiar_fecha_grafica();">
-
                   <?php  echo '<option value="'.$anio.'" >'.$anio.'</option>';   ?>
                     <option value="2015" >2015</option>
                     <option value="2016" >2016</option>
@@ -16,10 +29,7 @@
                     <option value="2018">2018</option>
                     <option value="2019" >2019</option>
                   </select>
-
 </div>
-
-
 <div class="col-md-6">
                   <label>Mes</label>
                   <select class="form-control" id="mes_sel" onchange="cambiar_fecha_grafica();" >
@@ -41,7 +51,7 @@
 
 </div>
 </div>
-<div  class="row" >
+<div  class="" >
 <br/>
 	<div class="box box-primary">
 		<div class="box-header">
@@ -56,6 +66,7 @@
 
 
 </div>
+</div>
 @endsection
 @section('script')
 
@@ -64,6 +75,6 @@
 
   <script type="text/javascript">
     cargar_grafica_barras(<?= $anio; ?>,<?= intval($mes); ?>);
-    cargar_grafica_lineas(<?= $anio; ?>,<?= intval($mes); ?>);
+
   </script>
 @endsection

@@ -29,6 +29,7 @@ $(document).on("submit",".form",function(e) {
                        $("#myModalComent").modal('toggle');
                        $("#message-coment").fadeIn();
                        $('#message-coment').show().delay(3000).fadeOut(1);
+                       location.href="/comentarioDeContacto/"+idCont+"";
                    }
                },
         error:function(data)

@@ -14,12 +14,12 @@ $(document).on("submit",".form",function(e) {
            dataType: 'json',
            data:datosComent,
            beforeSend: function(){
-               $("#comentari").val("Guardando...");
-               $('#comentari').attr('disabled','disabled');
+               $("#comentar").val("Guardando...");
+               $('#comentar').attr('disabled','disabled');
            },
            complete:function(data){
-             $("#comentari").val("Guardar");
-             $('#comentari').removeAttr('disabled');
+             $("#comentar").val("Guardar");
+             $('#comentar').removeAttr('disabled');
            },
            success: function(data){
                     if (data.success == 'true')
@@ -27,6 +27,7 @@ $(document).on("submit",".form",function(e) {
                           $("#myModalComentario").modal('toggle');
                           $("#message-coment").fadeIn();
                           $('#message-coment').show().delay(3000).fadeOut(1);
+                          location.href="/comentarioDeSolicitud/"+idSoli+"";
                       }
                   },
                   error:function(data)
