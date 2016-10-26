@@ -19,12 +19,12 @@ class CambioClaveController extends Controller
      */
      public function __construct(){
          $this->middleware('auth');
-         
+
      }
 
     public function index()
     {
-        //
+      return View('password.index');
     }
 
     /**
@@ -51,11 +51,11 @@ class CambioClaveController extends Controller
 
          Auth::User()->where('email','=', Auth::user()->email)->update(['password'=>bcrypt($request['password'])]);
            Session::flash('message','Cambio de clave exitoso');
-           return view('/password.changePass');
+           return view('/password.index');
        }
        else {
         Session::flash('message-error','Credenciales incorrectos');
-        return view('/password.changePass');
+        return view('/password.index');
        }
 
     }
@@ -105,9 +105,9 @@ class CambioClaveController extends Controller
     {
         //
     }
-    public function password(){
-      return View('password.changePass');
-    }
+    // public function password(){
+    //   return View('password.changePass');
+    // }
 
 
 }

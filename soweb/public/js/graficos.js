@@ -5,6 +5,11 @@ $(document).ready(function () {
        }else {
         $("#pendXMes").hide();
        }
+       if ($(this).val() == 'gXm') {
+         $("#rendXMes").show();
+       }else {
+        $("#rendXMes").hide();
+       }
 
   });
 });
@@ -15,6 +20,17 @@ function cambiar_fecha_grafica(){
     var mes_sel=$("#mes_sel").val();
 
     cargar_grafica_barras(anio_sel,mes_sel);
+
+
+
+}
+function cambiar_fecha(){
+
+    var anio_s=$("#anio_s").val();
+    var mes_s=$("#mes_s").val();
+
+
+      cargar_grafica(anio_s,mes_s);
 
 
 }
@@ -81,3 +97,67 @@ var i=0;
 })
 }
 //-------------------------------------------------------------------------------------
+function cargar_grafica(anio,mes){
+var options={
+	 chart: {
+	 	    renderTo: 'div_grafica',
+            type: 'column'
+        },
+        title: {
+            text: 'Rendimineto General en el Mes'
+        },
+        subtitle: {
+            text: 'Source: Soweb.seesoft-cr.com'
+        },
+        xAxis: {
+            categories: [],
+             title: {
+                text: 'dias del mes'
+            },
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'CERRADAS AL DIA'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y} </b>({point.y:.2f}%)<br></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0,
+                stacking: 'percent'
+            }
+        },
+        series: [{
+            name: 'Cerradas',
+            data: []
+
+        }]
+}
+
+$("#div_grafica").html();
+var urls = "rendimientoGeneral/"+anio+"/"+mes+"";
+$.get(urls,function(result){
+var dato= jQuery.parseJSON(result);
+var total=dato.totaldias;
+var cerradasdia=dato.registrosdia;
+var s=dato.solicitud;
+var t=dato.t;
+var e=0;
+
+	options.series[s.total];
+	options.xAxis.categories.push(s.estado);
+
+ //options.title.text="aqui e podria cambiar el titulo dinamicamente";
+ chart = new Highcharts.Chart(options);
+})
+}

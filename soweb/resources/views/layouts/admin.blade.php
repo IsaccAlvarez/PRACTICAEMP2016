@@ -63,7 +63,6 @@
                 <li><a href="{!!URL::to('/contacto')!!}" class="fa fa-users"> Contactos</a></li>
                 <li><a href="{!!URL::to('/asesor')!!}" class="fa fa-users"> Asesores</a></li>
                 <li><a href="{!!URL::to('/solicitud')!!}" class="fa fa-list-alt"> Solicitud</a></li>
-                <li><a href="file.html" class="fa fa-cogs"> Panel Control</a></li>
                 @if(Auth::user()->tipoUser == 'admin')
                 <li>
                   <a href="#" class="fa fa-file-text-o"> Informes<span class="fa arrow"></span></a>
@@ -88,7 +87,7 @@
           <div class="footer">
             <footer>
               <p class="text-center">© <?php echo date('Y'); ?> SeeSoft-Costa Rica.</p>
-            </footer>  
+            </footer>
           </div>
       </div>
 

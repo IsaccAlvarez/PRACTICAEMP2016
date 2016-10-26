@@ -50,9 +50,9 @@ Route::resource('informe','InformeController');
 Route::get('lista','InformeController@listaTabla');
 Route::get('/listaPendiente/{anio}/{mes}','InformeController@pendientesEntreFecha');
 Route::post('/cobrado','InformeController@cobradoAlMes');
+Route::get('/rendimientoGeneral/{anio}/{mes}','InformeController@generalAlMes');
+
 //
 Route::resource('log','LoginController');
 Route::get('logout','LoginController@logout');
-Route::resource('cambio','CambioClaveController');
-Route::get('cambiarClave','CambioClaveController@password');
-Route::post('updatePassword','CambioClaveController@updatePassword');
+Route::resource('cambiarClave','CambioClaveController');

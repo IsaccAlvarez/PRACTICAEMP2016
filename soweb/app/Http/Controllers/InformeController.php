@@ -30,11 +30,16 @@ class InformeController extends Controller
 
     public function index()
     {
+      $rendimiento =Solicitudes::select('estado', DB::raw('count(estado) as total'))
+                                 ->where(DB::raw('month(created_at)'), '=',10)
+                                 ->groupBy('estado')
+                                 ->get();
       $anio=date("Y");
       $mes=date("m");
       return view("informe.graficos")
              ->with("anio",$anio)
-             ->with("mes",$mes);
+             ->with("mes",$mes)
+             ->with('rendimiento', $rendimiento);
     }
     public function listaTabla()
     {
@@ -110,6 +115,33 @@ class InformeController extends Controller
          return response()->json($solicitudes);
 
     }
+
+    // public function generalAlMes($anio,$mes)
+    // {
+    //   $primer_dia=1;
+    //   $ultimo_dia=$this->getUltimoDiaMes($anio,$mes);
+    //   $fecha_inicial=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$primer_dia) );
+    //   $fecha_final=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$ultimo_dia) );
+    //   $solicitud=Solicitudes::select(DB::raw('count(estado) as total'))
+    //                          ->where(DB::raw('MONTH(created_at)', '=', $mes ))
+    //                          ->where(DB::raw('YEAR(created_at)', '=', $anio ))
+    //                         ->groupBy('estado')
+    //                         ->get();
+    //   $t=count($solicitud);
+    //
+    //   for($d=1;$d<=$ultimo_dia;$d++){
+    //       $registros[$d]=0;
+    //   }
+    //
+    //   foreach($solicitud as $solicitudes){
+    //   $diasel=intval(date("d",strtotime($solicitudes->created_at) ) );
+    //   $registros[$diasel]++;
+    //   }
+    //
+    //   $data=array( "solicitud"=>$solicitud,'t'=>$t);
+    //   return   json_encode($data);
+    //
+    // }
     /**
      * Show the form for creating a new resource.
      *

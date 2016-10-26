@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-9">
-          {!!Form::open(['route'=>'cambio.store','method'=>'POST'])!!}
+          {!!Form::open(['route'=>'cambiarClave.store','method'=>'POST'])!!}
             <input type="hidden" name="token" id="token" value="{{csrf_token()}}">
             <div class="form-group">
               <label for="passActual">Clave Actual</label>

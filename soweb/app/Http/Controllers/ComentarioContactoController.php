@@ -37,11 +37,7 @@ class ComentarioContactoController extends Controller
                        ->where('contactos.idContacto', $idContacto)
                        ->get();
 
-        //  $comentarios = ComentarioContacto::select('users.name as user','comentario_contactos.created_at', 'comentario_contactos.comentario')
-        //                                        ->join('users','users.id','=','comentario_contactos.idUser')
-        //                                        ->where('comentario_contactos.idContacto', $idContacto)
-        //                                        ->orderby('comentario_contactos.created_at','DESC')
-        //                                        ->get();
+
          $comentarios = ComentarioContacto::where('idContacto', $idContacto)
                                             ->orderby('created_at','DESC')
                                             ->paginate(3);
