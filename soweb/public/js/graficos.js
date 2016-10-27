@@ -10,6 +10,16 @@ $(document).ready(function () {
        }else {
         $("#rendXMes").hide();
        }
+       if ($(this).val() == 'aXm') {
+         $("#rXA").show();
+       }else {
+        $("#rXA").hide();
+       }
+       if ($(this).val() == 'rXm') {
+         $("#rend").show();
+       }else {
+        $("#rend").hide();
+       }
 
   });
 });
@@ -125,7 +135,7 @@ var options={
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y} </b>({point.y:.2f}%)<br></td></tr>',
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -133,8 +143,7 @@ var options={
         plotOptions: {
             column: {
                 pointPadding: 0.2,
-                borderWidth: 0,
-                stacking: 'percent'
+                borderWidth: 0
             }
         },
         series: [{
@@ -148,15 +157,13 @@ $("#div_grafica").html();
 var urls = "rendimientoGeneral/"+anio+"/"+mes+"";
 $.get(urls,function(result){
 var dato= jQuery.parseJSON(result);
-var total=dato.totaldias;
-var cerradasdia=dato.registrosdia;
-var s=dato.solicitud;
-var t=dato.t;
+var total=dato.totald;
+var registros=dato.registrosdia;
 var e=0;
-
-	options.series[s.total];
-	options.xAxis.categories.push(s.estado);
-
+	for(e=1;e<=total;e++){
+	options.series[0].data.push( registros[e] );
+	options.xAxis.categories.push(e);
+	}
  //options.title.text="aqui e podria cambiar el titulo dinamicamente";
  chart = new Highcharts.Chart(options);
 })

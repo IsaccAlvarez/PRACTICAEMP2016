@@ -10,6 +10,7 @@
             </div>
           </div>
           <div class="table-responsive" id="listPen"></div>
+          
 @endsection
 @section('script')
   {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}

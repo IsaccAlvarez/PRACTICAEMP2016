@@ -21,7 +21,7 @@
         <td>
           <button id="edit" class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$asesor->idAsesor}});" data-toggle='modal' data-target='#myModal'></button>
           @if(Auth::user()->tipoUser == 'admin')
-            <button class='btn btn-danger btn-circle glyphicon glyphicon-remove' onClick="Eliminar('{{$asesor->idAsesor}}','{{$asesor->nombre}}');"></button>
+            <button class='btn btn-danger btn-circle fa fa-trash-o' onClick="Eliminar('{{$asesor->idAsesor}}','{{$asesor->nombre}}');"></button>
           @endif
         </td>
       </tr>

@@ -2,21 +2,23 @@
 @section('title','Informes')
 
 @section('content')
-  {{-- <div class="panel panel-primary">
+  <div class="panel panel-primary">
     <div class="panel-heading">
       <b>INFORME POR GRAFICOS</b>
       <div class="  ">
         {!!Form::select('mostrar',[
           'pXm'=>'Pendientes por Mes',
           'aXm'=>'Rendimiento de Asesores por Mes',
-          'gXm'=>'Rendimineto General por Mes',
-          'tiempoDeS'=>'Promedio de Tiempo de Solucion'
+          'gXm'=>'Rendimineto General por Mes ',
+          'rXm'=>'Rendimiento General del Mes Actual'
         ],null,['class'=>'form-control','id'=>'mostrarLista','placeholder'=>'Selecione'])!!}
       </div>
 
     </div>
-  </div> --}}
-<div id="pendXMes" >
+
+  </div>
+  {{-- -------------------------------------------------------------------------------------- --}}
+<div id="pendXMes" style="Display:none;" >
   <?php  $nombremes=array("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"); ?>
  <div  class="row" >
  <div class="col-md-6">
@@ -66,8 +68,8 @@
  </div>
 
 </div>
-
-<div id="rendXMes" >
+{{-- -------------------------------------------------------------------------------------- --}}
+<div id="rendXMes" style="Display:none;">
 
   <?php  $nombremes=array("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"); ?>
   <div  class="row" >
@@ -115,10 +117,36 @@
       <div class="box-footer">
     </div>
   </div>
-
-
   </div>
-  <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+</div>
+{{-- -------------------------------------------------------------------------------------- --}}
+<div  id="rXA" style="Display:none;">
+<br/>
+ <div class="box box-primary">
+   <div class="box-header">
+   </div>
+
+   <div class="box-body" id="piechart" style="width: 900px; height: 500px;">
+   </div>
+
+     <div class="box-footer">
+   </div>
+ </div>
+</div>
+{{-- -------------------------------------------------------------------------------------- --}}
+<div  id="rend" style="Display:none;">
+<br/>
+ <div class="box box-primary">
+   <div class="box-header">
+   </div>
+
+   <div class="box-body" id="piechart2" style="width: 900px; height: 500px;">
+   </div>
+
+     <div class="box-footer">
+   </div>
+ </div>
 </div>
 @endsection
 @section('script')
@@ -127,26 +155,47 @@
   {!!Html::script('js/graficos.js')!!}
   {!!Html::script('https://www.gstatic.com/charts/loader.js')!!}
 
+
   <script type="text/javascript">
     cargar_grafica_barras(<?= $anio; ?>,<?= intval($mes); ?>);
-
+    cargar_grafica(<?= $anio; ?>,<?= intval($mes); ?>);
 
     google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Solicitud', 'Estado'],
-            @foreach ($rendimiento as $pastels)
-              ['{{ $pastels->estado}}', {{ $pastels->total}}],
-            @endforeach
-        ]);
-        var options = {
-          title: 'Reportes Mensual <?php echo date('M');?>',
-          is3D: true,
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
+    google.charts.setOnLoadCallback(drawChart);
+    $(window).on("throttledresize", function (event) {
+        drawChart();
+        drawC();
+    });
+function drawChart() {
+         var data = google.visualization.arrayToDataTable([
+           ['Solicitudes Cerradas', 'mes'],
+             @foreach ($solicitudes as $p)
+               ['{{ $p->asesores->nombre}}', {{ $p->total}}],
+             @endforeach
+         ]);
+         var options = {
+           title: 'Solicitudes Cerradas por Asesor en el Mes'
+
+         };
+         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+         chart.draw(data, options);
+}
+//---------------------------------
+google.charts.setOnLoadCallback(drawC);
+function drawC() {
+  var data = google.visualization.arrayToDataTable([
+        ['Estado', 'Total'],
+          @foreach ($rendimiento as $r)
+            ['{{ $r->estado}}', {{ $r->totals}}],
+              @endforeach
+              ]);
+  var options = {
+        title: 'Rendimiento General en el Mes Actual'
+
+            };
+      var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+      chart.draw(data, options);
+}
 
   </script>
 @endsection

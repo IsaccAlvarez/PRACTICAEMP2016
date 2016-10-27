@@ -21,7 +21,7 @@
          <td>
            {{-- <a href="/coment/{{$contacto->idContacto)}}"  class="btn btn-info  fa fa-folder-open"> Ver Ficha</a> --}}
            <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="Mostrar({{$contacto->idContacto}});" data-toggle='modal' data-target='#myModal'></button>
-           <button class='btn btn-danger glyphicon btn-circle glyphicon-remove' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
+           <button class='btn btn-danger btn-circle fa fa-trash-o' onClick="Eliminar('{{$contacto->idContacto}}','{{$contacto->nombre}}');"></button>
          </td>
        </tr>
      @endforeach

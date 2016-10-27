@@ -13,7 +13,8 @@
               'tipoContacto'=>'Lista por tipo de Contactos',
               'pendientes'=>'Lista de Pendientes',
               'cobros'=>'Lista de Cobrados',
-              'xFecha'=>'Cobrado por Fecha'
+              'xFecha'=>'Cobrado por Fecha',
+              'tiempoDeS'=>'Tiempo de Solucion en Días'
             ],null,['class'=>'form-control','id'=>'mostrarLista','placeholder'=>'Selecione'])!!}
           </div>
 
@@ -218,6 +219,37 @@
           </thead>
           <tbody id="datos">
 
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+{{--septima--}}
+<div id="tiempSol" class="" style="Display:none;">
+  <div class="panel panel-info">
+    <div class="panel-heading"><b>Tiempo de Solucion en días de Solicitudes</b>
+      </div>
+      <div class="panel-body">
+        <table id="Tables7" class="table table-responsive table-hover" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="text-center">Asesor</th>
+              <th class="text-center">Tipo de Solicitud</th>
+              <th class="text-center">Fecha de Creación</th>
+              <th class="text-center">Fecha de Cierre</th>
+              <th class="text-center">Total de Días</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($solucion as $s)
+              <tr>
+                <td class="text-center">{{$s->asesores->nombre}}</td>
+                <td class="text-center">{{$s->tipoSolicitud}}</td>
+                <td class="text-center">{{$s->created_at->format('d-m-Y h:m:s')}}</td>
+                <td class="text-center"><?php echo date("d-m-Y h:m:s", strtotime($s->fechaCerrado));?></td>
+                <td class="text-center">{{$s->dias}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

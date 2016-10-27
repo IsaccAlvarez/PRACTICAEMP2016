@@ -30,16 +30,22 @@ class InformeController extends Controller
 
     public function index()
     {
-      $rendimiento =Solicitudes::select('estado', DB::raw('count(estado) as total'))
-                                 ->where(DB::raw('month(created_at)'), '=',10)
+      $rendimiento =Solicitudes::select('estado', DB::raw('count(estado) as totals'))
+                                 ->where(DB::raw('month(created_at)'), '=',date('m'))
                                  ->groupBy('estado')
                                  ->get();
+      $solicitudes= Solicitudes::select('*',DB::raw('count(estado) as total'))
+                                ->where('estado','cerrada')
+                                ->where(DB::raw('month(fechaCerrado)'), '=',date('m'))
+                                ->groupBy('idAsesor')
+                                ->get();
       $anio=date("Y");
       $mes=date("m");
       return view("informe.graficos")
              ->with("anio",$anio)
              ->with("mes",$mes)
-             ->with('rendimiento', $rendimiento);
+             ->with('rendimiento', $rendimiento)
+             ->with('solicitudes', $solicitudes);
     }
     public function listaTabla()
     {
@@ -73,11 +79,15 @@ class InformeController extends Controller
                       ->select('c.nombre as nameC', DB::raw('sum(s.precioCobrado) as TotalC'))
                       ->groupBy('c.nombre')
                       ->get();
-
+      $solucion = Solicitudes::select('*',DB::raw('DATEDIFF(fechaCerrado,created_at) as dias'))
+                               ->where('estado', 'cerrada')
+                               ->where(DB::raw('month(fechaCerrado)'), '=',date('m'))
+                               ->groupBy('created_at')
+                               ->get();
                       $fecha1=date("Y-m-d");
                       $fecha2=date("Y-m-d");
 
-      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC','fecha1','fecha2'));
+      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC','fecha1','fecha2','solucion'));
     }
     public function pendientesEntreFecha($anio,$mes)
     {
@@ -105,9 +115,6 @@ class InformeController extends Controller
 
     public function cobradoAlMes(Request $request)
     {
-
-
-
           $solicitudes = Solicitudes::select('fecha',DB::raw('sum(precioCobrado) as total'))
                                       ->whereBetween('fecha',[$request->desde,$request->hasta])
                                       ->groupBy('fecha')
@@ -116,32 +123,30 @@ class InformeController extends Controller
 
     }
 
-    // public function generalAlMes($anio,$mes)
-    // {
-    //   $primer_dia=1;
-    //   $ultimo_dia=$this->getUltimoDiaMes($anio,$mes);
-    //   $fecha_inicial=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$primer_dia) );
-    //   $fecha_final=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$ultimo_dia) );
-    //   $solicitud=Solicitudes::select(DB::raw('count(estado) as total'))
-    //                          ->where(DB::raw('MONTH(created_at)', '=', $mes ))
-    //                          ->where(DB::raw('YEAR(created_at)', '=', $anio ))
-    //                         ->groupBy('estado')
-    //                         ->get();
-    //   $t=count($solicitud);
-    //
-    //   for($d=1;$d<=$ultimo_dia;$d++){
-    //       $registros[$d]=0;
-    //   }
-    //
-    //   foreach($solicitud as $solicitudes){
-    //   $diasel=intval(date("d",strtotime($solicitudes->created_at) ) );
-    //   $registros[$diasel]++;
-    //   }
-    //
-    //   $data=array( "solicitud"=>$solicitud,'t'=>$t);
-    //   return   json_encode($data);
-    //
-    // }
+    public function generalAlMes($anio,$mes)
+    {
+      $primer_dia=1;
+      $ultimo_dia=$this->getUltimoDiaMes($anio,$mes);
+      $fecha_inicial=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$primer_dia) );
+      $fecha_final=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$ultimo_dia) );
+      $solicitudes=Solicitudes::whereBetween('fechaCerrado', [$fecha_inicial,  $fecha_final])
+                            ->where('estado', 'cerrada')
+                            ->get();
+      $ct=count($solicitudes);
+
+      for($d=1;$d<=$ultimo_dia;$d++){
+          $cerradas[$d]=0;
+      }
+
+      foreach($solicitudes as $solicitudes){
+      $diasel=intval(date("d",strtotime($solicitudes->fechaCerrado) ) );
+      $cerradas[$diasel]++;
+      }
+
+      $dato=array("totald"=>$ultimo_dia, "registrosdia" =>$cerradas);
+      return   json_encode($dato);
+
+    }
     /**
      * Show the form for creating a new resource.
      *
