@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title','Informes')
-
+{!!Html::style("http://flopreynat.com/blog/make-google-charts-responsive.html")!!}
 @section('content')
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -121,32 +121,15 @@
 
 </div>
 {{-- -------------------------------------------------------------------------------------- --}}
-<div  id="rXA" style="Display:none;">
-<br/>
- <div class="box box-primary">
-   <div class="box-header">
+<div  id="rXA" class="col-md-6"style="Display:none;">
+   <div class="chart" id="piechart" style="width: 900px; height: 500px;">
    </div>
-
-   <div class="box-body" id="piechart" style="width: 900px; height: 500px;">
-   </div>
-
-     <div class="box-footer">
-   </div>
- </div>
 </div>
 {{-- -------------------------------------------------------------------------------------- --}}
-<div  id="rend" style="Display:none;">
-<br/>
- <div class="box box-primary">
-   <div class="box-header">
-   </div>
+<div  id="rend" class="col-md-6" style="Display:none;">
 
-   <div class="box-body" id="piechart2" style="width: 900px; height: 500px;">
+   <div class="chart" id="piechart2" style="width: 900px; height: 500px;">
    </div>
-
-     <div class="box-footer">
-   </div>
- </div>
 </div>
 @endsection
 @section('script')
@@ -157,15 +140,16 @@
 
 
   <script type="text/javascript">
+  $(window).resize(function(){
+	  	drawChart();
+	  	drawC();
+	});
     cargar_grafica_barras(<?= $anio; ?>,<?= intval($mes); ?>);
     cargar_grafica(<?= $anio; ?>,<?= intval($mes); ?>);
 
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
-    $(window).on("throttledresize", function (event) {
-        drawChart();
-        drawC();
-    });
+
 function drawChart() {
          var data = google.visualization.arrayToDataTable([
            ['Solicitudes Cerradas', 'mes'],
@@ -174,7 +158,9 @@ function drawChart() {
              @endforeach
          ]);
          var options = {
-           title: 'Solicitudes Cerradas por Asesor en el Mes'
+           title: 'Solicitudes Cerradas por Asesor en el Mes',
+
+          is3D: true
 
          };
          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -190,7 +176,9 @@ function drawC() {
               @endforeach
               ]);
   var options = {
-        title: 'Rendimiento General en el Mes Actual'
+        title: 'Rendimiento General en el Mes Actual',
+
+        is3D: true
 
             };
       var chart = new google.visualization.PieChart(document.getElementById('piechart2'));

@@ -26,7 +26,7 @@ class Contactos extends Model
     }
 
     public function users(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('soweb\User');
     }
 
 

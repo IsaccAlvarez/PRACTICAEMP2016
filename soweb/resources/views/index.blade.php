@@ -1,12 +1,15 @@
 @extends('layouts.principal')
 
 @section('content')
-  @include('alerts.success')
-  @include('alerts.errors')
-  @include('alerts.request')
+
   <div class="container">
      <div class="row">
          <div class="col-md-4 col-md-offset-4">
+           <br>
+           <br>
+           @include('alerts.success')
+           @include('alerts.errors')
+           @include('alerts.request')
              <div class="login-panel panel panel-default">
                  <div class="panel-heading">
                    <div class="text-center">
@@ -37,4 +40,13 @@
          </div>
      </div>
  </div>
+
 @endsection
+
+  <script type="text/javascript">
+  window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+      });
+  }, 4000);
+  </script>

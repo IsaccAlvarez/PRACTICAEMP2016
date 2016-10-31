@@ -41,8 +41,11 @@ class ComentarioContactoController extends Controller
          $comentarios = ComentarioContacto::where('idContacto', $idContacto)
                                             ->orderby('created_at','DESC')
                                             ->paginate(3);
+          
+            return view('contacto/showContact')->with('contactos', $contactos)
+                                               ->with('comentarios', $comentarios);
 
-         return view('contacto/showContact', compact('contactos','comentarios'))->render();
+
      }
     /**
      * Show the form for creating a new resource.

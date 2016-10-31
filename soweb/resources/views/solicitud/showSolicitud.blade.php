@@ -83,7 +83,7 @@
         @section('modal')
          @include('solicitud.modalComentario')
         @endsection
-    @endforeach
+          @endforeach
       </div>
       <p class="text-center"><b>---------------------------------COMENTARIOS-----------------------------------</b></p>
       <div id="list-coment" class="">

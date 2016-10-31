@@ -12,6 +12,7 @@ use soweb\Models\Asesores\Asesores;
 use soweb\User;
 use Carbon\Carbon;
 use Mail;
+use Illuminate\Routing\Route;
 class ComentarioSolicitudController extends Controller
 {
     public function __construct()
@@ -19,6 +20,12 @@ class ComentarioSolicitudController extends Controller
       $this->middleware('auth');
       Carbon::setLocale('es');
     }
+    public function find(Route $route){
+       $this->comentarioSolicitud = ComentarioSolicitudes::find($route->getParameter('/comentarioDeSolicitud/{idSolicitud}/{page?}'));
+       if (!$this->comentarioSolicitud) {
+         abort(404);
+       }
+   }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +50,10 @@ class ComentarioSolicitudController extends Controller
                                             ->paginate(3);
 
 
-         return view('solicitud/showSolicitud', compact('solicitud','comentarios'));
+                 return view('solicitud/showSolicitud')->with('solicitud', $solicitud)
+                                                       ->with('comentarios', $comentarios);
+
+
     }
 
     /**

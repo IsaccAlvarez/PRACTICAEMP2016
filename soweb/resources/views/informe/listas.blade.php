@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title','Informes')
   {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!}
-  {!!Html::style('//cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css')!!}
   {!!Html::style('//cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css')!!}
 @section('content')
 
