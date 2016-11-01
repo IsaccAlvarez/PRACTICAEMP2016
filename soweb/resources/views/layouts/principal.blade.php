@@ -27,7 +27,9 @@
 
 
         <div class="footer">
-
+          <footer>
+            <p class="text-center">© <?php echo date('Y'); ?> SeeSoft-Costa Rica.</p>
+          </footer>
         </div>
 
 {!!Html::script('js/jquery.min.js')!!}

@@ -53,35 +53,31 @@ class InformeController extends Controller
       $contactos = Contactos::all()->count();
       $solicitud = Solicitudes::all()->count();
 
-      $tipoContact = DB::table('contactos')
-                         ->select('tipoContacto',DB::raw('count(*) as total'))
-                         ->groupBy('tipoContacto')
-                         ->get();
-      $pendienteC = DB::table('solicitudes as s')
-                        ->join('contactos as c','c.idContacto','=','s.idContacto')
-                        ->where('s.estado', 'nuevo')
-                        ->select('c.nombre as nameC', DB::raw('count(s.estado) as pen'))
-                        ->groupBy('c.nombre','s.estado')
-                        ->get();
-      $pendienteA = DB::table('solicitudes as s')
-                        ->join('asesores as a','a.idAsesor','=','s.idAsesor')
-                        ->where('s.estado', 'nuevo')
-                        ->select('a.nombre as nameA', DB::raw('count(s.estado) as pend'))
-                        ->groupBy('a.nombre','s.estado')
-                        ->get();
-      $cobradoA = DB::table('solicitudes as s')
-                      ->join('asesores as a','a.idAsesor','=','s.idAsesor')
-                      ->select('a.nombre as nameA', DB::raw('sum(s.precioCobrado) as TotalA'))
-                      ->groupBy('a.nombre')
-                      ->get();
-      $cobradoC = DB::table('solicitudes as s')
-                      ->join('contactos as c','c.idContacto','=','s.idContacto')
-                      ->select('c.nombre as nameC', DB::raw('sum(s.precioCobrado) as TotalC'))
-                      ->groupBy('c.nombre')
-                      ->get();
+
+      $tipoContact = Contactos::select('tipoContacto',DB::raw('count(*) as total'))
+                                ->groupBy('tipoContacto')
+                                ->get();
+      $pendienteC = Solicitudes::select('c.nombre as nameC', DB::raw('count(solicitudes.estado) as pen'))
+                                ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
+                                ->where('solicitudes.estado', 'nuevo')
+                                ->groupBy('c.nombre','solicitudes.estado')
+                                ->get();
+      $pendienteA = Solicitudes::select('a.nombre as nameA', DB::raw('count(solicitudes.estado) as pend'))
+                                ->join('asesores as a','a.idAsesor','=','solicitudes.idAsesor')
+                                ->where('solicitudes.estado', 'nuevo')
+                                ->groupBy('a.nombre','solicitudes.estado')
+                                ->get();
+      $cobradoA = Solicitudes::select('a.nombre as nameA', DB::raw('sum(solicitudes.precioCobrado) as TotalA'))
+                              ->join('asesores as a','a.idAsesor','=','solicitudes.idAsesor')
+                              ->groupBy('a.nombre')
+                              ->get();
+      $cobradoC = Solicitudes::select('c.nombre as nameC', DB::raw('sum(solicitudes.precioCobrado) as TotalC'))
+                              ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
+                              ->groupBy('c.nombre')
+                              ->get();
       $solucion = Solicitudes::select('*',DB::raw('DATEDIFF(fechaCerrado,created_at) as dias'))
                                ->where('estado', 'cerrada')
-                               ->where(DB::raw('month(fechaCerrado)'), '=',date('m'))
+                               ->where(DB::raw('year(fechaCerrado)'), '=',date('Y'))
                                ->groupBy('created_at')
                                ->get();
                       $fecha1=date("Y-m-d");

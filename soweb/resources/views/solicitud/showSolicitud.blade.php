@@ -72,11 +72,8 @@
 
 
           <div class="panel-body " style="position:static; color:rgb(91, 196, 96);">
-            <div class="col-md-4" style="font-size: 7pt; position: static">
-              <p class="text-left">Creado por: {{$solicitud->nameU}} </P>
-              <p class="text-left">Fecha de Creación: {{$solicitud->created_at->format('d/m/Y')}}</p>
-              <p class="text-left">Ultima Modificacion: {{$solicitud->updated_at->format('d/m/Y  h:i A')}}</p>
-              <p class="text-left">Modificado por: {{$solicitud->userUltimaModificacion}}</p>
+            <div class="col-md-8" style="font-size: 7pt; position: static">
+              <p class="text-left">Creado por: {{$solicitud->nameU}} | Fecha de Creación: {{$solicitud->created_at->format('d/m/Y')}} | Ultima Modificacion: {{$solicitud->updated_at->format('d/m/Y  h:i A')}} | Modificado por: {{$solicitud->userUltimaModificacion}} </P>
             </div>
           </div>
         </div>

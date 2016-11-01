@@ -24,11 +24,11 @@ class ContactoCreateRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'required',
-            'telefono'=>'required|min:8',
-            'email'=>'required|email',
+            'nombre'=>'required|unique:contactos',
+            'telefono'=>'required|min:1',
+            'email'=>'required',
             'direccion'=>'required',
-            'emailCobro'=>'email',
+            
         ];
     }
 }

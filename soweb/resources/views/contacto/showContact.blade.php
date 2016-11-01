@@ -57,11 +57,8 @@
            <p class="text-left"><b>Dirección:</b> {{$contactos->direccion}}</p>
          </div>
          <div class="panel-body " style="position:static; color:rgb(37, 91, 205);">
-           <div class="col-md-4" style="font-size: 7pt; position: static">
-             <p class="text-left">Creado por:</b>  {{$contactos->name}} </P>
-             <p class="text-left">Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}}</p>
-             <p class="text-left">Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y  h:i A')}}</p>
-             <p class="text-left">Modificado por: {{$contactos->userUltimaModificacion}}</p>
+           <div class="col-md-8" style="font-size: 7pt; position: static">
+             <p class="text-left">Creado por:</b>  {{$contactos->name}} | Fecha de Creación: {{$contactos->created_at->format('d/m/Y')}} | Ultima Modificacion: {{$contactos->updated_at->format('d/m/Y  h:i A')}} | Modificado por: {{$contactos->userUltimaModificacion}}</P>
            </div>
          </div>
       </div>

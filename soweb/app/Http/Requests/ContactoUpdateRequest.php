@@ -25,10 +25,10 @@ class ContactoUpdateRequest extends Request
     {
         return [
           'nombre'=>'required',
-          'telefono'=>'required|min:8',
-          'email'=>'required|email',
+          'telefono'=>'required|min:1',
+          'email'=>'required',
           'direccion'=>'required',
-          'emailCobro'=>'email',
+          
         ];
     }
 }

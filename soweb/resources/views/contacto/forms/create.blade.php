@@ -23,12 +23,12 @@
   </div>
   <div class="form-group">
     {!!Form::label('telefono','Teléfono')!!}
-    {!!Form::text('telefono',null,['class'=>'form-control','id'=>'telef', 'data-mask'=>'(999) 9999-9999','data-mask-selectonfocus'=>'true'])!!}
+    {!!Form::text('telefono',null,['class'=>'form-control','id'=>'telef'])!!}
 
   </div>
   <div class="form-group">
     {!!Form::label('email','Correo')!!}
-    {!!Form::email('email',null,['class'=>'form-control','id'=>'correo'])!!}
+    {!!Form::text('email',null,['class'=>'form-control','id'=>'correo'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('direccion','Dirección')!!}
@@ -36,11 +36,11 @@
   </div>
   <div class="form-group">
     {!!Form::label('telCobro','Teléfono Cobro')!!}
-    {!!Form::text('telCobro',null,['class'=>'form-control','id'=>'tCobro', 'data-mask'=>'(999) 9999-9999','data-mask-selectonfocus'=>'true'])!!}
+    {!!Form::text('telCobro',null,['class'=>'form-control','id'=>'tCobro'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('emailCobro','Correo Cobro')!!}
-    {!!Form::email('emailCobro',null,['class'=>'form-control','id'=>'eCobro'])!!}
+    {!!Form::text('emailCobro',null,['class'=>'form-control','id'=>'eCobro'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('personaCobra','Persona cobra')!!}

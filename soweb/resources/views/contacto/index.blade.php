@@ -40,6 +40,6 @@
 @section('script')
   {!!Html::script('//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')!!}
   {!!Html::script('//cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')!!}
-  {!!Html::script('js/jquery.mask.js')!!}
+  
 {!!Html::script('js/contacto.js')!!}
 @endsection

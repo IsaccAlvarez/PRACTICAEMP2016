@@ -27,7 +27,7 @@
   </div>
   <div class="form-group">
     {!!Form::label('email','Correo')!!}
-    {!!Form::email('email',null,['class'=>'form-control','id'=>'email'])!!}
+    {!!Form::text('email',null,['class'=>'form-control','id'=>'email'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('direccion','Dirección')!!}
@@ -39,7 +39,7 @@
   </div>
   <div class="form-group">
     {!!Form::label('emailCobro','Correo Cobro')!!}
-    {!!Form::email('emailCobro',null,['class'=>'form-control', 'id'=>'correoC'])!!}
+    {!!Form::text('emailCobro',null,['class'=>'form-control', 'id'=>'correoC'])!!}
   </div>
   <div class="form-group">
     {!!Form::label('personaCobra','Persona cobra')!!}
