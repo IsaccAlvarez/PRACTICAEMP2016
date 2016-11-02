@@ -142,6 +142,8 @@
                                                         <br>
                                                           {{$user->name}} Agrego un Nuevo
                                                            Comentario al Contacto {{$datos->nombre}}.
+                                                           <br>
+                                                           <strong>Comentario:</strong> {{$coment['comentario']}}.
                                                          <br>
                                                          <br>
                                                          <br>

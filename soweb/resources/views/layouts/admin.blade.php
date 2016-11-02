@@ -42,8 +42,6 @@
                     {!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <i class="glyphicon glyphicon-chevron-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Ajustes</a>
-                    </li>
                     <li><a href="{!!URL::to('/cambiarClave')!!}"><i class="fa fa-key"></i> Cambiar Clave</a>
                     </li>
                     <li class="divider"></li>

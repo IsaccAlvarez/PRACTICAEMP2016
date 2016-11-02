@@ -132,6 +132,8 @@
                                                         <br>
                                                         {{$user->name}} Agrego Un Nuevo Comentario a la Solicitud # {{$datos['idSolicitud']}}.
                                                         <br>
+                                                        <strong>Comentario:</strong> {{$comenta['comentario']}}.
+                                                        <br>
                                                         <br>
                                                         <br>
                                                         <br>

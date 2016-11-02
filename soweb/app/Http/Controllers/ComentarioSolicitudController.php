@@ -78,12 +78,13 @@ class ComentarioSolicitudController extends Controller
       if ($request->ajax()) {
 
         $datos['idSolicitud'] = $idSolicitud = $request->idSolicitud;
+        $comenta['comentario'] = $comentario = $request->comentario;
         $user = User::find($request->idUser);
          $result = ComentarioSolicitudes::create($request->all());
          if ($result) {
 
            foreach ($asesores as $asesor) {
-             Mail::send('solicitud.notificacionEmail',['datos'=> $datos,'user'=>$user],function($msj) use ($asesor) {
+             Mail::send('solicitud.notificacionEmail',['datos'=> $datos,'user'=>$user,'comenta'=>$comenta],function($msj) use ($asesor) {
              $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
              $msj->to($asesor->emailEmpresa, $asesor->nombre)->subject('Notificación SoWeb!');
             });

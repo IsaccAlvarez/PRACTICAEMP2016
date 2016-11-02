@@ -41,7 +41,7 @@ class ComentarioContactoController extends Controller
          $comentarios = ComentarioContacto::where('idContacto', $idContacto)
                                             ->orderby('created_at','DESC')
                                             ->paginate(3);
-          
+
             return view('contacto/showContact')->with('contactos', $contactos)
                                                ->with('comentarios', $comentarios);
 
@@ -72,11 +72,11 @@ class ComentarioContactoController extends Controller
               $datos =Contactos::find($request->idContacto);
               $user = User::find($request->idUser);
 
-
+              $coment['comentario'] = $comentario =$request->comentario;
            $result = ComentarioContacto::create($request->all());
            if ($result) {
              foreach ($asesores as $asesor) {
-               Mail::send('contacto.notificacionEmail',['datos'=> $datos, 'user'=>$user],function($msj) use ($asesor) {
+               Mail::send('contacto.notificacionEmail',['datos'=> $datos, 'user'=>$user, 'coment'=>$coment],function($msj) use ($asesor) {
                $msj->from('notreply@seesoft-cr.com', 'SeeSoft-CR');
                $msj->to($asesor->emailEmpresa, $asesor->nombre)->subject('Notificación SoWeb!');
               });
