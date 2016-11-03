@@ -22,12 +22,12 @@
           <div class="col-md-3">
             <div class="panel panel-green">
               <div class="panel-heading">
-                <i class="fa fa-users fa-5x"></i>
+                <i class="fa fa-user fa-5x"></i>
                 <p class="text-right">
 
                     <b class="huge">{{$asesores}}</b> <br>
 
-                  <i>Asesores</i>
+                  <i>Asesores con Pendientes</i>
                 </p>
 
               </div>
@@ -41,7 +41,7 @@
 
                     <b class="huge">{{$contactos}}</b> <br>
 
-                  <i>Contactos</i>
+                  <i>Contactos con Pendientes</i>
                 </p>
 
               </div>
@@ -55,7 +55,21 @@
 
                     <b class="huge">{{$solicitud}}</b> <br>
 
-                  <i>Solicitudes</i>
+                  <i>Solicitudes Pendientes</i>
+                </p>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-yellow">
+              <div class="panel-heading">
+                <i class="fa fa-list-alt fa-5x"></i>
+                <p class="text-right">
+
+                    <b class="huge">{{$solicitudAct}}</b> <br>
+
+                  <i>Solicitudes Activas</i>
                 </p>
 
               </div>
@@ -74,15 +88,27 @@
             <table id="Tables1" class="table table-responsive table-hover" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th class="text-center">Tipo</th>
-                  <th class="text-center">Cantidad</th>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Tipo de Contacto</th>
                 </tr>
               </thead>
+              <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Tipo de Contacto</th>
+                </tr>
+              </tfoot>
               <tbody>
                   @foreach ($tipoContact as $contact)
                 <tr>
-                    <td class="text-center">{{$contact->tipoContacto}}</td>
-                    <td class="text-center">{{$contact->total}}</td>
+                  <td>{{$contact->nombre}}</td>
+                  <td>{{$contact->telefono}}</td>
+                  <td>{{$contact->email}}</td>
+                  <td>{{$contact->tipoContacto}}</td>
                 </tr>
                   @endforeach
               </tbody>
@@ -232,21 +258,25 @@
         <table id="Tables7" class="table table-responsive table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th class="text-center">Asesor</th>
-              <th class="text-center">Tipo de Solicitud</th>
-              <th class="text-center">Fecha de Creación</th>
-              <th class="text-center">Fecha de Cierre</th>
-              <th class="text-center">Total de Días</th>
+              <th>Titulo</th>
+              <th>Contacto</th>
+              <th>Asesor</th>
+              <th>Tipo</th>
+              <th>Creación</th>
+              <th>Cierre</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($solucion as $s)
               <tr>
-                <td class="text-center">{{$s->asesores->nombre}}</td>
-                <td class="text-center">{{$s->tipoSolicitud}}</td>
-                <td class="text-center">{{$s->created_at->format('d-m-Y h:m:s')}}</td>
-                <td class="text-center"><?php echo date("d-m-Y h:m:s", strtotime($s->fechaCerrado));?></td>
-                <td class="text-center">{{$s->dias}}</td>
+                <td>{{$s->tituloSolicitud}}</td>
+                <td>{{$s->contactos->nombre}}</td>
+                <td>{{$s->asesores->nombre}}</td>
+                <td>{{$s->tipoSolicitud}}</td>
+                <td>{{$s->created_at}}</td>
+                <td>{{$s->fechaCerrado}}</td>
+                <td>{{$s->dias}}</td>
               </tr>
             @endforeach
           </tbody>

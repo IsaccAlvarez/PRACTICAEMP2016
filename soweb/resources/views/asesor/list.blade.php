@@ -7,7 +7,7 @@
       <th>Estado</th>
       <th>Telefono</th>
       <th>Correo</th>
-      <th>Operaciones</th>
+      <th></th>
     </tr>
   </thead>
     <tbody id="datos" class="buscar">

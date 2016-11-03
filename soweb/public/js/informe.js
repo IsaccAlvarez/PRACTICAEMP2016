@@ -49,6 +49,32 @@ $(document).ready(function() {
 
 $("#Tables1").DataTable({
  responsive: true,
+ initComplete: function () {
+        var r = $('#Tables1 tfoot tr');
+        r.find('th').each(function(){
+            $(this).css('padding', 8);
+           });
+          $('#Tables1 thead').append(r);
+            $('#search_0').css('text-align', 'center');
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        },
  language: {
         processing:     "Procesando...",
         search:         "Buscar",

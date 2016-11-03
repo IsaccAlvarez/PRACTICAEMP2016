@@ -49,14 +49,22 @@ class InformeController extends Controller
     }
     public function listaTabla()
     {
-      $asesores = Asesores::all()->count();
-      $contactos = Contactos::all()->count();
-      $solicitud = Solicitudes::all()->count();
+      $asesores = Asesores::whereIn('idAsesor', function($query){
+                            $query->select('idAsesor')
+                            ->from(with(new Solicitudes)->getTable())
+                            ->where('estado', 'nuevo');
+                          })->count();
+
+      $contactos = Contactos::whereIn('idContacto', function($query){
+                                 $query->select('idContacto')
+                                 ->from(with(new Solicitudes)->getTable())
+                                 ->where('estado', 'nuevo');
+                                })->count();
+      $solicitud = Solicitudes::where('estado', 'nuevo')->count();
+      $solicitudAct = Solicitudes::where('estado', 'activa')->count();
 
 
-      $tipoContact = Contactos::select('tipoContacto',DB::raw('count(*) as total'))
-                                ->groupBy('tipoContacto')
-                                ->get();
+      $tipoContact = Contactos::all();
       $pendienteC = Solicitudes::select('c.nombre as nameC', DB::raw('count(solicitudes.estado) as pen'))
                                 ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
                                 ->where('solicitudes.estado', 'nuevo')
@@ -83,7 +91,7 @@ class InformeController extends Controller
                       $fecha1=date("Y-m-d");
                       $fecha2=date("Y-m-d");
 
-      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC','fecha1','fecha2','solucion'));
+      return view('informe.listas', compact('asesores','contactos','solicitud','tipoContact','pendienteC','pendienteA','cobradoA','cobradoC','fecha1','fecha2','solucion','solicitudAct'));
     }
     public function pendientesEntreFecha($anio,$mes)
     {

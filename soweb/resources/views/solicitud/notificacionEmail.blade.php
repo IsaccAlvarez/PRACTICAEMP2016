@@ -134,6 +134,8 @@
                                                         <br>
                                                         <strong>Comentario:</strong> {{$comenta['comentario']}}.
                                                         <br>
+                                                        <strong>{{Url('comentarioDeSolicitud/'.$datos['idSolicitud'])}}</strong>
+                                                        <br>
                                                         <br>
                                                         <br>
                                                         <br>

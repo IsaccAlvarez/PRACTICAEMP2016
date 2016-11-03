@@ -19,6 +19,7 @@
     </div>
      </div>
   </div>
+  
   <div id="listSoli"  class="table-responsive">
 
   </div>

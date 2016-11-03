@@ -144,6 +144,8 @@
                                                            Comentario al Contacto {{$datos->nombre}}.
                                                            <br>
                                                            <strong>Comentario:</strong> {{$coment['comentario']}}.
+                                                           <br>
+                                                          <strong>{{Url('comentarioDeContacto/'.$datos->idContacto)}}</strong>
                                                          <br>
                                                          <br>
                                                          <br>
