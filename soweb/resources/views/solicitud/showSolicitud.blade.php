@@ -48,10 +48,10 @@
 
 
            <div class="col-md-5">
-             <p class="text-left"><b>Precio de Cotización:</b> ₡{{$solicitud->precioCotizacion}}</p>
+             <p class="text-left"><b>Precio de Cotización:</b> ${{$solicitud->precioCotizacion}}</p>
            </div>
            <div class="col-md-5">
-             <p class="text-left"><b>Precio Cobrado:</b> ₡{{$solicitud->precioCobrado}}</p>
+             <p class="text-left"><b>Precio Cobrado:</b> ${{$solicitud->precioCobrado}}</p>
            </div>
 
 

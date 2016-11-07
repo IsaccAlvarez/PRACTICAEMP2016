@@ -29,7 +29,7 @@ class FrontController extends Controller
                     ->join('users','users.id','=','solicitudes.idUser')
                     ->join('contactos','contactos.idContacto','=','solicitudes.idContacto')
                     ->join('asesores','asesores.idAsesor','=','solicitudes.idAsesor')
-                    ->where('solicitudes.estado', 'nuevo')
+                    ->where('solicitudes.estado','!=', 'cerrada')
                     ->where('asesores.emailEmpresa', Auth::user()->email)
                     ->get();
         return view('admin/list')->with('solicitud', $solicitud);

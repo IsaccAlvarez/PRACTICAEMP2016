@@ -2,6 +2,7 @@
 @section('title','Informes')
   {!!Html::style('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')!!}
   {!!Html::style('//cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css')!!}
+  {!!Html::style('css/informe.css')!!}
 @section('content')
 
       <div class="panel panel-primary">
@@ -128,15 +129,17 @@
         <table id="Tables2" class="table table-responsive table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th class="text-center">Contacto</th>
-              <th class="text-center">Pendientes</th>
+              <th class="text-left">Contacto</th>
+              <th class="text-left">Asesor</th>
+              <th class="text-left">Titulo</th>
             </tr>
           </thead>
           <tbody>
               @foreach ($pendienteC as $pendienteC)
             <tr>
-              <td class="text-center">{{$pendienteC->nameC}}</td>
-              <td class="text-center">{{$pendienteC->pen}}</td>
+              <td class="text-left">{{$pendienteC->contactos->nombre}}</td>
+              <td class="text-left">{{$pendienteC->asesores->nombre}}</td>
+              <td class="text-left">{{$pendienteC->tituloSolicitud}}</td>
             </tr>
               @endforeach
           </tbody>
@@ -153,15 +156,17 @@
         <table  id="Tables3" class="table table-responsive table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th class="text-center">Asesor</th>
-              <th class="text-center">Pendientes</th>
+              <th class="text-left">Asesor</th>
+              <th class="text-left">Contacto</th>
+              <th class="text-left">Titulo</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($pendienteA as $pendienteA)
               <tr>
-                <td class="text-center">{{$pendienteA->nameA}}</td>
-                <td class="text-center">{{$pendienteA->pend}}</td>
+                <td class="text-left">{{$pendienteA->asesores->nombre}}</td>
+                <td class="text-left">{{$pendienteA->contactos->nombre}}</td>
+                <td class="text-left">{{$pendienteA->tituloSolicitud}}</td>
               </tr>
             @endforeach
           </tbody>
@@ -178,15 +183,25 @@
         <table  id="Tables4" class="table table-responsive table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th class="text-center">Contacto</th>
-              <th class="text-center">Total</th>
+              <th class="text-left">Contacto</th>
+              <th class="text-left">Cantidad</th>
+              <th class="text-left">Tipo de Solicitud</th>
+              <th class="text-left">Total</th>
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              <th colspan="3" style="text-align:right">Total:</th>
+              <th></th>
+            </tr>
+          </tfoot>
           <tbody>
             @foreach ($cobradoC as $cobradoC)
               <tr>
-                <td class="text-center">{{$cobradoC->nameC}}</td>
-                <td class="text-center">{{$cobradoC->TotalC}}</td>
+                <td class="text-left">{{$cobradoC->nameC}}</td>
+                <td class="text-left">{{$cobradoC->tiposC}}</td>
+                <td class="text-left">{{$cobradoC->tipoSolicitud}}</td>
+                <td class="text-left">${{$cobradoC->TotalC}}</td>
               </tr>
             @endforeach
           </tbody>
@@ -203,15 +218,25 @@
         <table id="Tables5" class="table table-responsive table-hover" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th class="text-center">Asesor</th>
-              <th class="text-center">Total</th>
+              <th class="text-left">Asesor</th>
+              <th class="text-left">Cantidad</th>
+              <th class="text-left">Tipo de Solicitud</th>
+              <th class="text-left">Total</th>
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              <th colspan="3" style="text-align:right">Total:</th>
+              <th></th>
+            </tr>
+          </tfoot>
           <tbody>
             @foreach ($cobradoA as $cobradoA)
               <tr>
-                <td class="text-center">{{$cobradoA->nameA}}</td>
-                <td class="text-center">{{$cobradoA->TotalA}}</td>
+                <td class="text-left">{{$cobradoA->nameA}}</td>
+                <td class="text-left">{{$cobradoA->tiposA}}</td>
+                <td class="text-left">{{$cobradoA->tipoSolicitud}}</td>
+                <td class="text-left">${{$cobradoA->TotalA}}</td>
               </tr>
             @endforeach
           </tbody>
@@ -291,10 +316,7 @@
   {!!Html::script('js/datepiker/js/bootstrap-datepicker.min.js')!!}
   {!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
 
+
  {!!Html::script('js/informe.js')!!}
-  <script type="text/javascript">
 
-
-
-  </script>
 @endsection

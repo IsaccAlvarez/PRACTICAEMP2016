@@ -2,7 +2,7 @@
   <table id="myTable" class="table table-striped table-responsive" >
     <thead>
       <tr>
-        <th>Id</th>
+        <th>#</th>
         <th>Contacto</th>
         <th>Titulo</th>
         <th>Estado</th>
@@ -18,7 +18,7 @@
          <td>{{$solicitud->tituloSolicitud}}</td>
          <td>{{$solicitud->estado}}</td>
          <td>{{$solicitud->nameA}}</td>
-         <td><?php echo date("d-m-Y", strtotime($solicitud->fecha));?></td>
+         <td>{{$solicitud->fecha}}</td>
        </tr>
      @endforeach
       </tbody>

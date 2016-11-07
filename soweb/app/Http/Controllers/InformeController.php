@@ -65,24 +65,32 @@ class InformeController extends Controller
 
 
       $tipoContact = Contactos::all();
-      $pendienteC = Solicitudes::select('c.nombre as nameC', DB::raw('count(solicitudes.estado) as pen'))
-                                ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
-                                ->where('solicitudes.estado', 'nuevo')
-                                ->groupBy('c.nombre','solicitudes.estado')
-                                ->get();
-      $pendienteA = Solicitudes::select('a.nombre as nameA', DB::raw('count(solicitudes.estado) as pend'))
-                                ->join('asesores as a','a.idAsesor','=','solicitudes.idAsesor')
-                                ->where('solicitudes.estado', 'nuevo')
-                                ->groupBy('a.nombre','solicitudes.estado')
-                                ->get();
-      $cobradoA = Solicitudes::select('a.nombre as nameA', DB::raw('sum(solicitudes.precioCobrado) as TotalA'))
+      // $pendienteC = Solicitudes::select('c.nombre as nameC', DB::raw('count(solicitudes.estado) as pen'))
+      //                           ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
+      //                           ->where('solicitudes.estado', 'nuevo')
+      //                           ->groupBy('c.nombre','solicitudes.estado')
+      //                           ->get();
+      $pendienteC = Solicitudes::all()->where('estado','nuevo');
+      // $pendienteA = Solicitudes::select('a.nombre as nameA', DB::raw('count(solicitudes.estado) as pend'))
+      //                           ->join('asesores as a','a.idAsesor','=','solicitudes.idAsesor')
+      //                           ->where('solicitudes.estado', 'nuevo')
+      //                           ->groupBy('a.nombre','solicitudes.estado')
+      //                           ->get();
+      $pendienteA = Solicitudes::all()->where('estado', 'nuevo');
+      $cobradoA = Solicitudes::select('a.nombre as nameA','solicitudes.tipoSolicitud', DB::raw('sum(solicitudes.precioCobrado) as TotalA'),
+                                    DB::raw('count(solicitudes.tipoSolicitud) as tiposA'))
                               ->join('asesores as a','a.idAsesor','=','solicitudes.idAsesor')
-                              ->groupBy('a.nombre')
+                              ->where('solicitudes.precioCobrado','>', 0)
+                              ->groupBy('solicitudes.idAsesor','solicitudes.tipoSolicitud')
                               ->get();
-      $cobradoC = Solicitudes::select('c.nombre as nameC', DB::raw('sum(solicitudes.precioCobrado) as TotalC'))
+
+      $cobradoC = Solicitudes::select('c.nombre as nameC','solicitudes.tipoSolicitud', DB::raw('sum(solicitudes.precioCobrado) as TotalC'),
+                                      DB::raw('count(solicitudes.tipoSolicitud) as tiposC'))
                               ->join('contactos as c','c.idContacto','=','solicitudes.idContacto')
-                              ->groupBy('c.nombre')
+                              ->where('solicitudes.precioCobrado','>', 0)
+                              ->groupBy('solicitudes.idContacto','solicitudes.tipoSolicitud')
                               ->get();
+
       $solucion = Solicitudes::select('*',DB::raw('DATEDIFF(fechaCerrado,created_at) as dias'))
                                ->where('estado', 'cerrada')
                                ->where(DB::raw('year(fechaCerrado)'), '=',date('Y'))
@@ -121,6 +129,7 @@ class InformeController extends Controller
     {
           $solicitudes = Solicitudes::select('fecha',DB::raw('sum(precioCobrado) as total'))
                                       ->whereBetween('fecha',[$request->desde,$request->hasta])
+                                      // ->where('precioCobrado','>', 0)
                                       ->groupBy('fecha')
                                       ->get();
          return response()->json($solicitudes);

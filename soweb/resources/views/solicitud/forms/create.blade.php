@@ -40,11 +40,11 @@
 </div>
 <div class="form-group">
   {!!Form::label('precioCotizacion', 'Precio de Cotización')!!}
-  {!!Form::text('precioCotizacion',null,['class'=>'form-control', 'id'=>'prCoti','placeholder'=>'₡ 0,00'])!!}
+  {!!Form::text('precioCotizacion',null,['class'=>'form-control', 'id'=>'prCoti','placeholder'=>'$ 0,00'])!!}
 </div>
 <div class="form-group">
   {!!Form::label('precioCobrado', 'Precio Cobrado')!!}
-  {!!Form::text('precioCobrado',null,['class'=>'form-control', 'id'=>'pCobr','placeholder'=>'₡ 0,00'])!!}
+  {!!Form::text('precioCobrado',null,['class'=>'form-control', 'id'=>'pCobr','placeholder'=>'$ 0,00'])!!}
 </div>
 <input type="hidden" name="idUser" id="iac" value="{!!Auth::user()->id!!}">
 <input type="hidden" name="userUltimaModificacion" id="iaumd" value="{!!Auth::user()->name!!}">

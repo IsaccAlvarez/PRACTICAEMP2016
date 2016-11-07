@@ -9,6 +9,17 @@ $(document).ready(function() {
     language: "es",
     autoclose: true
   });
+  $(".date").datepicker({
+    format: 'yyyy/m/d',
+    language: "es",
+    autoclose: true
+  });
+  $(".date2").datepicker({
+    format: 'yyyy/m/d',
+    language: "es",
+    autoclose: true
+  });
+
    $("#mostrarLista").change(function() {
         if ($(this).val() == 'tipoContacto') {
           $("#tipoC").show();
@@ -76,177 +87,214 @@ $("#Tables1").DataTable({
             } );
         },
  language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
-        },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
-    }
+        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
+      }
 });
 $("#Tables2").DataTable({
  responsive: true,
+ "columnDefs": [
+           { "visible": false, "targets": 0 }
+       ],
+       "order": [[ 0, 'asc' ]],
+       "displayLength": 10,
+       "drawCallback": function ( settings ) {
+           var api = this.api();
+           var rows = api.rows( {page:'current'} ).nodes();
+           var last=null;
+
+           api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+               if ( last !== group ) {
+                   $(rows).eq( i ).before(
+                       '<tr class="group"><td colspan="5" class="text-left">'+group+'</td></tr>'
+                   );
+
+                   last = group;
+               }
+           } );
+       },
  language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
-        },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
+$('#Tables2 tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    });
+//---
 $("#Tables3").DataTable({
  responsive: true,
+ "columnDefs": [
+           { "visible": false, "targets": 0 }
+       ],
+       "order": [[ 0, 'asc' ]],
+       "displayLength": 10,
+       "drawCallback": function ( settings ) {
+           var api = this.api();
+           var rows = api.rows( {page:'current'} ).nodes();
+           var last=null;
+
+           api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+               if ( last !== group ) {
+                   $(rows).eq( i ).before(
+                       '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                   );
+
+                   last = group;
+               }
+           } );
+       },
  language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
-        },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+      "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
+
+$('#Tables3 tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    });
+//------------
 $("#Tables4").DataTable({
  responsive: true,
- language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
+ "columnDefs": [
+           { "visible": false, "targets": 0 }
+       ],
+       "order": [[ 0, 'asc' ]],
+       "displayLength": 10,
+       "drawCallback": function ( settings ) {
+           var api = this.api();
+           var rows = api.rows( {page:'current'} ).nodes();
+           var last=null;
+
+           api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+               if ( last !== group ) {
+                   $(rows).eq( i ).before(
+                       '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                   );
+
+                   last = group;
+               }
+           } );
+       },
+ "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+            var intVal = function ( e ) {
+                return typeof e === 'string' ?
+                    e.replace(/[\$,]/g, '')*1 :
+                    typeof e === 'number' ?
+                        e : 0;
+            };
+    tota = api
+    .column( 3 )
+    .data()
+    .reduce( function (c, d) {
+                    return intVal(c) + intVal(d);
+                }, 0 );
+      pageTota = api
+      .column( 3, { page: 'current'} )
+      .data()
+      .reduce( function (c, d) {
+                    return intVal(c) + intVal(d);
+                }, 0 );
+
+
+            $( api.column( 3 ).footer() ).html('$'+pageTota +' ( $'+ tota +' total)');
         },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+ language: {
+        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
-$("#Tables5").DataTable({
+$('#Tables4 tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    });
+//-------
+var tables = $("#Tables5").DataTable({
  responsive: true,
- language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
+ "columnDefs": [
+           { "visible": false, "targets": 0 }
+       ],
+       "order": [[ 0, 'asc' ]],
+       "displayLength": 10,
+       "drawCallback": function ( settings ) {
+           var api = this.api();
+           var rows = api.rows( {page:'current'} ).nodes();
+           var last=null;
+
+           api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+               if ( last !== group ) {
+                   $(rows).eq( i ).before(
+                       '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                   );
+
+                   last = group;
+               }
+           } );
+       },
+ "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+    total = api
+    .column( 3 )
+    .data()
+    .reduce(function(a, b){
+                    return intVal(a) + intVal(b);
+                },0);
+      pageTotal = api
+      .column( 3, { page: 'current'} )
+      .data()
+      .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                },0 );
+
+
+            $( api.column( 3 ).footer() ).html('$'+pageTotal +' ( $'+ total +' total)');
         },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+ language: {
+        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
+
+$('#Tables5 tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    });
+//------------
 $("#Tables6").DataTable({
  responsive: true,
   "bFilter": false,
  language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
-        },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
 $("#Tables7").DataTable({
  responsive: true,
  language: {
-        processing:     "Procesando...",
-        search:         "Buscar",
-        lengthMenu:     "Mostrar _MENU_ registros",
-        info:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        infoEmpty:      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered:   "(filtrado de un total de _MAX_ registros)",
-        infoPostFix:    "",
-        loadingRecords: "Cargando...",
-        zeroRecords:    "No se encontraron resultados",
-        emptyTable:     "Ningún dato disponible en esta tabla",
-        paginate: {
-            first:      "Primero",
-            previous:   "Anterior",
-            next:       "Siguiente",
-            last:       "Ultimo"
-        },
-        aria: {
-            sortAscending:  ": Activar para ordenar la columna de manera ascendente",
-            sortDescending: ": Activar para ordenar la columna de manera descendente"
-        }
+      "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
 
@@ -266,7 +314,7 @@ $('#fecha1').on('change', function(){
 		data:'desde='+desde+'&hasta='+hasta,
 		success: function(datos){
           $(datos).each(function(key,value){
-            tablaDatos.append("<tr><td class='text-center'>"+value.fecha+"</td><td class='text-center'>"+value.total+"</td></tr>");
+            tablaDatos.append("<tr><td class='text-center'>"+value.fecha+"</td><td class='text-center'>$"+value.total+"</td></tr>");
           });
 		}
   });
@@ -286,7 +334,7 @@ $('#fecha2').on('change', function(){
   		data:'desde='+desde+'&hasta='+hasta,
   		success: function(datos){
             $(datos).each(function(key,value){
-              tablaDatos.append("<tr><td class='text-center'>"+value.fecha+"</td><td class='text-center'>"+value.total+"</td></tr>");
+              tablaDatos.append("<tr><td class='text-center'>"+value.fecha+"</td><td class='text-center'>$"+value.total+"</td></tr>");
             });
   		}
     });
