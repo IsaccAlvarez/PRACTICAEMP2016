@@ -8,6 +8,7 @@
         <th>Estado</th>
         <th>Asignado a</th>
         <th>Fecha</th>
+        <th></th>
       </tr>
     </thead>
       <tbody id="datos">
@@ -19,6 +20,9 @@
          <td>{{$solicitud->estado}}</td>
          <td>{{$solicitud->nameA}}</td>
          <td>{{$solicitud->fecha}}</td>
+         <td>
+           <button id="edit"  class='btn btn-primary btn-circle fa fa-pencil-square-o' onClick="mostrarS({{$solicitud->idSolicitud}});" data-toggle='modal' data-target='#myModalEdit'></button>
+         </td>
        </tr>
      @endforeach
       </tbody>

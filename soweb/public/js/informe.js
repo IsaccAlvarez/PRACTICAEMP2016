@@ -9,16 +9,7 @@ $(document).ready(function() {
     language: "es",
     autoclose: true
   });
-  $(".date").datepicker({
-    format: 'yyyy/m/d',
-    language: "es",
-    autoclose: true
-  });
-  $(".date2").datepicker({
-    format: 'yyyy/m/d',
-    language: "es",
-    autoclose: true
-  });
+
 
    $("#mostrarLista").change(function() {
         if ($(this).val() == 'tipoContacto') {

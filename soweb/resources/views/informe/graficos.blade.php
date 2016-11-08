@@ -170,13 +170,13 @@ function drawChart() {
 google.charts.setOnLoadCallback(drawC);
 function drawC() {
   var data = google.visualization.arrayToDataTable([
-        ['Estado', 'Total'],
+        ['Tipo  Solicitud', 'Total'],
           @foreach ($rendimiento as $r)
-            ['{{ $r->estado}}', {{ $r->totals}}],
+            ['{{ $r->tipoSolicitud}}', {{ $r->totals}}],
               @endforeach
               ]);
   var options = {
-        title: 'Rendimiento General en el Mes Actual',
+        title: 'Rendimiento General por Tipo de Solicitud',
 
         is3D: true
 

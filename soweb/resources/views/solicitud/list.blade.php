@@ -1,5 +1,5 @@
 
- <div class="center">
+ <div class="">
    <select name="choice" id="choice">
      <option value='1'>Mostrar Todo</option>
       <option value='2'>No Ver Cerradas</option>
