@@ -17,6 +17,7 @@
     {!!Html::style('css/font-awesome.min.css')!!}
     {!!Html::style('js/jquery-alertable-master/jquery.alertable.css')!!}
     {!!Html::style('css/datepiker/css/bootstrap-datepicker3.min.css')!!}
+    {!!Html::style('css/parsley.css')!!}
 
 
 
@@ -105,6 +106,7 @@
 {!!Html::script('js/jquery-alertable-master/jquery.alertable.js')!!}
 {!!Html::script('js/datepiker/js/bootstrap-datepicker.min.js')!!}
 {!!Html::script('js/datepiker/locales/bootstrap-datepicker.es.min.js')!!}
+{!!Html::script('js/parsley.min.js')!!}
 
 @section('script')
 

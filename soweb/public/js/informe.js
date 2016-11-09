@@ -51,6 +51,10 @@ $(document).ready(function() {
 
 $("#Tables1").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  initComplete: function () {
         var r = $('#Tables1 tfoot tr');
         r.find('th').each(function(){
@@ -83,6 +87,10 @@ $("#Tables1").DataTable({
 });
 $("#Tables2").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  "columnDefs": [
            { "visible": false, "targets": 0 }
        ],
@@ -119,6 +127,10 @@ $('#Tables2 tbody').on( 'click', 'tr.group', function () {
 //---
 $("#Tables3").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  "columnDefs": [
            { "visible": false, "targets": 0 }
        ],
@@ -156,6 +168,10 @@ $('#Tables3 tbody').on( 'click', 'tr.group', function () {
 //------------
 $("#Tables4").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  "columnDefs": [
            { "visible": false, "targets": 0 }
        ],
@@ -216,6 +232,10 @@ $('#Tables4 tbody').on( 'click', 'tr.group', function () {
 //-------
 var tables = $("#Tables5").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  "columnDefs": [
            { "visible": false, "targets": 0 }
        ],
@@ -278,12 +298,20 @@ $('#Tables5 tbody').on( 'click', 'tr.group', function () {
 $("#Tables6").DataTable({
  responsive: true,
   "bFilter": false,
+  dom: 'Bfrtip',
+         buttons: [
+             'copy', 'csv', 'excel', 'pdf', 'print'
+         ],
  language: {
         "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }
 });
 $("#Tables7").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  language: {
       "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
     }

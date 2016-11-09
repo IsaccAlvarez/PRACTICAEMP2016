@@ -17,13 +17,7 @@ Route::get('listaPendientes','FrontController@listP');
 
 Route::resource('usuario','UsuarioController');
 Route::resource('listUser','UsuarioController@listUser');
-//email
-Route::post('enviarLista', 'MailController@store');
-Route::resource('mail','MailController');
-Route::get('/autocomplete', array('as'=>'autocomplete', 'uses'=>'MailController@autocomplete'));
-Route::get('index', 'MailController@index');
-Route::resource('enviarContacto', 'MailController@create');
-Route::resource('enviarSolicitud', 'MailController@solicitud');
+
 //asesores
 Route::resource('asesor','AsesorController');
 Route::get('listall','AsesorController@listall');

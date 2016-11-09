@@ -32,6 +32,10 @@
 <script type="text/javascript">
 $("#mytable").DataTable({
  responsive: true,
+ dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
  language: {
         processing:     "Procesando...",
         search:         "Buscar",
