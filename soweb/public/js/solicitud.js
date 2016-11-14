@@ -79,6 +79,8 @@ var path = "/autocompleteC";
         updater: function(item) {
               $("#idContct").val(item.idContacto);
               $("#pCont").val(item.nombreRepresentante);
+              document.getElementById('tel').innerText= item.telefono;
+              document.getElementById('ema').innerText = item.email;
               return item;
           }
       });
@@ -109,6 +111,8 @@ var path = "/autocompleteC";
         updater: function(item) {
               $("#idContac").val(item.idContacto);
               $("#perCont").val(item.nombreRepresentante);
+              document.getElementById('t').innerText= item.telefono;
+              document.getElementById('e').innerText = item.email;
               return item;
           }
       });
@@ -144,6 +148,8 @@ var mostrarS = function(idSolicitud) {
 
      $("#idSolicitud").val(data.idSolicitud);
      $("#search").val(data.contactos.nombre)
+     document.getElementById('t').innerText= data.contactos.telefono;
+     document.getElementById('e').innerText = data.contactos.email;
      $("#idContac").val(data.idContacto);
      $("#titSoli").val(data.tituloSolicitud);
      $("#aseso").val(data.asesores.nombre);
@@ -217,6 +223,8 @@ $("#myModalEdit").on("shown.bs.modal",function() {
 $("#myModalCreateSolicitud").on("hidden.bs.modal", function () {
     $("#message-errorCreate").fadeOut()
     $(this).find('form')[0].reset();
+    document.getElementById('tel').innerText= 'Telefono';
+    document.getElementById('ema').innerText = 'Correo';
  		$("label.error").remove();
 });
 $("#myModalEdit").on("hidden.bs.modal", function () {
