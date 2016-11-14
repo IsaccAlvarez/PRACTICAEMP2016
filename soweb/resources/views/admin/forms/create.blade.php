@@ -3,6 +3,8 @@
   {!!Form::label('searchNombre', 'Contacto')!!}
   {!!Form::text('searchNombre',null,['class'=>'typeahead form-control', 'id'=>'searchName','data-provide'=>'typeahead'])!!}
   <input type="hidden" name="idContacto" id="idContct">
+  <label id="tel">Telefono</label><br>
+  <label id="ema">Correo</label>
 </div>
 <div class="form-group">
   {!!Form::label('tituloSolicitud', 'Titulo Solicitud')!!}
