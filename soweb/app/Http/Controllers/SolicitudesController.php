@@ -49,7 +49,7 @@ class SolicitudesController extends Controller
     {
 
       $term=$request->term;
-      $results=Contactos::select('nombre as name','idContacto','nombreRepresentante')->where('nombre', 'LIKE','%'.$term.'%')
+      $results=Contactos::select('nombre as name','idContacto','nombreRepresentante','telefono','email')->where('nombre', 'LIKE','%'.$term.'%')
       ->get();
       return response()->json($results);
     }

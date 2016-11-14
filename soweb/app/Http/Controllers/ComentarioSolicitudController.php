@@ -38,7 +38,7 @@ class ComentarioSolicitudController extends Controller
     public function getListSolicitud(Request $request, $idSolicitud)
     {
 
-      $solicitud = Solicitudes::select('solicitudes.*','contactos.nombre as nameC','asesores.nombre as nameA','users.name as nameU')
+      $solicitud = Solicitudes::select('solicitudes.*','contactos.nombre as nameC','contactos.telefono as telf','contactos.email as correo','asesores.nombre as nameA','users.name as nameU')
                     ->join('users','users.id','=','solicitudes.idUser')
                     ->join('contactos','contactos.idContacto','=','solicitudes.idContacto')
                     ->join('asesores','asesores.idAsesor','=','solicitudes.idAsesor')

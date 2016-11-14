@@ -28,6 +28,28 @@
 
             ?> {{$cont}} </p>
           </div>
+          <div class="col-md-4">
+            <p class="text-left"><b>Telefono:</b><?php
+               $cont;
+               if ($solicitud->telf != '') {
+                 $cont = $solicitud->telf;
+               }else {
+                 $cont = 'N/A';
+               }
+
+            ?> {{$cont}} </p>
+          </div>
+          <div class="col-md-4">
+            <p class="text-left"><b>Correo:</b><?php
+               $cont;
+               if ($solicitud->correo != '') {
+                 $cont = $solicitud->correo;
+               }else {
+                 $cont = 'N/A';
+               }
+
+            ?> {{$cont}} </p>
+          </div>
           <div class="col-md-3">
             <p class="text-left"><b>Asignado A:</b> {{$solicitud->nameA}} </p>
           </div>
